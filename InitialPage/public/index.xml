@@ -6,8 +6,15 @@
     <description>Recent content on 荒巻しゃけのHomepage</description>
     <generator>Hugo</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 13 Oct 2025 01:12:46 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 14 Oct 2025 20:13:39 +0900</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>はじめに</title>
+      <link>http://localhost:1313/post/%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB/</link>
+      <pubDate>Tue, 14 Oct 2025 20:13:39 +0900</pubDate>
+      <guid>http://localhost:1313/post/%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB/</guid>
+      <description>&lt;h1 id=&#34;あいさつ&#34;&gt;あいさつ&lt;/h1&gt;&#xA;&lt;p&gt;荒巻しゃけと申します。&lt;/p&gt;&#xA;&lt;p&gt;Twitterで技術的な気付きをちょくちょく書いたり、noteで文を書き散らかしたりしています。&lt;/p&gt;&#xA;&lt;p&gt;それぞれ便利なのですが、使ってみると、思いつきでやろうと思ったことができなかったり（例：TeXを使用した文書を書いたりなど）、醜悪なインプレッション稼ぎなどを目にします。&lt;/p&gt;&#xA;&lt;p&gt;また、自分の書いた文書がプラットフォームが死んだときに全部無くなる、なんてのもあり得る話です。&lt;/p&gt;&#xA;&lt;p&gt;上記のような不便さを取っ払って、自らの経験や思いつきを全て血肉とすべく、文章に落としこもうと思いました。&lt;/p&gt;&#xA;&lt;p&gt;そこで、技術ブログを書こうと思い至りました。&lt;/p&gt;&#xA;&lt;h1 id=&#34;目的&#34;&gt;目的&lt;/h1&gt;&#xA;&lt;p&gt;主に以下のような目的でやろうと考えています。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;技術的な知識の蓄積&lt;/li&gt;&#xA;&lt;li&gt;アウトプットによる理解の促進&lt;/li&gt;&#xA;&lt;li&gt;Markdown形式の文書に慣れる&lt;/li&gt;&#xA;&lt;li&gt;思いつきの昇華(Twitterみたいな使い方)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;おわり&#34;&gt;おわり&lt;/h1&gt;&#xA;&lt;p&gt;以上、よろしくお願いします。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Newpost20251013</title>
       <link>http://localhost:1313/post/newpost20251013_test/</link>
@@ -27,7 +34,7 @@
       <link>http://localhost:1313/readme/</link>
       <pubDate>Mon, 13 Oct 2025 00:47:56 +0900</pubDate>
       <guid>http://localhost:1313/readme/</guid>
-      <description>&lt;h1 id=&#34;概要&#34;&gt;概要&lt;/h1&gt;&#xA;&lt;p&gt;技術的知見を蓄積させる技術ブログ。&#xA;何が技術かわからないのでロクでもない所感も記載予定。&lt;/p&gt;&#xA;&lt;p&gt;今のところ興味があるのは&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;電子工作&lt;/li&gt;&#xA;&lt;li&gt;科学&lt;/li&gt;&#xA;&lt;li&gt;とんち&lt;/li&gt;&#xA;&lt;li&gt;散歩&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;くらい。&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;概要&#34;&gt;概要&lt;/h1&gt;&#xA;&lt;p&gt;技術的知見を蓄積させる技術ブログ。&#xA;何が技術かわからないのでロクでもない所感も記載予定。&lt;/p&gt;&#xA;&lt;p&gt;今のところ興味があるのは&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;電子工作&lt;/li&gt;&#xA;&lt;li&gt;科学&lt;/li&gt;&#xA;&lt;li&gt;とんち&lt;/li&gt;&#xA;&lt;li&gt;散歩&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;くらい。よろしくお願いします～！&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

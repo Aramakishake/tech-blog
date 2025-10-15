@@ -1,2 +1,2 @@
-# tech-blog-prepare
-技術ブログ準備用レポジトリ
+# tech-blog
+技術ブログ公開用レポジトリ

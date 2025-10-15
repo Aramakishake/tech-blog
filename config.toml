@@ -1,0 +1,7 @@
+baseURL = 'http://localhost:1313/'
+languageCode = 'ja-jp'
+title = '荒巻しゃけのHomepage'
+theme = 'github-style'
+
+[params]
+headerIcon = "/images/favicon.ico"

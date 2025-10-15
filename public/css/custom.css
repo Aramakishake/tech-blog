@@ -1,0 +1,11 @@
+.container {
+  padding-left: 2rem;
+}
+
+.user-profile-nav {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+

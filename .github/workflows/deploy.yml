@@ -5,6 +5,9 @@ on:
     branches:
       - develop  # Hugoプロジェクトがあるブランチ
 
+permissions:
+  contents: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest

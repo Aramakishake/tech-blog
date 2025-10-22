@@ -70,7 +70,7 @@
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
       <a class="Header-link" href="https://aramakishake.github.io/tech-blog/">
-        <img class="octicon" height="32" width="32" src="images/favicon.ico">
+        <img class="octicon" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
       </a>
     </div>
     <div class="Header-item d-md-none">
@@ -105,7 +105,7 @@
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
       <a class="Header-link " href="https://aramakishake.github.io/tech-blog/">
-        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="images/favicon.ico">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
       </a>
     </div>
     <div class="Header-item" style="margin-right: 0;">
@@ -501,15 +501,26 @@ powershellでスクリプトをコピペさせてバックドアを仕込んだ�
     <figcaption>レジストリエディタ</figcaption>
   
 </figure>
-<h2 id="4-showsecondsinsystemclockのdword値を1に変更">4. <code>ShowSecondsInSystemClock</code>のDWORD値を<code>1</code>に変更</h2>
+<h2 id="4-特定のdword値を変更">4. 特定のDWORD値を変更</h2>
+<p><code>ShowSecondsInSystemClock</code>のDWORD値を<code>1</code>に変更</p>
 <ul>
-<li>値の部分をダブルクリックすることで修正可能。
-<img src="images/DWORD2.png" alt="alt text">
-やったぜ</li>
+<li>値の部分をダブルクリックすることで修正可能。</li>
 </ul>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/DWORD2.png" alt="ShowSecondsInSystemClockの値を変更" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>ShowSecondsInSystemClockの値を変更</figcaption>
+  
+</figure>
+<p>やったぜ</p>
 <h2 id="5-pcを再起動する">5. PCを再起動する(?)</h2>
 <p>私の環境では、PCを再起動することなく、hh:mm:ssになった。</p>
-<p><img src="images/HHMMSS.png" alt="alt text"></p>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/HHMMSS.png" alt="変更後の時間表示" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>変更後の時間表示</figcaption>
+  
+</figure>
 <h1 id="おわりに">おわりに</h1>
 <p>今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。
 勤務時間を1秒でも削りたい方は是非とも利用されたい。</p>
@@ -517,8 +528,18 @@ powershellでスクリプトをコピペさせてバックドアを仕込んだ�
 <h2 id="レジストリエディタのバックアップ">レジストリエディタのバックアップ</h2>
 <p>レジストリエディタの[ファイル]タブにある[エクスポート]で.regファイルを吐き出せる。</p>
 <p>これを復元したいときは、.regファイルを[インポート]すれば良い。</p>
-<p><img src="images/RegEditor.png" alt="alt text"></p>
-<p><img src="images/RegEditor2.png" alt="alt text"></p>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/RegEditor.png" alt="レジストリエディタ" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>レジストリエディタ</figcaption>
+  
+</figure>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/RegEditor2.png" alt="ファイルタブを開いたとき" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>ファイルタブを開いたとき</figcaption>
+  
+</figure>
                 </div>
 
                 <p class="mb-0 f6 text-gray">

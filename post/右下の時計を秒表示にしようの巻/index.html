@@ -23,11 +23,13 @@
     <meta name="description"
   content="はじめに あなたは仕事中、分単位で時間を気にするだろうか？ 私はある。 というのも、「分刻みのスケジュールをこなす社会人だから」… というわけではなく、残業時間を丁度良い時間にしたいためだ。
 と、いうことで早速やっていこう！
-この記事でやりたいこと 右下の画面の表示をhh:mmからhh:mm:ssに変える 変更前の時間表示 手順 1. Win&#43;Rでregedit と入力しレジストリエディター起動 一般にWinキー &#43; Rを押させるタイプの指示は、危ういイメージがある。 powershellでスクリプトをコピペさせてバックドアを仕込んだり、TeamViewerを入れさせられることで、詐欺師にPCの生殺与奪権を譲るなんてことがあるらしい。気をつけようね。 正直、レジストリエディタは変なとこいじると起動しなくなるなんて話も聞くので、心配ならバックアップを取ると吉かも(補遺に記載)。 2. 以下のキーに移動する。 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced 3. 新しいDWORD値を作成 右の領域で右クリック [新規] &gt; [DWORD(32ビット)値]を選択。 名前をShowSecondsInSystemClockに設定。 レジストリエディタ 4. ShowSecondsInSystemClockのDWORD値を1に変更 値の部分をダブルクリックすることで修正可能。 やったぜ 5. PCを再起動する(?) 私の環境では、PCを再起動することなく、hh:mm:ssになった。
-おわりに 今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。 勤務時間を1秒でも削りたい方は是非とも利用されたい。
+この記事でやりたいこと 右下の画面の表示をhh:mmからhh:mm:ssに変える 変更前の時間表示 手順 1. Win&#43;Rでregedit と入力しレジストリエディター起動 一般にWinキー &#43; Rを押させるタイプの指示は、危ういイメージがある。 powershellでスクリプトをコピペさせてバックドアを仕込んだり、TeamViewerを入れさせられることで、詐欺師にPCの生殺与奪権を譲るなんてことがあるらしい。気をつけようね。 正直、レジストリエディタは変なとこいじると起動しなくなるなんて話も聞くので、心配ならバックアップを取ると吉かも(補遺に記載)。 2. 以下のキーに移動する。 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced 3. 新しいDWORD値を作成 右の領域で右クリック [新規] &gt; [DWORD(32ビット)値]を選択。 名前をShowSecondsInSystemClockに設定。 レジストリエディタ 4. 特定のDWORD値を変更 ShowSecondsInSystemClockのDWORD値を1に変更
+値の部分をダブルクリックすることで修正可能。 ShowSecondsInSystemClockの値を変更 やったぜ
+5. PCを再起動する(?) 私の環境では、PCを再起動することなく、hh:mm:ssになった。
+変更後の時間表示 おわりに 今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。 勤務時間を1秒でも削りたい方は是非とも利用されたい。
 補遺 レジストリエディタのバックアップ レジストリエディタの[ファイル]タブにある[エクスポート]で.regファイルを吐き出せる。
 これを復元したいときは、.regファイルを[インポート]すれば良い。
-" />
+レジストリエディタ ファイルタブを開いたとき " />
 <meta name="keywords"
   content='' />
 <meta name="robots" content="noodp" />
@@ -39,11 +41,13 @@
 <meta name="twitter:description"
   content="はじめに あなたは仕事中、分単位で時間を気にするだろうか？ 私はある。 というのも、「分刻みのスケジュールをこなす社会人だから」… というわけではなく、残業時間を丁度良い時間にしたいためだ。
 と、いうことで早速やっていこう！
-この記事でやりたいこと 右下の画面の表示をhh:mmからhh:mm:ssに変える 変更前の時間表示 手順 1. Win&#43;Rでregedit と入力しレジストリエディター起動 一般にWinキー &#43; Rを押させるタイプの指示は、危ういイメージがある。 powershellでスクリプトをコピペさせてバックドアを仕込んだり、TeamViewerを入れさせられることで、詐欺師にPCの生殺与奪権を譲るなんてことがあるらしい。気をつけようね。 正直、レジストリエディタは変なとこいじると起動しなくなるなんて話も聞くので、心配ならバックアップを取ると吉かも(補遺に記載)。 2. 以下のキーに移動する。 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced 3. 新しいDWORD値を作成 右の領域で右クリック [新規] &gt; [DWORD(32ビット)値]を選択。 名前をShowSecondsInSystemClockに設定。 レジストリエディタ 4. ShowSecondsInSystemClockのDWORD値を1に変更 値の部分をダブルクリックすることで修正可能。 やったぜ 5. PCを再起動する(?) 私の環境では、PCを再起動することなく、hh:mm:ssになった。
-おわりに 今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。 勤務時間を1秒でも削りたい方は是非とも利用されたい。
+この記事でやりたいこと 右下の画面の表示をhh:mmからhh:mm:ssに変える 変更前の時間表示 手順 1. Win&#43;Rでregedit と入力しレジストリエディター起動 一般にWinキー &#43; Rを押させるタイプの指示は、危ういイメージがある。 powershellでスクリプトをコピペさせてバックドアを仕込んだり、TeamViewerを入れさせられることで、詐欺師にPCの生殺与奪権を譲るなんてことがあるらしい。気をつけようね。 正直、レジストリエディタは変なとこいじると起動しなくなるなんて話も聞くので、心配ならバックアップを取ると吉かも(補遺に記載)。 2. 以下のキーに移動する。 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced 3. 新しいDWORD値を作成 右の領域で右クリック [新規] &gt; [DWORD(32ビット)値]を選択。 名前をShowSecondsInSystemClockに設定。 レジストリエディタ 4. 特定のDWORD値を変更 ShowSecondsInSystemClockのDWORD値を1に変更
+値の部分をダブルクリックすることで修正可能。 ShowSecondsInSystemClockの値を変更 やったぜ
+5. PCを再起動する(?) 私の環境では、PCを再起動することなく、hh:mm:ssになった。
+変更後の時間表示 おわりに 今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。 勤務時間を1秒でも削りたい方は是非とも利用されたい。
 補遺 レジストリエディタのバックアップ レジストリエディタの[ファイル]タブにある[エクスポート]で.regファイルを吐き出せる。
 これを復元したいときは、.regファイルを[インポート]すれば良い。
-" />
+レジストリエディタ ファイルタブを開いたとき " />
 <meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
@@ -55,11 +59,13 @@
 <meta property="og:description"
   content="はじめに あなたは仕事中、分単位で時間を気にするだろうか？ 私はある。 というのも、「分刻みのスケジュールをこなす社会人だから」… というわけではなく、残業時間を丁度良い時間にしたいためだ。
 と、いうことで早速やっていこう！
-この記事でやりたいこと 右下の画面の表示をhh:mmからhh:mm:ssに変える 変更前の時間表示 手順 1. Win&#43;Rでregedit と入力しレジストリエディター起動 一般にWinキー &#43; Rを押させるタイプの指示は、危ういイメージがある。 powershellでスクリプトをコピペさせてバックドアを仕込んだり、TeamViewerを入れさせられることで、詐欺師にPCの生殺与奪権を譲るなんてことがあるらしい。気をつけようね。 正直、レジストリエディタは変なとこいじると起動しなくなるなんて話も聞くので、心配ならバックアップを取ると吉かも(補遺に記載)。 2. 以下のキーに移動する。 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced 3. 新しいDWORD値を作成 右の領域で右クリック [新規] &gt; [DWORD(32ビット)値]を選択。 名前をShowSecondsInSystemClockに設定。 レジストリエディタ 4. ShowSecondsInSystemClockのDWORD値を1に変更 値の部分をダブルクリックすることで修正可能。 やったぜ 5. PCを再起動する(?) 私の環境では、PCを再起動することなく、hh:mm:ssになった。
-おわりに 今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。 勤務時間を1秒でも削りたい方は是非とも利用されたい。
+この記事でやりたいこと 右下の画面の表示をhh:mmからhh:mm:ssに変える 変更前の時間表示 手順 1. Win&#43;Rでregedit と入力しレジストリエディター起動 一般にWinキー &#43; Rを押させるタイプの指示は、危ういイメージがある。 powershellでスクリプトをコピペさせてバックドアを仕込んだり、TeamViewerを入れさせられることで、詐欺師にPCの生殺与奪権を譲るなんてことがあるらしい。気をつけようね。 正直、レジストリエディタは変なとこいじると起動しなくなるなんて話も聞くので、心配ならバックアップを取ると吉かも(補遺に記載)。 2. 以下のキーに移動する。 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced 3. 新しいDWORD値を作成 右の領域で右クリック [新規] &gt; [DWORD(32ビット)値]を選択。 名前をShowSecondsInSystemClockに設定。 レジストリエディタ 4. 特定のDWORD値を変更 ShowSecondsInSystemClockのDWORD値を1に変更
+値の部分をダブルクリックすることで修正可能。 ShowSecondsInSystemClockの値を変更 やったぜ
+5. PCを再起動する(?) 私の環境では、PCを再起動することなく、hh:mm:ssになった。
+変更後の時間表示 おわりに 今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。 勤務時間を1秒でも削りたい方は是非とも利用されたい。
 補遺 レジストリエディタのバックアップ レジストリエディタの[ファイル]タブにある[エクスポート]で.regファイルを吐き出せる。
 これを復元したいときは、.regファイルを[インポート]すれば良い。
-" />
+レジストリエディタ ファイルタブを開いたとき " />
 <meta property="og:url" content="https://aramakishake.github.io/tech-blog/post/%E5%8F%B3%E4%B8%8B%E3%81%AE%E6%99%82%E8%A8%88%E3%82%92%E7%A7%92%E8%A1%A8%E7%A4%BA%E3%81%AB%E3%81%97%E3%82%88%E3%81%86%E3%81%AE%E5%B7%BB/" />
 <meta property="og:site_name" content="右下の時計を秒表示にしようの巻_20251020" />
 <meta property="og:image"
@@ -87,7 +93,7 @@
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
       <a class="Header-link" href="https://aramakishake.github.io/tech-blog/">
-        <img class="octicon" height="32" width="32" src="images/favicon.ico">
+        <img class="octicon" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
       </a>
     </div>
     <div class="Header-item d-md-none">
@@ -122,7 +128,7 @@
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
       <a class="Header-link " href="https://aramakishake.github.io/tech-blog/">
-        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="images/favicon.ico">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
       </a>
     </div>
     <div class="Header-item" style="margin-right: 0;">
@@ -200,7 +206,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      768 Words
+                      838 Words
                     
 
                   </div>
@@ -268,15 +274,26 @@ powershellでスクリプトをコピペさせてバックドアを仕込んだ�
     <figcaption>レジストリエディタ</figcaption>
   
 </figure>
-<h2 id="4-showsecondsinsystemclockのdword値を1に変更">4. <code>ShowSecondsInSystemClock</code>のDWORD値を<code>1</code>に変更</h2>
+<h2 id="4-特定のdword値を変更">4. 特定のDWORD値を変更</h2>
+<p><code>ShowSecondsInSystemClock</code>のDWORD値を<code>1</code>に変更</p>
 <ul>
-<li>値の部分をダブルクリックすることで修正可能。
-<img src="images/DWORD2.png" alt="alt text">
-やったぜ</li>
+<li>値の部分をダブルクリックすることで修正可能。</li>
 </ul>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/DWORD2.png" alt="ShowSecondsInSystemClockの値を変更" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>ShowSecondsInSystemClockの値を変更</figcaption>
+  
+</figure>
+<p>やったぜ</p>
 <h2 id="5-pcを再起動する">5. PCを再起動する(?)</h2>
 <p>私の環境では、PCを再起動することなく、hh:mm:ssになった。</p>
-<p><img src="images/HHMMSS.png" alt="alt text"></p>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/HHMMSS.png" alt="変更後の時間表示" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>変更後の時間表示</figcaption>
+  
+</figure>
 <h1 id="おわりに">おわりに</h1>
 <p>今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。
 勤務時間を1秒でも削りたい方は是非とも利用されたい。</p>
@@ -284,8 +301,18 @@ powershellでスクリプトをコピペさせてバックドアを仕込んだ�
 <h2 id="レジストリエディタのバックアップ">レジストリエディタのバックアップ</h2>
 <p>レジストリエディタの[ファイル]タブにある[エクスポート]で.regファイルを吐き出せる。</p>
 <p>これを復元したいときは、.regファイルを[インポート]すれば良い。</p>
-<p><img src="images/RegEditor.png" alt="alt text"></p>
-<p><img src="images/RegEditor2.png" alt="alt text"></p>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/RegEditor.png" alt="レジストリエディタ" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>レジストリエディタ</figcaption>
+  
+</figure>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/RegEditor2.png" alt="ファイルタブを開いたとき" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>ファイルタブを開いたとき</figcaption>
+  
+</figure>
 </article>
               </div>
             </div>

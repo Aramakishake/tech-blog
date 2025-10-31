@@ -1,7 +1,7 @@
 +++
-date = '2025-10-26T16:14:25+09:00'
-draft = true
-title = 'Hugoでブログはじめましたpart1_20251026'
+date = '2025-10-31T16:14:25+09:00'
+draft = false
+title = 'Hugoでブログはじめましたpart1_20251031'
 tags = ["静的サイト", "Hugo"]
 +++
 

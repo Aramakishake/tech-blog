@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github-style.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/light.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
+    <title>Hugoでブログはじめましたpart1_20251031 - 荒巻しゃけのHomepage</title>
+    
+    <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    
+
+    
+    <meta name="description"
+  content="はじめに 技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。
+その振り返りを行うべく本記事にまとめる。
+使用した道具をどう使ったかについて述べたい。
+Hugo : 静的サイトジェネレーター GitHub Actions : CI/CDプラットフォーム 本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。
+Hugoについて Hugoとは静的サイトジェネレーターであると述べた。
+まず、それは何かを説明する。
+静的サイトジェネレーターとは この語彙を説明するために、
+静的サイト ジェネレーター の2つに分割しよう。
+◯静的サイト 静的サイトというのは、
+「閲覧者や条件が変わっても、内容の変わらないサイト」
+のことである。
+ちなみに、対義語としては動的サイトがある。 こちらはログインするユーザー毎に内容を変化させることができるものだ。
+例を挙げると、X(Twitter)は、
+ユーザーごとにタイムラインの表示が変わる 見るタイミングごとにもタイムラインの表示が変わる そのため、条件や閲覧者ごとに内容が変わる。
+つまり、動的サイトにカテゴライズされる。
+今回実現しようとしているのは、自らの技術ブログの開設である。
+ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。
+そこで、静的なサイトとして作成しようと相成った。
+◯ジェネレーター 本来、ホームページをステゴロで作ろうとすると、
+HTML(HyperText Markup Language) ホームページに表示する中身の部分
+CSS(Cascading Style Sheets) ホームページの見た目を制御する部分
+JavaScript ホームページの一部パーツを作成するための部分。
+所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。
+以上の3つを自らの手で書く必要がある。 （最低限はHTMLのみで済むが、それでも骨が折れる）
+静的サイトジェネレーターというのは、 これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ なのである。
+流石に、無からホームページが作れるわけではないが、必要なものは単純化される。 大きく分けて以下の3つである。
+記事 Markdownテキスト 画像 コンテンツ内に載せる画像 テーマ(サイトの枠組み) 主にサイトの見た目部分 https://themes.gohugo.io/ から選択できる 記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。
+Hugo概要のまとめ Hugoとは、静的サイトジェネレーターである。
+つまり、閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツなのである。
+実施した工程 では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。
+Hugoを使用するには 1. Hugoのインストール ここにインストールの仕方が載っている。 https://gohugo.io/installation/
+" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Hugoでブログはじめましたpart1_20251031 - 荒巻しゃけのHomepage" />
+<meta name="twitter:description"
+  content="はじめに 技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。
+その振り返りを行うべく本記事にまとめる。
+使用した道具をどう使ったかについて述べたい。
+Hugo : 静的サイトジェネレーター GitHub Actions : CI/CDプラットフォーム 本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。
+Hugoについて Hugoとは静的サイトジェネレーターであると述べた。
+まず、それは何かを説明する。
+静的サイトジェネレーターとは この語彙を説明するために、
+静的サイト ジェネレーター の2つに分割しよう。
+◯静的サイト 静的サイトというのは、
+「閲覧者や条件が変わっても、内容の変わらないサイト」
+のことである。
+ちなみに、対義語としては動的サイトがある。 こちらはログインするユーザー毎に内容を変化させることができるものだ。
+例を挙げると、X(Twitter)は、
+ユーザーごとにタイムラインの表示が変わる 見るタイミングごとにもタイムラインの表示が変わる そのため、条件や閲覧者ごとに内容が変わる。
+つまり、動的サイトにカテゴライズされる。
+今回実現しようとしているのは、自らの技術ブログの開設である。
+ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。
+そこで、静的なサイトとして作成しようと相成った。
+◯ジェネレーター 本来、ホームページをステゴロで作ろうとすると、
+HTML(HyperText Markup Language) ホームページに表示する中身の部分
+CSS(Cascading Style Sheets) ホームページの見た目を制御する部分
+JavaScript ホームページの一部パーツを作成するための部分。
+所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。
+以上の3つを自らの手で書く必要がある。 （最低限はHTMLのみで済むが、それでも骨が折れる）
+静的サイトジェネレーターというのは、 これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ なのである。
+流石に、無からホームページが作れるわけではないが、必要なものは単純化される。 大きく分けて以下の3つである。
+記事 Markdownテキスト 画像 コンテンツ内に載せる画像 テーマ(サイトの枠組み) 主にサイトの見た目部分 https://themes.gohugo.io/ から選択できる 記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。
+Hugo概要のまとめ Hugoとは、静的サイトジェネレーターである。
+つまり、閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツなのである。
+実施した工程 では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。
+Hugoを使用するには 1. Hugoのインストール ここにインストールの仕方が載っている。 https://gohugo.io/installation/
+" />
+<meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://aramakishake.github.io/tech-blog/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Hugoでブログはじめましたpart1_20251031 - 荒巻しゃけのHomepage">
+<meta property="og:description"
+  content="はじめに 技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。
+その振り返りを行うべく本記事にまとめる。
+使用した道具をどう使ったかについて述べたい。
+Hugo : 静的サイトジェネレーター GitHub Actions : CI/CDプラットフォーム 本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。
+Hugoについて Hugoとは静的サイトジェネレーターであると述べた。
+まず、それは何かを説明する。
+静的サイトジェネレーターとは この語彙を説明するために、
+静的サイト ジェネレーター の2つに分割しよう。
+◯静的サイト 静的サイトというのは、
+「閲覧者や条件が変わっても、内容の変わらないサイト」
+のことである。
+ちなみに、対義語としては動的サイトがある。 こちらはログインするユーザー毎に内容を変化させることができるものだ。
+例を挙げると、X(Twitter)は、
+ユーザーごとにタイムラインの表示が変わる 見るタイミングごとにもタイムラインの表示が変わる そのため、条件や閲覧者ごとに内容が変わる。
+つまり、動的サイトにカテゴライズされる。
+今回実現しようとしているのは、自らの技術ブログの開設である。
+ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。
+そこで、静的なサイトとして作成しようと相成った。
+◯ジェネレーター 本来、ホームページをステゴロで作ろうとすると、
+HTML(HyperText Markup Language) ホームページに表示する中身の部分
+CSS(Cascading Style Sheets) ホームページの見た目を制御する部分
+JavaScript ホームページの一部パーツを作成するための部分。
+所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。
+以上の3つを自らの手で書く必要がある。 （最低限はHTMLのみで済むが、それでも骨が折れる）
+静的サイトジェネレーターというのは、 これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ なのである。
+流石に、無からホームページが作れるわけではないが、必要なものは単純化される。 大きく分けて以下の3つである。
+記事 Markdownテキスト 画像 コンテンツ内に載せる画像 テーマ(サイトの枠組み) 主にサイトの見た目部分 https://themes.gohugo.io/ から選択できる 記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。
+Hugo概要のまとめ Hugoとは、静的サイトジェネレーターである。
+つまり、閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツなのである。
+実施した工程 では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。
+Hugoを使用するには 1. Hugoのインストール ここにインストールの仕方が載っている。 https://gohugo.io/installation/
+" />
+<meta property="og:url" content="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/" />
+<meta property="og:site_name" content="Hugoでブログはじめましたpart1_20251031" />
+<meta property="og:image"
+  content="https://aramakishake.github.io/tech-blog/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-10-31 16:14:25 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://aramakishake.github.io/tech-blog/">
+        <img class="octicon" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://aramakishake.github.io/tech-blog/">
+            </label>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://aramakishake.github.io/tech-blog/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://aramakishake.github.io/tech-blog/">
+                  <img class=" avatar-user"
+                    src="https://aramakishake.github.io/tech-blog/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://aramakishake.github.io/tech-blog/"></a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/">Hugoでブログはじめましたpart1_20251031</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Fri, 31 Oct 2025 16:14:25 &#43;0900"
+                    class="no-wrap">
+                    Fri, 31 Oct 2025 16:14:25 &#43;0900</relative-time>
+
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      2537 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      静的サイト
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/hugo">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Hugo
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><h1 id="はじめに">はじめに</h1>
+<p>技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。</p>
+<p>その振り返りを行うべく本記事にまとめる。</p>
+<p>使用した道具をどう使ったかについて述べたい。</p>
+<ul>
+<li>Hugo : 静的サイトジェネレーター</li>
+<li>GitHub Actions : CI/CDプラットフォーム</li>
+</ul>
+<p>本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。</p>
+<h1 id="hugoについて">Hugoについて</h1>
+<p>Hugoとは静的サイトジェネレーターであると述べた。</p>
+<p>まず、それは何かを説明する。</p>
+<h2 id="静的サイトジェネレーターとは">静的サイトジェネレーターとは</h2>
+<p>この語彙を説明するために、</p>
+<ul>
+<li>静的サイト</li>
+<li>ジェネレーター</li>
+</ul>
+<p>の2つに分割しよう。</p>
+<h3 id="静的サイト">◯静的サイト</h3>
+<p>静的サイトというのは、</p>
+<p><strong>「閲覧者や条件が変わっても、内容の変わらないサイト」</strong></p>
+<p>のことである。</p>
+<p>ちなみに、対義語としては動的サイトがある。
+こちらはログインするユーザー毎に内容を変化させることができるものだ。</p>
+<p>例を挙げると、X(Twitter)は、</p>
+<ul>
+<li>ユーザーごとにタイムラインの表示が変わる</li>
+<li>見るタイミングごとにもタイムラインの表示が変わる</li>
+</ul>
+<p>そのため、条件や閲覧者ごとに内容が変わる。</p>
+<p>つまり、動的サイトにカテゴライズされる。</p>
+<p>今回実現しようとしているのは、自らの技術ブログの開設である。</p>
+<p>ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。</p>
+<p>そこで、静的なサイトとして作成しようと相成った。</p>
+<h3 id="ジェネレーター">◯ジェネレーター</h3>
+<p>本来、ホームページをステゴロで作ろうとすると、</p>
+<ul>
+<li>HTML(HyperText Markup Language)</li>
+</ul>
+<p>ホームページに表示する中身の部分</p>
+<ul>
+<li>CSS(Cascading Style Sheets)</li>
+</ul>
+<p>ホームページの見た目を制御する部分</p>
+<ul>
+<li>JavaScript</li>
+</ul>
+<p>ホームページの一部パーツを作成するための部分。</p>
+<p>所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。</p>
+<p>以上の3つを自らの手で書く必要がある。
+（最低限はHTMLのみで済むが、それでも骨が折れる）</p>
+<p>静的サイトジェネレーターというのは、
+<strong>これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ</strong>
+なのである。</p>
+<p>流石に、無からホームページが作れるわけではないが、必要なものは単純化される。
+大きく分けて以下の3つである。</p>
+<ul>
+<li>記事
+<ul>
+<li>Markdownテキスト</li>
+</ul>
+</li>
+<li>画像
+<ul>
+<li>コンテンツ内に載せる画像</li>
+</ul>
+</li>
+<li>テーマ(サイトの枠組み)
+<ul>
+<li>主にサイトの見た目部分</li>
+<li><a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a> から選択できる</li>
+</ul>
+</li>
+</ul>
+<p>記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。</p>
+<h2 id="hugo概要のまとめ">Hugo概要のまとめ</h2>
+<p>Hugoとは、静的サイトジェネレーターである。</p>
+<p>つまり、<strong>閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツ</strong>なのである。</p>
+<h1 id="実施した工程">実施した工程</h1>
+<p>では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。</p>
+<h2 id="hugoを使用するには">Hugoを使用するには</h2>
+<h3 id="1-hugoのインストール">1. Hugoのインストール</h3>
+<p>ここにインストールの仕方が載っている。
+<a href="https://gohugo.io/installation/">https://gohugo.io/installation/</a></p>
+<p>私は確かwingetで取った気がする</p>
+<pre tabindex="0"><code>hugo version
+</code></pre><p>とコマンドプロンプトに入力したとき、</p>
+<pre tabindex="0"><code>&#39;hugo&#39; は、内部コマンドまたは外部コマンド、
+操作可能なプログラムまたはバッチ ファイルとして認識されていません。
+</code></pre><p>と出た場合はインストールできていないか、パスの設定がうまく行っていないかだと思われる。</p>
+<h3 id="2-新規サイト作成">2. 新規サイト作成</h3>
+<pre tabindex="0"><code>hugo new site (Name)
+</code></pre><p>で入力すると、末尾に入力した文字列をディレクトリ名とするディレクトリが作成される。</p>
+<p>成功時は、以下のメッセージが出る(パスをPath、ファイル名をNameに変更している)。</p>
+<pre tabindex="0"><code>Congratulations! Your new Hugo site was created in 
+(Path)\(Name).
+
+Just a few more steps...
+
+1. Change the current directory to (Path)\(Name).
+2. Create or install a theme:
+   - Create a new theme with the command &#34;hugo new theme &lt;THEMENAME&gt;&#34;
+   - Or, install a theme from https://themes.gohugo.io/
+3. Edit hugo.toml, setting the &#34;theme&#34; property to the theme name.
+4. Create new content with the command &#34;hugo new content &lt;SECTIONNAME&gt;\&lt;FILENAME&gt;.&lt;FORMAT&gt;&#34;.
+5. Start the embedded web server with the command &#34;hugo server --buildDrafts&#34;.
+
+See documentation at https://gohugo.io/.
+</code></pre><p>まぁこれに準じて進めていけば進むんだが、如何せん英語なので、</p>
+<p>作成されるディレクトリの構成は以下の通り。</p>
+<pre tabindex="0"><code>/(Name)
+├── archetypes/
+│ └── default.md
+├── assets/
+├── content/
+├── data/
+├── hugo.toml
+├── i18n/
+├── layouts/
+├── static/
+└── themes/
+</code></pre><p>未だにわかってないディレクトリがあるが、とりあえず今のところ使ってるのは以下くらい。</p>
+<ul>
+<li>archetypes/default.md
+<ul>
+<li>新規記事を作成したときのフォーマット</li>
+</ul>
+</li>
+<li>content/
+<ul>
+<li>記事を置いておくディレクトリ</li>
+<li>content/post/配下に新規作成記事を置いている</li>
+</ul>
+</li>
+<li>hugo.toml
+<ul>
+<li>configファイル</li>
+<li>テーマの設定なんかもここで行う</li>
+</ul>
+</li>
+<li>static/
+<ul>
+<li>画像を置いておくディレクトリ</li>
+</ul>
+</li>
+<li>themes/
+<ul>
+<li>テーマを置いておくディレクトリ</li>
+</ul>
+</li>
+</ul>
+<p>運用によっておそらく変わるので、2025年10月末現在はこんなとこ。</p>
+<h3 id="3-テーマの導入と設定">3. テーマの導入と設定</h3>
+<p>前述のthemeが置いてあるサイトから取得して、構成をそのままthemes/配下に配置する
+<a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a></p>
+<p>gitだったらtheme配下にCloneしてくることによって、容易に手元に持ってこれる。</p>
+<p>gitで持って来る場合、submoduleにするかCloneするかという択があるが、Cloneで実施した。</p>
+<p>理由は、themeの更新を追ってく必要がないので、ラクそうなCloneと考えたため。</p>
+<h3 id="4-ローカル開発サーバーの起動">4. ローカル開発サーバーの起動</h3>
+<pre tabindex="0"><code>hugo server -D
+</code></pre><p>このサーバーが起動中は、コンテンツが更新された際には自動で静的サイトが完成する。</p>
+<p>なお<code>-D</code>は草稿(Draft)の状態も表示するようなオプションである。</p>
+<h3 id="5-コンテンツ作成">5. コンテンツ作成</h3>
+<pre tabindex="0"><code>hugo new posts/newPost.md
+</code></pre><p>これをコマンドプロンプトに入力することで、content/配下にMarkdownファイルが作成される。</p>
+<p>上記のケースでは、
+content/posts/配下に
+newPost.mdが作成される。</p>
+<p>また、ここで作られるMarkdownファイルは、archetypes/default.mdの内容が入ってくる</p>
+<p>デフォルトだと以下のようになっている。</p>
+<pre tabindex="0"><code>+++
+date = &#39;{{ .Date }}&#39;
+draft = true
+title = &#39;{{ replace .File.ContentBaseName &#34;-&#34; &#34; &#34; | title }}&#39;
++++
+</code></pre><p>それぞれの項目を説明すると</p>
+<ul>
+<li>date : 日時
+<ul>
+<li>デフォだと作成日時</li>
+</ul>
+</li>
+<li>draft : 草稿(true)/本記事(false)
+<ul>
+<li>デフォだと草稿(true)</li>
+</ul>
+</li>
+<li>title : 記事タイトル
+<ul>
+<li>デフォだと多分ファイル名</li>
+</ul>
+</li>
+</ul>
+<p>ここで記事を作成すると、4. で起動したサーバーくんが頑張ってくれて、作成した記事が静的サイトに反映される。</p>
+<p>完成！</p>
+<h1 id="おわりに">おわりに</h1>
+<p>Hugoでブログ作成したが、その際に得た知識と実施した工程を記述した。</p>
+<p>次回はGitHub Actionくんについて説明したい。</p>
+<p>前もってざっくり話すと、サーバー役を担ってもらうという仕組みである。</p>
+<p>GitHubに更新した旨を伝えると</p>
+<ul>
+<li>自動的にページを作って</li>
+<li>公開してもらう</li>
+</ul>
+<p>という便利なものである。</p>
+<p>また、記事の見た目に関しては、まだまだ良くできることがあるので、記事を更新しつつエンハンスしていきたい。</p>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/toc.js'></script>
+<link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/toc.css' />
+
+  
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://aramakishake.github.io/tech-blog/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+      <li class="mr-3 mr-lg-0">GitHub and the Invertocat logo are trademarks of <a href="https://github.com/">GitHub, Inc.</a></li>
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+
+</body>
+
+<script type="application/javascript" src="https://aramakishake.github.io/tech-blog/js/github-style.js"></script>
+
+
+
+
+
+
+
+</html>

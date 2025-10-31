@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/light.css' />
     <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
     <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
-    <title>Windows - 荒巻しゃけのHomepage</title>
+    <title>Hugo - 荒巻しゃけのHomepage</title>
     
     <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
     
@@ -25,11 +25,11 @@
 <meta name="keywords"
   content='' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://aramakishake.github.io/tech-blog/tags/windows/" />
+<link rel="canonical" href="https://aramakishake.github.io/tech-blog/tags/hugo/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Windows - 荒巻しゃけのHomepage" />
+<meta name="twitter:title" content="Hugo - 荒巻しゃけのHomepage" />
 <meta name="twitter:description"
   content="" />
 <meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
@@ -39,11 +39,11 @@
 
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Windows - 荒巻しゃけのHomepage">
+<meta property="og:title" content="Hugo - 荒巻しゃけのHomepage">
 <meta property="og:description"
   content="" />
-<meta property="og:url" content="https://aramakishake.github.io/tech-blog/tags/windows/" />
-<meta property="og:site_name" content="Windows" />
+<meta property="og:url" content="https://aramakishake.github.io/tech-blog/tags/hugo/" />
+<meta property="og:site_name" content="Hugo" />
 <meta property="og:image"
   content="https://aramakishake.github.io/tech-blog/">
 <meta property="og:image:width" content="2048">
@@ -52,7 +52,7 @@
 
 
 
-<link href="/tech-blog/tags/windows/index.xml" rel="alternate" type="application/rss+xml" title="荒巻しゃけのHomepage" />
+<link href="/tech-blog/tags/hugo/index.xml" rel="alternate" type="application/rss+xml" title="荒巻しゃけのHomepage" />
 
 
 
@@ -405,7 +405,7 @@
         <div class="user-repo-search-results-summary TableObject-item TableObject-item--primary v-align-top">
           <strong>1</strong>
           results
-          for <strong>Windows</strong>
+          for <strong>Hugo</strong>
         </div>
         <div class="TableObject-item text-right v-align-top">
           <a class="issues-reset-query text-normal d-inline-block ml-3" href="https://aramakishake.github.io/tech-blog//post/">
@@ -426,118 +426,127 @@
           <div class="col-12 d-inline-block">
             <div class="d-inline-block mb-1">
               <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/post/%E5%8F%B3%E4%B8%8B%E3%81%AE%E6%99%82%E8%A8%88%E3%82%92%E7%A7%92%E8%A1%A8%E7%A4%BA%E3%81%AB%E3%81%97%E3%82%88%E3%81%86%E3%81%AE%E5%B7%BB/">右下の時計を秒表示にしようの巻_20251020</a>
+                <a href="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/">Hugoでブログはじめましたpart1_20251031</a>
               </h3>
             </div>
 
             <div>
               <div class="col-12 d-inline-block text-gray mb-2 pr-4">
                 <h1 id="はじめに">はじめに</h1>
-<p>あなたは仕事中、分単位で時間を気にするだろうか？
-私はある。
-というのも、「分刻みのスケジュールをこなす社会人だから」…
-というわけではなく、残業時間を丁度良い時間にしたいためだ。</p>
-<p>と、いうことで早速やっていこう！</p>
-<h1 id="この記事でやりたいこと">この記事でやりたいこと</h1>
+<p>技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。</p>
+<p>その振り返りを行うべく本記事にまとめる。</p>
+<p>使用した道具をどう使ったかについて述べたい。</p>
 <ul>
-<li>右下の画面の表示をhh:mmからhh:mm:ssに変える</li>
+<li>Hugo : 静的サイトジェネレーター</li>
+<li>GitHub Actions : CI/CDプラットフォーム</li>
 </ul>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/HHMM.png" alt="変更前の時間表示" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>変更前の時間表示</figcaption>
-  
-</figure>
-<h1 id="手順">手順</h1>
-<h2 id="1-winrでregedit-と入力しレジストリエディター起動">1. Win+Rで<code>regedit</code> と入力しレジストリエディター起動</h2>
+<p>本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。</p>
+<h1 id="hugoについて">Hugoについて</h1>
+<p>Hugoとは静的サイトジェネレーターであると述べた。</p>
+<p>まず、それは何かを説明する。</p>
+<h2 id="静的サイトジェネレーターとは">静的サイトジェネレーターとは</h2>
+<p>この語彙を説明するために、</p>
 <ul>
-<li>一般にWinキー + Rを押させるタイプの指示は、危ういイメージがある。
-powershellでスクリプトをコピペさせてバックドアを仕込んだり、TeamViewerを入れさせられることで、詐欺師にPCの生殺与奪権を譲るなんてことがあるらしい。気をつけようね。</li>
-<li>正直、レジストリエディタは変なとこいじると起動しなくなるなんて話も聞くので、心配ならバックアップを取ると吉かも(補遺に記載)。</li>
+<li>静的サイト</li>
+<li>ジェネレーター</li>
 </ul>
-<h2 id="2-以下のキーに移動する">2. 以下のキーに移動する。</h2>
-<pre tabindex="0"><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
-</code></pre><h2 id="3-新しいdword値を作成">3. 新しいDWORD値を作成</h2>
+<p>の2つに分割しよう。</p>
+<h3 id="静的サイト">◯静的サイト</h3>
+<p>静的サイトというのは、</p>
+<p><strong>「閲覧者や条件が変わっても、内容の変わらないサイト」</strong></p>
+<p>のことである。</p>
+<p>ちなみに、対義語としては動的サイトがある。
+こちらはログインするユーザー毎に内容を変化させることができるものだ。</p>
+<p>例を挙げると、X(Twitter)は、</p>
 <ul>
-<li>右の領域で右クリック [新規] &gt; [DWORD(32ビット)値]を選択。</li>
-<li>名前を<code>ShowSecondsInSystemClock</code>に設定。</li>
+<li>ユーザーごとにタイムラインの表示が変わる</li>
+<li>見るタイミングごとにもタイムラインの表示が変わる</li>
 </ul>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/DWORD.png" alt="レジストリエディタ" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>レジストリエディタ</figcaption>
-  
-</figure>
-<h2 id="4-特定のdword値を変更">4. 特定のDWORD値を変更</h2>
-<p><code>ShowSecondsInSystemClock</code>のDWORD値を<code>1</code>に変更</p>
+<p>そのため、条件や閲覧者ごとに内容が変わる。</p>
+<p>つまり、動的サイトにカテゴライズされる。</p>
+<p>今回実現しようとしているのは、自らの技術ブログの開設である。</p>
+<p>ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。</p>
+<p>そこで、静的なサイトとして作成しようと相成った。</p>
+<h3 id="ジェネレーター">◯ジェネレーター</h3>
+<p>本来、ホームページをステゴロで作ろうとすると、</p>
 <ul>
-<li>値の部分をダブルクリックすることで修正可能。</li>
+<li>HTML(HyperText Markup Language)</li>
 </ul>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/DWORD2.png" alt="ShowSecondsInSystemClockの値を変更" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>ShowSecondsInSystemClockの値を変更</figcaption>
-  
-</figure>
-<p>hh:mm:ssになった。</p>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/HHMMSS.png" alt="変更後の時間表示" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>変更後の時間表示</figcaption>
-  
-</figure>
-<p>やったぜ</p>
-<h2 id="5-変更されない場合pcを再起動する">5. (変更されない場合)PCを再起動する</h2>
-<p>なお、4.まで実施しても変更されない場合、再起動するとうまくいくとのこと。</p>
-<h1 id="おわりに">おわりに</h1>
-<p>今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。</p>
-<p>給与にならない勤務時間を1秒でも削りたい方は、是非とも利用されたい。</p>
-<h1 id="補遺">補遺</h1>
-<h2 id="レジストリエディタのバックアップ">レジストリエディタのバックアップ</h2>
-<p>レジストリエディタの[ファイル]タブにある[エクスポート]で.regファイルを吐き出せる。</p>
-<p>これを復元したいときは、.regファイルを[インポート]すれば良い。</p>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/RegEditor.png" alt="レジストリエディタ" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>レジストリエディタ</figcaption>
-  
-</figure>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/RegEditor2.png" alt="ファイルタブを開いたとき" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>ファイルタブを開いたとき</figcaption>
-  
-</figure>
+<p>ホームページに表示する中身の部分</p>
+<ul>
+<li>CSS(Cascading Style Sheets)</li>
+</ul>
+<p>ホームページの見た目を制御する部分</p>
+<ul>
+<li>JavaScript</li>
+</ul>
+<p>ホームページの一部パーツを作成するための部分。</p>
+<p>所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。</p>
+<p>以上の3つを自らの手で書く必要がある。
+（最低限はHTMLのみで済むが、それでも骨が折れる）</p>
+<p>静的サイトジェネレーターというのは、
+<strong>これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ</strong>
+なのである。</p>
+<p>流石に、無からホームページが作れるわけではないが、必要なものは単純化される。
+大きく分けて以下の3つである。</p>
+<ul>
+<li>記事
+<ul>
+<li>Markdownテキスト</li>
+</ul>
+</li>
+<li>画像
+<ul>
+<li>コンテンツ内に載せる画像</li>
+</ul>
+</li>
+<li>テーマ(サイトの枠組み)
+<ul>
+<li>主にサイトの見た目部分</li>
+<li><a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a> から選択できる</li>
+</ul>
+</li>
+</ul>
+<p>記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。</p>
+<h2 id="hugo概要のまとめ">Hugo概要のまとめ</h2>
+<p>Hugoとは、静的サイトジェネレーターである。</p>
+<p>つまり、<strong>閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツ</strong>なのである。</p>
+<h1 id="実施した工程">実施した工程</h1>
+<p>では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。</p>
+<h2 id="hugoを使用するには">Hugoを使用するには</h2>
+<h3 id="1-hugoのインストール">1. Hugoのインストール</h3>
+<p>ここにインストールの仕方が載っている。
+<a href="https://gohugo.io/installation/">https://gohugo.io/installation/</a></p>
               </div>
             </div>
 
             <div class="f6 text-gray mt-2">
               
               
-              <a class="muted-link mr-3" href="/tags/tips">
+              <a class="muted-link mr-3" href="/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88">
                 <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                   <path fill-rule="evenodd"
                     d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                   </path>
                 </svg>
-                tips
+                静的サイト
               </a>
               
-              <a class="muted-link mr-3" href="/tags/windows">
+              <a class="muted-link mr-3" href="/tags/hugo">
                 <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                   <path fill-rule="evenodd"
                     d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                   </path>
                 </svg>
-                Windows
+                Hugo
               </a>
               
               
 
               Created
-              <relative-time datetime=" Mon, 20 Oct 2025 22:23:02 &#43;0900" class="no-wrap"
-                title=" Mon, 20 Oct 2025 22:23:02 &#43;0900">
-                Mon, 20 Oct 2025 22:23:02 &#43;0900
+              <relative-time datetime=" Fri, 31 Oct 2025 16:14:25 &#43;0900" class="no-wrap"
+                title=" Fri, 31 Oct 2025 16:14:25 &#43;0900">
+                Fri, 31 Oct 2025 16:14:25 &#43;0900
               </relative-time>
             </div>
           </div>

@@ -156,7 +156,7 @@
                 </path>
               </svg>
               Posts
-              <span class="Counter">4</span>
+              <span class="Counter">5</span>
             </a>
           </nav>
           <div class="profile-color-modes js-promo-color-modes-banner-profile isInitialToggle">
@@ -392,7 +392,7 @@
         </path>
       </svg>
       Posts
-      <span class="Counter ">4</span>
+      <span class="Counter ">5</span>
     </a>
   </nav>
 </div>
@@ -446,6 +446,138 @@
           Popular posts
         </h2>
         <ol class="d-flex flex-wrap list-style-none gutter-condensed mb-4 js-pinned-items-reorder-list">
+          
+          <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
+            <div
+              class="Box pinned-item-list-item d-flex p-3 width-full js-pinned-item-list-item public source reorderable sortable-button-item">
+              <div class="pinned-item-list-item-content">
+                <div class="d-flex width-full flex-items-center position-relative">
+                  <svg class="octicon octicon-repo mr-2 text-gray flex-shrink-0" viewBox="0 0 16 16" version="1.1"
+                    width="16" height="16">
+                    <path fill-rule="evenodd"
+                      d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
+                    </path>
+                  </svg>
+                  <a class="text-bold flex-auto min-width-0" href="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/">
+                    <span class="repo" title="Hugoでブログはじめましたpart1_20251031">Hugoでブログはじめましたpart1_20251031</span>
+                  </a>
+                </div>
+
+
+                <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
+                  <h1 id="はじめに">はじめに</h1>
+<p>技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。</p>
+<p>その振り返りを行うべく本記事にまとめる。</p>
+<p>使用した道具をどう使ったかについて述べたい。</p>
+<ul>
+<li>Hugo : 静的サイトジェネレーター</li>
+<li>GitHub Actions : CI/CDプラットフォーム</li>
+</ul>
+<p>本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。</p>
+<h1 id="hugoについて">Hugoについて</h1>
+<p>Hugoとは静的サイトジェネレーターであると述べた。</p>
+<p>まず、それは何かを説明する。</p>
+<h2 id="静的サイトジェネレーターとは">静的サイトジェネレーターとは</h2>
+<p>この語彙を説明するために、</p>
+<ul>
+<li>静的サイト</li>
+<li>ジェネレーター</li>
+</ul>
+<p>の2つに分割しよう。</p>
+<h3 id="静的サイト">◯静的サイト</h3>
+<p>静的サイトというのは、</p>
+<p><strong>「閲覧者や条件が変わっても、内容の変わらないサイト」</strong></p>
+<p>のことである。</p>
+<p>ちなみに、対義語としては動的サイトがある。
+こちらはログインするユーザー毎に内容を変化させることができるものだ。</p>
+<p>例を挙げると、X(Twitter)は、</p>
+<ul>
+<li>ユーザーごとにタイムラインの表示が変わる</li>
+<li>見るタイミングごとにもタイムラインの表示が変わる</li>
+</ul>
+<p>そのため、条件や閲覧者ごとに内容が変わる。</p>
+<p>つまり、動的サイトにカテゴライズされる。</p>
+<p>今回実現しようとしているのは、自らの技術ブログの開設である。</p>
+<p>ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。</p>
+<p>そこで、静的なサイトとして作成しようと相成った。</p>
+<h3 id="ジェネレーター">◯ジェネレーター</h3>
+<p>本来、ホームページをステゴロで作ろうとすると、</p>
+<ul>
+<li>HTML(HyperText Markup Language)</li>
+</ul>
+<p>ホームページに表示する中身の部分</p>
+<ul>
+<li>CSS(Cascading Style Sheets)</li>
+</ul>
+<p>ホームページの見た目を制御する部分</p>
+<ul>
+<li>JavaScript</li>
+</ul>
+<p>ホームページの一部パーツを作成するための部分。</p>
+<p>所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。</p>
+<p>以上の3つを自らの手で書く必要がある。
+（最低限はHTMLのみで済むが、それでも骨が折れる）</p>
+<p>静的サイトジェネレーターというのは、
+<strong>これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ</strong>
+なのである。</p>
+<p>流石に、無からホームページが作れるわけではないが、必要なものは単純化される。
+大きく分けて以下の3つである。</p>
+<ul>
+<li>記事
+<ul>
+<li>Markdownテキスト</li>
+</ul>
+</li>
+<li>画像
+<ul>
+<li>コンテンツ内に載せる画像</li>
+</ul>
+</li>
+<li>テーマ(サイトの枠組み)
+<ul>
+<li>主にサイトの見た目部分</li>
+<li><a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a> から選択できる</li>
+</ul>
+</li>
+</ul>
+<p>記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。</p>
+<h2 id="hugo概要のまとめ">Hugo概要のまとめ</h2>
+<p>Hugoとは、静的サイトジェネレーターである。</p>
+<p>つまり、<strong>閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツ</strong>なのである。</p>
+<h1 id="実施した工程">実施した工程</h1>
+<p>では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。</p>
+<h2 id="hugoを使用するには">Hugoを使用するには</h2>
+<h3 id="1-hugoのインストール">1. Hugoのインストール</h3>
+<p>ここにインストールの仕方が載っている。
+<a href="https://gohugo.io/installation/">https://gohugo.io/installation/</a></p>
+                </div>
+
+                <p class="mb-0 f6 text-gray">
+                  
+                  
+                  <a href="/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88" class="pinned-item-meta muted-link ">
+                    <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                      <path fill-rule="evenodd"
+                        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                      </path>
+                    </svg>
+                    静的サイト
+                  </a>
+                  
+                  <a href="/tags/hugo" class="pinned-item-meta muted-link ">
+                    <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                      <path fill-rule="evenodd"
+                        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                      </path>
+                    </svg>
+                    Hugo
+                  </a>
+                  
+                  
+                </p>
+              </div>
+            </div>
+          </li>
           
           <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
             <div
@@ -778,6 +910,12 @@ powershellでスクリプトをコピペさせてバックドアを仕込んだ�
 
     
     <div class="mt-4 position-relative" id="contributions" data='[
+{
+  "title": "Hugo%e3%81%a7%e3%83%96%e3%83%ad%e3%82%b0%e3%81%af%e3%81%98%e3%82%81%e3%81%be%e3%81%97%e3%81%9fpart1_20251031",
+  "link": "https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/",
+  "publishDate": "2025-10-31%2016:14:25"
+},
+
 {
   "title": "%e5%8f%b3%e4%b8%8b%e3%81%ae%e6%99%82%e8%a8%88%e3%82%92%e7%a7%92%e8%a1%a8%e7%a4%ba%e3%81%ab%e3%81%97%e3%82%88%e3%81%86%e3%81%ae%e5%b7%bb_20251020",
   "link": "https://aramakishake.github.io/tech-blog/post/%E5%8F%B3%E4%B8%8B%E3%81%AE%E6%99%82%E8%A8%88%E3%82%92%E7%A7%92%E8%A1%A8%E7%A4%BA%E3%81%AB%E3%81%97%E3%82%88%E3%81%86%E3%81%AE%E5%B7%BB/",

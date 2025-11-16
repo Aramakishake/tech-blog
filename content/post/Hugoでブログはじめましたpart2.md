@@ -1,7 +1,7 @@
 +++
-date = '2025-11-02T07:28:30+09:00'
-draft = true
-title = 'Hugoでブログはじめましたpart2_20251102'
+date = '2025-11-16T22:06:23+09:00'
+draft = false
+title = 'Hugoでブログはじめましたpart2_20251116'
 tags = ["CI/CD", "GitHub Actions"]
 +++
 

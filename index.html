@@ -156,7 +156,7 @@
                 </path>
               </svg>
               Posts
-              <span class="Counter">6</span>
+              <span class="Counter">7</span>
             </a>
           </nav>
           <div class="profile-color-modes js-promo-color-modes-banner-profile isInitialToggle">
@@ -392,7 +392,7 @@
         </path>
       </svg>
       Posts
-      <span class="Counter ">6</span>
+      <span class="Counter ">7</span>
     </a>
   </nav>
 </div>
@@ -446,6 +446,82 @@
           Popular posts
         </h2>
         <ol class="d-flex flex-wrap list-style-none gutter-condensed mb-4 js-pinned-items-reorder-list">
+          
+          <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
+            <div
+              class="Box pinned-item-list-item d-flex p-3 width-full js-pinned-item-list-item public source reorderable sortable-button-item">
+              <div class="pinned-item-list-item-content">
+                <div class="d-flex width-full flex-items-center position-relative">
+                  <svg class="octicon octicon-repo mr-2 text-gray flex-shrink-0" viewBox="0 0 16 16" version="1.1"
+                    width="16" height="16">
+                    <path fill-rule="evenodd"
+                      d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
+                    </path>
+                  </svg>
+                  <a class="text-bold flex-auto min-width-0" href="https://aramakishake.github.io/tech-blog/post/%E6%95%B0%E5%BC%8F%E3%82%92%E6%9B%B8%E3%81%93%E3%81%86_%E3%81%9D%E3%81%AE1/">
+                    <span class="repo" title="数式を書こう_その1_20251117">数式を書こう_その1_20251117</span>
+                  </a>
+                </div>
+
+
+                <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
+                  <h1 id="はじめに">はじめに</h1>
+<p>MarkDownでは、TeXライクな数式がかけるということで、それで遊ぶことにする。
+今回はシコ勉してる電気回路からΔ-Y変換を取り上げて式変形で遊んでみる。</p>
+<h1 id="δ-y変換を導出しよう">Δ-Y変換を導出しよう！</h1>
+<h2 id="δ-y変換とは">Δ-Y変換とは？</h2>
+<p>Δ(デルタ)形にAとBとCの部分に抵抗が繋がれている回路から、
+Y(スター)形にAとBとCの部分に抵抗が繋がれている回路への変換のこと。</p>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images%5Cdelta-star-circuit.png" alt="Δ回路(左)とY回路(右)" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>Δ回路(左)とY回路(右)</figcaption>
+  
+</figure>
+<p>上左図のような抵抗$R_{AB},R_{BC},R_{CA}$からなるΔ回路と、上右図のような抵抗$R_A,R_B,R_C$は、以下の条件のときに等価になる。
+$$
+R_A=\frac{R_{CA}R_{AB}}{R_{AB}+R_{BC}+R_{CA}}\
+R_B=\frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}\
+R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}
+$$</p>
+<h2 id="導出">導出</h2>
+<p>AB間のΔ回路とY回路の</p>
+<h1 id="おわりに">おわりに</h1>
+<p>今回は、TeXを使うことよりも、Δ回路とY回路の図を書くことにかなり苦心した。
+TeXで電気回路を書くこと自体は（Copilotさん頼りではあるが）比較的すんなりいった。
+ただ、pdfになっている電気回路の図をpng画像に落とし込むのに難儀した。</p>
+<p>学生の頃使用していたMacだったらLaTeXitでシュバっと作れたが、WindowsでTeXをいじった経験はあまりない。
+そこで、慣れないTeX2imgを使おうとしては、動かないのを繰り返して、最終的にはpdfを拡大してスクショを撮るという非常に美しくない手法で画像を作成した。</p>
+<p>次の記事を完成させるまでには、TeX Liveをインスコして使いこなす…つもりである。
+ではでは。</p>
+                </div>
+
+                <p class="mb-0 f6 text-gray">
+                  
+                  
+                  <a href="/tags/%E9%9B%BB%E6%B0%97%E5%9B%9E%E8%B7%AF" class="pinned-item-meta muted-link ">
+                    <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                      <path fill-rule="evenodd"
+                        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                      </path>
+                    </svg>
+                    電気回路
+                  </a>
+                  
+                  <a href="/tags/tex" class="pinned-item-meta muted-link ">
+                    <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                      <path fill-rule="evenodd"
+                        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                      </path>
+                    </svg>
+                    TeX
+                  </a>
+                  
+                  
+                </p>
+              </div>
+            </div>
+          </li>
           
           <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
             <div
@@ -927,76 +1003,18 @@ powershellでスクリプトをコピペさせてバックドアを仕込んだ�
             </div>
           </li>
           
-          <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
-            <div
-              class="Box pinned-item-list-item d-flex p-3 width-full js-pinned-item-list-item public source reorderable sortable-button-item">
-              <div class="pinned-item-list-item-content">
-                <div class="d-flex width-full flex-items-center position-relative">
-                  <svg class="octicon octicon-repo mr-2 text-gray flex-shrink-0" viewBox="0 0 16 16" version="1.1"
-                    width="16" height="16">
-                    <path fill-rule="evenodd"
-                      d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
-                    </path>
-                  </svg>
-                  <a class="text-bold flex-auto min-width-0" href="https://aramakishake.github.io/tech-blog/post/%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB/">
-                    <span class="repo" title="はじめに_20251014">はじめに_20251014</span>
-                  </a>
-                </div>
-
-
-                <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
-                  <h1 id="あいさつ">あいさつ</h1>
-<p>荒巻しゃけと申します。</p>
-<p>Twitterで技術的な気付きをちょくちょく書いたり、noteで文を書き散らかしたりしています。</p>
-<p>それぞれ便利なのですが、使ってみると、思いつきでやろうと思ったことができなかったり（例：TeXを使用した文書を書いたりなど）、醜悪なインプレッション稼ぎなどを目にします。</p>
-<p>また、自分の書いた文書がプラットフォームが死んだときに全部無くなる、なんてのもあり得る話です。</p>
-<p>上記のような不便さを取っ払って、自らの経験や思いつきを全て血肉とすべく、文章に落としこもうと思いました。</p>
-<p>そこで、技術ブログを書こうと思い至りました。</p>
-<h1 id="目的">目的</h1>
-<p>主に以下のような目的でやろうと考えています。</p>
-<ul>
-<li>技術的な知識の蓄積</li>
-<li>アウトプットによる理解の促進</li>
-<li>Markdown形式の文書に慣れる</li>
-<li>思いつきの昇華(Twitterみたいな使い方)</li>
-</ul>
-<h1 id="おわり">おわり</h1>
-<p>以上、よろしくお願いします。</p>
-                </div>
-
-                <p class="mb-0 f6 text-gray">
-                  
-                  
-                  <a href="/tags/%E6%97%A5%E8%A8%98" class="pinned-item-meta muted-link ">
-                    <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                      <path fill-rule="evenodd"
-                        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                      </path>
-                    </svg>
-                    日記
-                  </a>
-                  
-                  <a href="/tags/%E9%9B%91%E8%AB%87" class="pinned-item-meta muted-link ">
-                    <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                      <path fill-rule="evenodd"
-                        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                      </path>
-                    </svg>
-                    雑談
-                  </a>
-                  
-                  
-                </p>
-              </div>
-            </div>
-          </li>
-          
         </ol>
       </div>
     </div>
 
     
     <div class="mt-4 position-relative" id="contributions" data='[
+{
+  "title": "%e6%95%b0%e5%bc%8f%e3%82%92%e6%9b%b8%e3%81%93%e3%81%86_%e3%81%9d%e3%81%ae1_20251117",
+  "link": "https://aramakishake.github.io/tech-blog/post/%E6%95%B0%E5%BC%8F%E3%82%92%E6%9B%B8%E3%81%93%E3%81%86_%E3%81%9D%E3%81%AE1/",
+  "publishDate": "2025-11-17%2021:56:25"
+},
+
 {
   "title": "Hugo%e3%81%a7%e3%83%96%e3%83%ad%e3%82%b0%e3%81%af%e3%81%98%e3%82%81%e3%81%be%e3%81%97%e3%81%9fpart2_20251116",
   "link": "https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9Fpart2/",

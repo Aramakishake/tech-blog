@@ -154,7 +154,7 @@
                 </path>
               </svg>
               Posts
-              <span class="Counter">7</span>
+              <span class="Counter">6</span>
             </a>
           </nav>
           <div class="profile-color-modes js-promo-color-modes-banner-profile isInitialToggle">
@@ -390,7 +390,7 @@
         </path>
       </svg>
       Posts
-      <span class="Counter ">7</span>
+      <span class="Counter ">6</span>
     </a>
   </nav>
 </div>
@@ -443,17 +443,6 @@
 		hugo
 	</a>
 	
-	<a class="muted-link mr-3" href="/tech-blog/tags/tex/">
-		
-		<svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-			<path fill-rule="evenodd"
-				d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-			</path>
-		</svg>
-		
-		tex
-	</a>
-	
 	<a class="muted-link mr-3" href="/tech-blog/tags/tips/">
 		
 		<svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
@@ -498,17 +487,6 @@
 		雑談
 	</a>
 	
-	<a class="muted-link mr-3" href="/tech-blog/tags/%E9%9B%BB%E6%B0%97%E5%9B%9E%E8%B7%AF/">
-		
-		<svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-			<path fill-rule="evenodd"
-				d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-			</path>
-		</svg>
-		
-		電気回路
-	</a>
-	
 	<a class="muted-link mr-3" href="/tech-blog/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88/">
 		
 		<svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
@@ -525,82 +503,6 @@
         
       
       <ul>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/post/%E6%95%B0%E5%BC%8F%E3%82%92%E6%9B%B8%E3%81%93%E3%81%86_%E3%81%9D%E3%81%AE1/">数式を書こう_その1_20251117</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                <h1 id="はじめに">はじめに</h1>
-<p>MarkDownでは、TeXライクな数式がかけるということで、それで遊ぶことにする。
-今回はシコ勉してる電気回路からΔ-Y変換を取り上げて式変形で遊んでみる。</p>
-<h1 id="δ-y変換を導出しよう">Δ-Y変換を導出しよう！</h1>
-<h2 id="δ-y変換とは">Δ-Y変換とは？</h2>
-<p>Δ(デルタ)形にAとBとCの部分に抵抗が繋がれている回路から、
-Y(スター)形にAとBとCの部分に抵抗が繋がれている回路への変換のこと。</p>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images%5Cdelta-star-circuit.png" alt="Δ回路(左)とY回路(右)" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>Δ回路(左)とY回路(右)</figcaption>
-  
-</figure>
-<p>上左図のような抵抗$R_{AB},R_{BC},R_{CA}$からなるΔ回路と、上右図のような抵抗$R_A,R_B,R_C$は、以下の条件のときに等価になる。</p>
-<p>$$
-\begin{equation}
-R_A=\frac{R_{CA}R_{AB}}{R_{AB}+R_{BC}+R_{CA}}\
-R_B=\frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}\
-R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}
-\end{equation}
-$$</p>
-<h2 id="導出">導出</h2>
-<p>AB間のΔ回路とY回路の</p>
-<h1 id="おわりに">おわりに</h1>
-<p>今回は、TeXを使うことよりも、Δ回路とY回路の図を書くことにかなり苦心した。
-TeXで電気回路を書くこと自体は（Copilotさん頼りではあるが）比較的すんなりいった。
-ただ、pdfになっている電気回路の図をpng画像に落とし込むのに難儀した。</p>
-<p>学生の頃使用していたMacだったらLaTeXitでシュバっと作れたが、WindowsでTeXをいじった経験はあまりない。
-そこで、慣れないTeX2imgを使おうとしては、動かないのを繰り返して、最終的にはpdfを拡大してスクショを撮るという非常に美しくない手法で画像を作成した。</p>
-<p>次の記事を完成させるまでには、TeX Liveをインスコして使いこなす…つもりである。
-ではでは。</p>
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-              
-              <a class="muted-link mr-3" href="/tags/%E9%9B%BB%E6%B0%97%E5%9B%9E%E8%B7%AF">
-                <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                  <path fill-rule="evenodd"
-                    d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                  </path>
-                </svg>
-                電気回路
-              </a>
-              
-              <a class="muted-link mr-3" href="/tags/tex">
-                <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                  <path fill-rule="evenodd"
-                    d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                  </path>
-                </svg>
-                TeX
-              </a>
-              
-              
-
-              Created
-              <relative-time datetime=" Mon, 17 Nov 2025 21:56:25 &#43;0900" class="no-wrap"
-                title=" Mon, 17 Nov 2025 21:56:25 &#43;0900">
-                Mon, 17 Nov 2025 21:56:25 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
         
         <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
           <div class="col-12 d-inline-block">

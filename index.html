@@ -483,8 +483,8 @@ Y(スター)形にAとBとCの部分に抵抗が繋がれている回路への�
 $$R_B=\frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}$$
 $$R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$$</p>
 <h2 id="導出">導出</h2>
-<p>まず、Y回路とΔ回路のAB間の抵抗が等しいので、以下の等式が成り立つ
-$$R_A+R_B=\left{\frac{1}{R_{AB}}+\frac{1}{R_{BC}+R_{CA}}\right}^{-1}$$</p>
+<p>まず、Y回路とΔ回路のAB間の抵抗が等しいので、以下の等式が成り立つ。</p>
+<p>$$R_A+R_B=\left{\frac{1}{R_{AB}}+\frac{1}{R_{BC}+R_{CA}}\right}^{-1}$$</p>
 <p>左辺は、\(R_AとR_B\)の抵抗が直列に繋がれたときの抵抗である。</p>
 <p>右辺は、AB間の抵抗\(R_{AB}\)と、Cを経由したAB間の抵抗\(R_{BC}+R_{CA}\)が並列に繋がれたときの抵抗である。</p>
 <p>また、右辺を整理すると、</p>
@@ -498,8 +498,8 @@ TeXで電気回路を書くこと自体は（Copilotさん頼りではあるが�
 <h2 id="hugoの数式記法">Hugoの数式記法</h2>
 <p>そして、今回Hugoを用いて数式を書いた。
 通常のTeXの記法とは異なるものであったので、備忘のためにメモっとく。</p>
-<pre tabindex="0"><code>\\(xxx\\) : inlineの式
-$$xxx$$$ : blockの式
+<pre tabindex="0"><code>\\(...\\) : inlineの式
+$$...$$$ : blockの式
 </code></pre><h2 id="他人のスタイルは青く見える">他人のスタイルは青く見える</h2>
 <p>他の人のサイトとかを見て回ってたら、Blowfishというテーマ良さげだなと思うなどした。</p>
 <p>参考：https://blowfish.page/samples/mathematical-notation/</p>

@@ -1,5 +1,85 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github-style.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/light.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
+    <title>とりあえず始めてみたものの_20251014 - 荒巻しゃけのHomepage</title>
+    
+    <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    
+
+    
+    <meta name="description"
+  content="現状 Hugoを用いてとりあえず、ブログの体裁は作った。 なお、テーマはGitHub-Style。 ひとまず、色々Copilot氏に導かれるままに作ったので、結構微妙なところが見え隠れしている。
+ToDo 箇条書きがあまり思った位置に出てこない問題の解消 たとえば このような 箇条書きだと 左側にめり込む この問題解決が必要かも（と思ったけど、記事のページに入ると問題なさそう）。
+CSSを完全に理解する必要がある。
+正直Hugoさんにお願いして自動生成したページなので、Hugoの仕組みがわからんとわからん気もする。
+このブログページをどのように実現しているか記事にする 現状Hugoを用いているくらいしか述べられない。
+今の環境を再現するにはどうすればいいか どういう仕組みでページが作られているか ディレクトリのどこをいじると、生成されるHTMLにどう効いてくるか 記事の種をかき集める 気になる内容は死ぬほどあるので、どういう切り口の記事を作るかを検討しよう。
+" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://aramakishake.github.io/tech-blog/post/%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A%E5%A7%8B%E3%82%81%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%82%E3%81%AE%E3%81%AE/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="とりあえず始めてみたものの_20251014 - 荒巻しゃけのHomepage" />
+<meta name="twitter:description"
+  content="現状 Hugoを用いてとりあえず、ブログの体裁は作った。 なお、テーマはGitHub-Style。 ひとまず、色々Copilot氏に導かれるままに作ったので、結構微妙なところが見え隠れしている。
+ToDo 箇条書きがあまり思った位置に出てこない問題の解消 たとえば このような 箇条書きだと 左側にめり込む この問題解決が必要かも（と思ったけど、記事のページに入ると問題なさそう）。
+CSSを完全に理解する必要がある。
+正直Hugoさんにお願いして自動生成したページなので、Hugoの仕組みがわからんとわからん気もする。
+このブログページをどのように実現しているか記事にする 現状Hugoを用いているくらいしか述べられない。
+今の環境を再現するにはどうすればいいか どういう仕組みでページが作られているか ディレクトリのどこをいじると、生成されるHTMLにどう効いてくるか 記事の種をかき集める 気になる内容は死ぬほどあるので、どういう切り口の記事を作るかを検討しよう。
+" />
+<meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://aramakishake.github.io/tech-blog/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="とりあえず始めてみたものの_20251014 - 荒巻しゃけのHomepage">
+<meta property="og:description"
+  content="現状 Hugoを用いてとりあえず、ブログの体裁は作った。 なお、テーマはGitHub-Style。 ひとまず、色々Copilot氏に導かれるままに作ったので、結構微妙なところが見え隠れしている。
+ToDo 箇条書きがあまり思った位置に出てこない問題の解消 たとえば このような 箇条書きだと 左側にめり込む この問題解決が必要かも（と思ったけど、記事のページに入ると問題なさそう）。
+CSSを完全に理解する必要がある。
+正直Hugoさんにお願いして自動生成したページなので、Hugoの仕組みがわからんとわからん気もする。
+このブログページをどのように実現しているか記事にする 現状Hugoを用いているくらいしか述べられない。
+今の環境を再現するにはどうすればいいか どういう仕組みでページが作られているか ディレクトリのどこをいじると、生成されるHTMLにどう効いてくるか 記事の種をかき集める 気になる内容は死ぬほどあるので、どういう切り口の記事を作るかを検討しよう。
+" />
+<meta property="og:url" content="https://aramakishake.github.io/tech-blog/post/%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A%E5%A7%8B%E3%82%81%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%82%E3%81%AE%E3%81%AE/" />
+<meta property="og:site_name" content="とりあえず始めてみたものの_20251014" />
+<meta property="og:image"
+  content="https://aramakishake.github.io/tech-blog/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-10-14 23:29:36 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
 
 
 <body>

@@ -1,18 +1,118 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github-style.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/light.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
+    <title>数式を書こう_その1_20251117 - 荒巻しゃけのHomepage</title>
+    
+    <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
+    
+    <meta name="theme-color" content="#1e2327">
 
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+
+    
+    <meta name="description"
+  content="はじめに MarkDownでは、TeXライクな数式がかけるということで、それで遊ぶことにする。 今回はシコ勉してる電気回路からΔ-Y変換を取り上げて式変形で遊んでみる。
+Δ-Y変換を導出しよう！ Δ-Y変換とは？ Δ(デルタ)形にAとBとCの部分に抵抗が繋がれている回路から、 Y(スター)形にAとBとCの部分に抵抗が繋がれている回路への変換のこと。
+Δ回路(左)とY回路(右) 上左図のような抵抗\(R_{AB},R_{BC},R_{CA}\)からなるΔ回路と、上右図のような抵抗\(R_A,R_B,R_C\)は、以下の条件のときに等価になる。
+$$R_A=\frac{R_{CA}R_{AB}}{R_{AB}&#43;R_{BC}&#43;R_{CA}}$$ $$R_B=\frac{R_{AB}R_{BC}}{R_{AB}&#43;R_{BC}&#43;R_{CA}}$$ $$R_C=\frac{R_{BC}R_{CA}}{R_{AB}&#43;R_{BC}&#43;R_{CA}}$$
+導出 まず、Y回路とΔ回路のAB間の抵抗が等しいので、以下の等式が成り立つ。
+$$ R_A&#43;R_B={\frac{1}{R_{AB}}&#43;\frac{1}{R_{BC}&#43;R_{CA}}}^{-1} $$
+左辺は、\(R_AとR_B\)の抵抗が直列に繋がれたときの抵抗である。
+右辺は、AB間の抵抗\(R_{AB}\)と、Cを経由したAB間の抵抗\(R_{BC}&#43;R_{CA}\)が並列に繋がれたときの抵抗である。
+また、右辺を整理すると、
+$$ (右辺) = \left{\frac{R_{AB}&#43;R_{BC}&#43;R_{CA}}{R_{AB}(R_{BC}&#43;R_{CA})}\right}^{-1}\ = \frac{R_{AB}(R_{BC}&#43;R_{CA})}{R_{AB}&#43;R_{BC}&#43;R_{CA}} $$
+おわりに 今回は、TeXを使うことよりも、Δ回路とY回路の図を書くことにかなり苦心した。 TeXで電気回路を書くこと自体は（Copilotさん頼りではあるが）比較的すんなりいった。 ただ、pdfになっている電気回路の図をpng画像に落とし込むのに難儀した。
+学生の頃使用していたMacだったらLaTeXitでシュバっと作れたが、WindowsでTeXをいじった経験はあまりない。 そこで、慣れないTeX2imgを使おうとしては、動かないのを繰り返して、最終的にはpdfを拡大してスクショを撮るという非常に美しくない手法で画像を作成した。
+次の記事を完成させるまでには、TeX Liveをインスコして使いこなす…つもりである。
+Hugoの数式記法 そして、今回Hugoを用いて数式を書いた。 通常のTeXの記法とは異なるものであったので、備忘のためにメモっとく。
+\\(...\\) : inlineの式 $$...$$$ : blockの式 他人のスタイルは青く見える 他の人のサイトとかを見て回ってたら、Blowfishというテーマ良さげだなと思うなどした。
+参考：https://blowfish.page/samples/mathematical-notation/
+ではでは。
+" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://aramakishake.github.io/tech-blog/post/%E6%95%B0%E5%BC%8F%E3%82%92%E6%9B%B8%E3%81%93%E3%81%86_%E3%81%9D%E3%81%AE1/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="数式を書こう_その1_20251117 - 荒巻しゃけのHomepage" />
+<meta name="twitter:description"
+  content="はじめに MarkDownでは、TeXライクな数式がかけるということで、それで遊ぶことにする。 今回はシコ勉してる電気回路からΔ-Y変換を取り上げて式変形で遊んでみる。
+Δ-Y変換を導出しよう！ Δ-Y変換とは？ Δ(デルタ)形にAとBとCの部分に抵抗が繋がれている回路から、 Y(スター)形にAとBとCの部分に抵抗が繋がれている回路への変換のこと。
+Δ回路(左)とY回路(右) 上左図のような抵抗\(R_{AB},R_{BC},R_{CA}\)からなるΔ回路と、上右図のような抵抗\(R_A,R_B,R_C\)は、以下の条件のときに等価になる。
+$$R_A=\frac{R_{CA}R_{AB}}{R_{AB}&#43;R_{BC}&#43;R_{CA}}$$ $$R_B=\frac{R_{AB}R_{BC}}{R_{AB}&#43;R_{BC}&#43;R_{CA}}$$ $$R_C=\frac{R_{BC}R_{CA}}{R_{AB}&#43;R_{BC}&#43;R_{CA}}$$
+導出 まず、Y回路とΔ回路のAB間の抵抗が等しいので、以下の等式が成り立つ。
+$$ R_A&#43;R_B={\frac{1}{R_{AB}}&#43;\frac{1}{R_{BC}&#43;R_{CA}}}^{-1} $$
+左辺は、\(R_AとR_B\)の抵抗が直列に繋がれたときの抵抗である。
+右辺は、AB間の抵抗\(R_{AB}\)と、Cを経由したAB間の抵抗\(R_{BC}&#43;R_{CA}\)が並列に繋がれたときの抵抗である。
+また、右辺を整理すると、
+$$ (右辺) = \left{\frac{R_{AB}&#43;R_{BC}&#43;R_{CA}}{R_{AB}(R_{BC}&#43;R_{CA})}\right}^{-1}\ = \frac{R_{AB}(R_{BC}&#43;R_{CA})}{R_{AB}&#43;R_{BC}&#43;R_{CA}} $$
+おわりに 今回は、TeXを使うことよりも、Δ回路とY回路の図を書くことにかなり苦心した。 TeXで電気回路を書くこと自体は（Copilotさん頼りではあるが）比較的すんなりいった。 ただ、pdfになっている電気回路の図をpng画像に落とし込むのに難儀した。
+学生の頃使用していたMacだったらLaTeXitでシュバっと作れたが、WindowsでTeXをいじった経験はあまりない。 そこで、慣れないTeX2imgを使おうとしては、動かないのを繰り返して、最終的にはpdfを拡大してスクショを撮るという非常に美しくない手法で画像を作成した。
+次の記事を完成させるまでには、TeX Liveをインスコして使いこなす…つもりである。
+Hugoの数式記法 そして、今回Hugoを用いて数式を書いた。 通常のTeXの記法とは異なるものであったので、備忘のためにメモっとく。
+\\(...\\) : inlineの式 $$...$$$ : blockの式 他人のスタイルは青く見える 他の人のサイトとかを見て回ってたら、Blowfishというテーマ良さげだなと思うなどした。
+参考：https://blowfish.page/samples/mathematical-notation/
+ではでは。
+" />
+<meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://aramakishake.github.io/tech-blog/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="数式を書こう_その1_20251117 - 荒巻しゃけのHomepage">
+<meta property="og:description"
+  content="はじめに MarkDownでは、TeXライクな数式がかけるということで、それで遊ぶことにする。 今回はシコ勉してる電気回路からΔ-Y変換を取り上げて式変形で遊んでみる。
+Δ-Y変換を導出しよう！ Δ-Y変換とは？ Δ(デルタ)形にAとBとCの部分に抵抗が繋がれている回路から、 Y(スター)形にAとBとCの部分に抵抗が繋がれている回路への変換のこと。
+Δ回路(左)とY回路(右) 上左図のような抵抗\(R_{AB},R_{BC},R_{CA}\)からなるΔ回路と、上右図のような抵抗\(R_A,R_B,R_C\)は、以下の条件のときに等価になる。
+$$R_A=\frac{R_{CA}R_{AB}}{R_{AB}&#43;R_{BC}&#43;R_{CA}}$$ $$R_B=\frac{R_{AB}R_{BC}}{R_{AB}&#43;R_{BC}&#43;R_{CA}}$$ $$R_C=\frac{R_{BC}R_{CA}}{R_{AB}&#43;R_{BC}&#43;R_{CA}}$$
+導出 まず、Y回路とΔ回路のAB間の抵抗が等しいので、以下の等式が成り立つ。
+$$ R_A&#43;R_B={\frac{1}{R_{AB}}&#43;\frac{1}{R_{BC}&#43;R_{CA}}}^{-1} $$
+左辺は、\(R_AとR_B\)の抵抗が直列に繋がれたときの抵抗である。
+右辺は、AB間の抵抗\(R_{AB}\)と、Cを経由したAB間の抵抗\(R_{BC}&#43;R_{CA}\)が並列に繋がれたときの抵抗である。
+また、右辺を整理すると、
+$$ (右辺) = \left{\frac{R_{AB}&#43;R_{BC}&#43;R_{CA}}{R_{AB}(R_{BC}&#43;R_{CA})}\right}^{-1}\ = \frac{R_{AB}(R_{BC}&#43;R_{CA})}{R_{AB}&#43;R_{BC}&#43;R_{CA}} $$
+おわりに 今回は、TeXを使うことよりも、Δ回路とY回路の図を書くことにかなり苦心した。 TeXで電気回路を書くこと自体は（Copilotさん頼りではあるが）比較的すんなりいった。 ただ、pdfになっている電気回路の図をpng画像に落とし込むのに難儀した。
+学生の頃使用していたMacだったらLaTeXitでシュバっと作れたが、WindowsでTeXをいじった経験はあまりない。 そこで、慣れないTeX2imgを使おうとしては、動かないのを繰り返して、最終的にはpdfを拡大してスクショを撮るという非常に美しくない手法で画像を作成した。
+次の記事を完成させるまでには、TeX Liveをインスコして使いこなす…つもりである。
+Hugoの数式記法 そして、今回Hugoを用いて数式を書いた。 通常のTeXの記法とは異なるものであったので、備忘のためにメモっとく。
+\\(...\\) : inlineの式 $$...$$$ : blockの式 他人のスタイルは青く見える 他の人のサイトとかを見て回ってたら、Blowfishというテーマ良さげだなと思うなどした。
+参考：https://blowfish.page/samples/mathematical-notation/
+ではでは。
+" />
+<meta property="og:url" content="https://aramakishake.github.io/tech-blog/post/%E6%95%B0%E5%BC%8F%E3%82%92%E6%9B%B8%E3%81%93%E3%81%86_%E3%81%9D%E3%81%AE1/" />
+<meta property="og:site_name" content="数式を書こう_その1_20251117" />
+<meta property="og:image"
+  content="https://aramakishake.github.io/tech-blog/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-11-17 21:56:25 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
 
 
 <body>

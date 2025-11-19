@@ -1,5 +1,160 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github-style.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/light.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
+    <title>Hugoでブログはじめましたpart1_20251031 - 荒巻しゃけのHomepage</title>
+    
+    <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    
+
+    
+    <meta name="description"
+  content="はじめに 技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。
+その振り返りを行うべく本記事にまとめる。
+使用した道具をどう使ったかについて述べたい。
+Hugo : 静的サイトジェネレーター GitHub Actions : CI/CDプラットフォーム 本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。
+Hugoについて Hugoとは静的サイトジェネレーターであると述べた。
+まず、それは何かを説明する。
+静的サイトジェネレーターとは この語彙を説明するために、
+静的サイト ジェネレーター の2つに分割しよう。
+◯静的サイト 静的サイトというのは、
+「閲覧者や条件が変わっても、内容の変わらないサイト」
+のことである。
+ちなみに、対義語としては動的サイトがある。 こちらはログインするユーザー毎に内容を変化させることができるものだ。
+例を挙げると、X(Twitter)は、
+ユーザーごとにタイムラインの表示が変わる 見るタイミングごとにもタイムラインの表示が変わる そのため、条件や閲覧者ごとに内容が変わる。
+つまり、動的サイトにカテゴライズされる。
+今回実現しようとしているのは、自らの技術ブログの開設である。
+ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。
+そこで、静的なサイトとして作成しようと相成った。
+◯ジェネレーター 本来、ホームページをステゴロで作ろうとすると、
+HTML(HyperText Markup Language) ホームページに表示する中身の部分
+CSS(Cascading Style Sheets) ホームページの見た目を制御する部分
+JavaScript ホームページの一部パーツを作成するための部分。
+所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。
+以上の3つを自らの手で書く必要がある。 （最低限はHTMLのみで済むが、それでも骨が折れる）
+静的サイトジェネレーターというのは、 これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ なのである。
+流石に、無からホームページが作れるわけではないが、必要なものは単純化される。 大きく分けて以下の3つである。
+記事 Markdownテキスト 画像 コンテンツ内に載せる画像 テーマ(サイトの枠組み) 主にサイトの見た目部分 https://themes.gohugo.io/ から選択できる 記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。
+Hugo概要のまとめ Hugoとは、静的サイトジェネレーターである。
+つまり、閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツなのである。
+実施した工程 では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。
+Hugoを使用するには 1. Hugoのインストール ここにインストールの仕方が載っている。 https://gohugo.io/installation/
+" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Hugoでブログはじめましたpart1_20251031 - 荒巻しゃけのHomepage" />
+<meta name="twitter:description"
+  content="はじめに 技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。
+その振り返りを行うべく本記事にまとめる。
+使用した道具をどう使ったかについて述べたい。
+Hugo : 静的サイトジェネレーター GitHub Actions : CI/CDプラットフォーム 本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。
+Hugoについて Hugoとは静的サイトジェネレーターであると述べた。
+まず、それは何かを説明する。
+静的サイトジェネレーターとは この語彙を説明するために、
+静的サイト ジェネレーター の2つに分割しよう。
+◯静的サイト 静的サイトというのは、
+「閲覧者や条件が変わっても、内容の変わらないサイト」
+のことである。
+ちなみに、対義語としては動的サイトがある。 こちらはログインするユーザー毎に内容を変化させることができるものだ。
+例を挙げると、X(Twitter)は、
+ユーザーごとにタイムラインの表示が変わる 見るタイミングごとにもタイムラインの表示が変わる そのため、条件や閲覧者ごとに内容が変わる。
+つまり、動的サイトにカテゴライズされる。
+今回実現しようとしているのは、自らの技術ブログの開設である。
+ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。
+そこで、静的なサイトとして作成しようと相成った。
+◯ジェネレーター 本来、ホームページをステゴロで作ろうとすると、
+HTML(HyperText Markup Language) ホームページに表示する中身の部分
+CSS(Cascading Style Sheets) ホームページの見た目を制御する部分
+JavaScript ホームページの一部パーツを作成するための部分。
+所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。
+以上の3つを自らの手で書く必要がある。 （最低限はHTMLのみで済むが、それでも骨が折れる）
+静的サイトジェネレーターというのは、 これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ なのである。
+流石に、無からホームページが作れるわけではないが、必要なものは単純化される。 大きく分けて以下の3つである。
+記事 Markdownテキスト 画像 コンテンツ内に載せる画像 テーマ(サイトの枠組み) 主にサイトの見た目部分 https://themes.gohugo.io/ から選択できる 記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。
+Hugo概要のまとめ Hugoとは、静的サイトジェネレーターである。
+つまり、閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツなのである。
+実施した工程 では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。
+Hugoを使用するには 1. Hugoのインストール ここにインストールの仕方が載っている。 https://gohugo.io/installation/
+" />
+<meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://aramakishake.github.io/tech-blog/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Hugoでブログはじめましたpart1_20251031 - 荒巻しゃけのHomepage">
+<meta property="og:description"
+  content="はじめに 技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。
+その振り返りを行うべく本記事にまとめる。
+使用した道具をどう使ったかについて述べたい。
+Hugo : 静的サイトジェネレーター GitHub Actions : CI/CDプラットフォーム 本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。
+Hugoについて Hugoとは静的サイトジェネレーターであると述べた。
+まず、それは何かを説明する。
+静的サイトジェネレーターとは この語彙を説明するために、
+静的サイト ジェネレーター の2つに分割しよう。
+◯静的サイト 静的サイトというのは、
+「閲覧者や条件が変わっても、内容の変わらないサイト」
+のことである。
+ちなみに、対義語としては動的サイトがある。 こちらはログインするユーザー毎に内容を変化させることができるものだ。
+例を挙げると、X(Twitter)は、
+ユーザーごとにタイムラインの表示が変わる 見るタイミングごとにもタイムラインの表示が変わる そのため、条件や閲覧者ごとに内容が変わる。
+つまり、動的サイトにカテゴライズされる。
+今回実現しようとしているのは、自らの技術ブログの開設である。
+ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。
+そこで、静的なサイトとして作成しようと相成った。
+◯ジェネレーター 本来、ホームページをステゴロで作ろうとすると、
+HTML(HyperText Markup Language) ホームページに表示する中身の部分
+CSS(Cascading Style Sheets) ホームページの見た目を制御する部分
+JavaScript ホームページの一部パーツを作成するための部分。
+所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。
+以上の3つを自らの手で書く必要がある。 （最低限はHTMLのみで済むが、それでも骨が折れる）
+静的サイトジェネレーターというのは、 これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ なのである。
+流石に、無からホームページが作れるわけではないが、必要なものは単純化される。 大きく分けて以下の3つである。
+記事 Markdownテキスト 画像 コンテンツ内に載せる画像 テーマ(サイトの枠組み) 主にサイトの見た目部分 https://themes.gohugo.io/ から選択できる 記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。
+Hugo概要のまとめ Hugoとは、静的サイトジェネレーターである。
+つまり、閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツなのである。
+実施した工程 では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。
+Hugoを使用するには 1. Hugoのインストール ここにインストールの仕方が載っている。 https://gohugo.io/installation/
+" />
+<meta property="og:url" content="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/" />
+<meta property="og:site_name" content="Hugoでブログはじめましたpart1_20251031" />
+<meta property="og:image"
+  content="https://aramakishake.github.io/tech-blog/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-10-31 16:14:25 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
 
 
 <body>

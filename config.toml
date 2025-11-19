@@ -5,3 +5,8 @@ theme = 'github-style'
 
 [params]
 headerIcon = "images/favicon.ico"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

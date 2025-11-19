@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/light.css' />
     <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
     <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
-    <title>Tags - 荒巻しゃけのHomepage</title>
+    <title>TeX - 荒巻しゃけのHomepage</title>
     
     <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
     
@@ -25,11 +25,11 @@
 <meta name="keywords"
   content='' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://aramakishake.github.io/tech-blog/tags/" />
+<link rel="canonical" href="https://aramakishake.github.io/tech-blog/tags/tex/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Tags - 荒巻しゃけのHomepage" />
+<meta name="twitter:title" content="TeX - 荒巻しゃけのHomepage" />
 <meta name="twitter:description"
   content="" />
 <meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
@@ -39,11 +39,11 @@
 
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Tags - 荒巻しゃけのHomepage">
+<meta property="og:title" content="TeX - 荒巻しゃけのHomepage">
 <meta property="og:description"
   content="" />
-<meta property="og:url" content="https://aramakishake.github.io/tech-blog/tags/" />
-<meta property="og:site_name" content="Tags" />
+<meta property="og:url" content="https://aramakishake.github.io/tech-blog/tags/tex/" />
+<meta property="og:site_name" content="TeX" />
 <meta property="og:image"
   content="https://aramakishake.github.io/tech-blog/">
 <meta property="og:image:width" content="2048">
@@ -52,7 +52,7 @@
 
 
 
-<link href="/tech-blog/tags/index.xml" rel="alternate" type="application/rss+xml" title="荒巻しゃけのHomepage" />
+<link href="/tech-blog/tags/tex/index.xml" rel="alternate" type="application/rss+xml" title="荒巻しゃけのHomepage" />
 
 
 
@@ -403,9 +403,9 @@
       
       <div class="TableObject border-bottom border-gray-light py-3">
         <div class="user-repo-search-results-summary TableObject-item TableObject-item--primary v-align-top">
-          <strong>10</strong>
+          <strong>1</strong>
           results
-          for <strong>Tags</strong>
+          for <strong>TeX</strong>
         </div>
         <div class="TableObject-item text-right v-align-top">
           <a class="issues-reset-query text-normal d-inline-block ml-3" href="https://aramakishake.github.io/tech-blog//post/">
@@ -426,257 +426,81 @@
           <div class="col-12 d-inline-block">
             <div class="d-inline-block mb-1">
               <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/tex/">TeX</a>
+                <a href="https://aramakishake.github.io/tech-blog/post/%E6%95%B0%E5%BC%8F%E3%82%92%E6%9B%B8%E3%81%93%E3%81%86_%E3%81%9D%E3%81%AE1/">数式を書こう_その1_20251117</a>
               </h3>
             </div>
 
             <div>
               <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
+                <h1 id="はじめに">はじめに</h1>
+<p>MarkDownでは、TeXライクな数式がかけるということで、それで遊ぶことにする。
+今回はシコ勉してる電気回路からΔ-Y変換を取り上げて式変形で遊んでみる。</p>
+<h1 id="δ-y変換を導出しよう">Δ-Y変換を導出しよう！</h1>
+<h2 id="δ-y変換とは">Δ-Y変換とは？</h2>
+<p>Δ(デルタ)形にAとBとCの部分に抵抗が繋がれている回路から、
+Y(スター)形にAとBとCの部分に抵抗が繋がれている回路への変換のこと。</p>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/delta-star-circuit.png" alt="Δ回路(左)とY回路(右)" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>Δ回路(左)とY回路(右)</figcaption>
+  
+</figure>
+<p>上左図のような抵抗\(R_{AB},R_{BC},R_{CA}\)からなるΔ回路と、上右図のような抵抗\(R_A,R_B,R_C\)は、以下の条件のときに等価になる。</p>
+<p>$$R_A=\frac{R_{CA}R_{AB}}{R_{AB}+R_{BC}+R_{CA}}$$
+$$R_B=\frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}$$
+$$R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$$</p>
+<h2 id="導出">導出</h2>
+<p>まず、Y回路とΔ回路のAB間の抵抗が等しいので、以下の等式が成り立つ
+$$R_A+R_B=\left{\frac{1}{R_{AB}}+\frac{1}{R_{BC}+R_{CA}}\right}^{-1}$$</p>
+<p>左辺は、\(R_AとR_B\)の抵抗が直列に繋がれたときの抵抗である。</p>
+<p>右辺は、AB間の抵抗\(R_{AB}\)と、Cを経由したAB間の抵抗\(R_{BC}+R_{CA}\)が並列に繋がれたときの抵抗である。</p>
+<p>また、右辺を整理すると、</p>
+<h1 id="おわりに">おわりに</h1>
+<p>今回は、TeXを使うことよりも、Δ回路とY回路の図を書くことにかなり苦心した。
+TeXで電気回路を書くこと自体は（Copilotさん頼りではあるが）比較的すんなりいった。
+ただ、pdfになっている電気回路の図をpng画像に落とし込むのに難儀した。</p>
+<p>学生の頃使用していたMacだったらLaTeXitでシュバっと作れたが、WindowsでTeXをいじった経験はあまりない。
+そこで、慣れないTeX2imgを使おうとしては、動かないのを繰り返して、最終的にはpdfを拡大してスクショを撮るという非常に美しくない手法で画像を作成した。</p>
+<p>次の記事を完成させるまでには、TeX Liveをインスコして使いこなす…つもりである。</p>
+<h2 id="hugoの数式記法">Hugoの数式記法</h2>
+<p>そして、今回Hugoを用いて数式を書いた。
+通常のTeXの記法とは異なるものであったので、備忘のためにメモっとく。</p>
+<pre tabindex="0"><code>\\(xxx\\) : inlineの式
+$$xxx$$$ : blockの式
+</code></pre><h2 id="他人のスタイルは青く見える">他人のスタイルは青く見える</h2>
+<p>他の人のサイトとかを見て回ってたら、Blowfishというテーマ良さげだなと思うなどした。</p>
+<p>参考：https://blowfish.page/samples/mathematical-notation/</p>
+<p>ではでは。</p>
               </div>
             </div>
 
             <div class="f6 text-gray mt-2">
+              
+              
+              <a class="muted-link mr-3" href="/tags/%E9%9B%BB%E6%B0%97%E5%9B%9E%E8%B7%AF">
+                <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                  <path fill-rule="evenodd"
+                    d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                  </path>
+                </svg>
+                電気回路
+              </a>
+              
+              <a class="muted-link mr-3" href="/tags/tex">
+                <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                  <path fill-rule="evenodd"
+                    d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                  </path>
+                </svg>
+                TeX
+              </a>
+              
               
 
               Created
               <relative-time datetime=" Mon, 17 Nov 2025 21:56:25 &#43;0900" class="no-wrap"
                 title=" Mon, 17 Nov 2025 21:56:25 &#43;0900">
                 Mon, 17 Nov 2025 21:56:25 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/%E9%9B%BB%E6%B0%97%E5%9B%9E%E8%B7%AF/">電気回路</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-
-              Created
-              <relative-time datetime=" Mon, 17 Nov 2025 21:56:25 &#43;0900" class="no-wrap"
-                title=" Mon, 17 Nov 2025 21:56:25 &#43;0900">
-                Mon, 17 Nov 2025 21:56:25 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/ci/cd/">CI/CD</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-
-              Created
-              <relative-time datetime=" Sun, 16 Nov 2025 22:06:23 &#43;0900" class="no-wrap"
-                title=" Sun, 16 Nov 2025 22:06:23 &#43;0900">
-                Sun, 16 Nov 2025 22:06:23 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/github-actions/">GitHub Actions</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-
-              Created
-              <relative-time datetime=" Sun, 16 Nov 2025 22:06:23 &#43;0900" class="no-wrap"
-                title=" Sun, 16 Nov 2025 22:06:23 &#43;0900">
-                Sun, 16 Nov 2025 22:06:23 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/hugo/">Hugo</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-
-              Created
-              <relative-time datetime=" Fri, 31 Oct 2025 16:14:25 &#43;0900" class="no-wrap"
-                title=" Fri, 31 Oct 2025 16:14:25 &#43;0900">
-                Fri, 31 Oct 2025 16:14:25 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88/">静的サイト</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-
-              Created
-              <relative-time datetime=" Fri, 31 Oct 2025 16:14:25 &#43;0900" class="no-wrap"
-                title=" Fri, 31 Oct 2025 16:14:25 &#43;0900">
-                Fri, 31 Oct 2025 16:14:25 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/tips/">Tips</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-
-              Created
-              <relative-time datetime=" Mon, 20 Oct 2025 22:23:02 &#43;0900" class="no-wrap"
-                title=" Mon, 20 Oct 2025 22:23:02 &#43;0900">
-                Mon, 20 Oct 2025 22:23:02 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/windows/">Windows</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-
-              Created
-              <relative-time datetime=" Mon, 20 Oct 2025 22:23:02 &#43;0900" class="no-wrap"
-                title=" Mon, 20 Oct 2025 22:23:02 &#43;0900">
-                Mon, 20 Oct 2025 22:23:02 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/%E6%97%A5%E8%A8%98/">日記</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-
-              Created
-              <relative-time datetime=" Thu, 16 Oct 2025 23:03:01 &#43;0900" class="no-wrap"
-                title=" Thu, 16 Oct 2025 23:03:01 &#43;0900">
-                Thu, 16 Oct 2025 23:03:01 &#43;0900
-              </relative-time>
-            </div>
-          </div>
-        </li>
-        
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source">
-          <div class="col-12 d-inline-block">
-            <div class="d-inline-block mb-1">
-              <h3 class="wb-break-all">
-                <a href="https://aramakishake.github.io/tech-blog/tags/%E9%9B%91%E8%AB%87/">雑談</a>
-              </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                
-              </div>
-            </div>
-
-            <div class="f6 text-gray mt-2">
-              
-
-              Created
-              <relative-time datetime=" Thu, 16 Oct 2025 23:03:01 &#43;0900" class="no-wrap"
-                title=" Thu, 16 Oct 2025 23:03:01 &#43;0900">
-                Thu, 16 Oct 2025 23:03:01 &#43;0900
               </relative-time>
             </div>
           </div>

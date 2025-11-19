@@ -1,136 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/theme-mode.js'></script>
-    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/frameworks.min.css' />
-    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github.min.css' />
-    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github-style.css' />
-    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/light.css' />
-    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
-    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
-    <title>Hugoでブログはじめましたpart2_20251116 - 荒巻しゃけのHomepage</title>
-    
-    <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
-    
-    <meta name="theme-color" content="#1e2327">
-
-    
-    
-
-    
-    <meta name="description"
-  content="はじめに この「Hugoでブログ始めました」シリーズは、本ブログを立ち上げる際に使用した技術をまとめるべく始めたものである。
-前回の記事(part1)では静的サイトジェネレーターのHugoについてまとめた。
-本記事ではCI/CDプラットフォームのGitHub Actionをまとめる。
-まず、GitHub Actionsの概要を紹介しよう。
-GitHub Actionsについて まず、GitHub Actionsとは、CI/CDプラットフォームである。詳細については以下。
-CI/CDとは Continuous Integration/Continuous Delivery(or Deployment)の略である。
-つまるところ、自動でテスト・ビルド・実行まで一貫してやってくれる仕組みである。
-CIとは Continuous Integration(継続的統合)の略
-開発者がコードを頻繁に統合し、自動でビルド・テストを実施することで、バグの早期発見と品質向上を図ること。
-CDとは Continuous Delivery(継続的納品)
-または
-Continuous Deployment(継続的導入)の略
-CIでテスト済のコードを自動で本番環境にリリース可能な状態にし、必要に応じて自動でデプロイ(※)まで実施すること。
-デプロイ：ファイルを実際のWebサーバ上に配置して利用できる状態にすること
-GitHub Actionとは 名前の通り、GitHubのイチ機能である。
-CI/CDプラットフォームなんて大層な説明をしたが、つまるところ、
-GitHubのブランチへのプッシュなどの更新操作や、 ビルドからサーバーにアップロードして、動く状態にする展開操作 を自動的にやってくれるものだ。
-やり方としては、GitHubのリポジトリ内にyamlファイル(設定ファイルに用いられるデータ記述フォーマット)に条件と処理を書き込むことで機能が使えるようになる。
-実施した工程 ということで、GitHub ActionはCI/CDプラットフォーム、即ち、自動で更新操作や展開操作をやってくれるスグレモノであることを説明した。
-次は、その使用方法についてまとめる。
-といっても、このブログサービスをどのように実現しているか
-Github Actionを使用するには 1. レポジトリ内にディレクトリ作成 リポジトリのルートに.githubディレクトリを作成し、 その配下にworkflowsディレクトリを作成する。
-2. 作成したディレクトリにyamlファイル格納 次に、workflowsディレクトリ配下にyamlファイルを格納する。 ファイル名は何でもいいので、自動化したい処理名をつければOK。 ここまでの工程でやった結果以下のような構成になる。
-" />
-<meta name="keywords"
-  content='' />
-<meta name="robots" content="noodp" />
-<link rel="canonical" href="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9Fpart2/" />
-
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Hugoでブログはじめましたpart2_20251116 - 荒巻しゃけのHomepage" />
-<meta name="twitter:description"
-  content="はじめに この「Hugoでブログ始めました」シリーズは、本ブログを立ち上げる際に使用した技術をまとめるべく始めたものである。
-前回の記事(part1)では静的サイトジェネレーターのHugoについてまとめた。
-本記事ではCI/CDプラットフォームのGitHub Actionをまとめる。
-まず、GitHub Actionsの概要を紹介しよう。
-GitHub Actionsについて まず、GitHub Actionsとは、CI/CDプラットフォームである。詳細については以下。
-CI/CDとは Continuous Integration/Continuous Delivery(or Deployment)の略である。
-つまるところ、自動でテスト・ビルド・実行まで一貫してやってくれる仕組みである。
-CIとは Continuous Integration(継続的統合)の略
-開発者がコードを頻繁に統合し、自動でビルド・テストを実施することで、バグの早期発見と品質向上を図ること。
-CDとは Continuous Delivery(継続的納品)
-または
-Continuous Deployment(継続的導入)の略
-CIでテスト済のコードを自動で本番環境にリリース可能な状態にし、必要に応じて自動でデプロイ(※)まで実施すること。
-デプロイ：ファイルを実際のWebサーバ上に配置して利用できる状態にすること
-GitHub Actionとは 名前の通り、GitHubのイチ機能である。
-CI/CDプラットフォームなんて大層な説明をしたが、つまるところ、
-GitHubのブランチへのプッシュなどの更新操作や、 ビルドからサーバーにアップロードして、動く状態にする展開操作 を自動的にやってくれるものだ。
-やり方としては、GitHubのリポジトリ内にyamlファイル(設定ファイルに用いられるデータ記述フォーマット)に条件と処理を書き込むことで機能が使えるようになる。
-実施した工程 ということで、GitHub ActionはCI/CDプラットフォーム、即ち、自動で更新操作や展開操作をやってくれるスグレモノであることを説明した。
-次は、その使用方法についてまとめる。
-といっても、このブログサービスをどのように実現しているか
-Github Actionを使用するには 1. レポジトリ内にディレクトリ作成 リポジトリのルートに.githubディレクトリを作成し、 その配下にworkflowsディレクトリを作成する。
-2. 作成したディレクトリにyamlファイル格納 次に、workflowsディレクトリ配下にyamlファイルを格納する。 ファイル名は何でもいいので、自動化したい処理名をつければOK。 ここまでの工程でやった結果以下のような構成になる。
-" />
-<meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
-<meta name="twitter:creator" content="" />
-<meta name="twitter:image"
-  content="https://aramakishake.github.io/tech-blog/">
-
-
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Hugoでブログはじめましたpart2_20251116 - 荒巻しゃけのHomepage">
-<meta property="og:description"
-  content="はじめに この「Hugoでブログ始めました」シリーズは、本ブログを立ち上げる際に使用した技術をまとめるべく始めたものである。
-前回の記事(part1)では静的サイトジェネレーターのHugoについてまとめた。
-本記事ではCI/CDプラットフォームのGitHub Actionをまとめる。
-まず、GitHub Actionsの概要を紹介しよう。
-GitHub Actionsについて まず、GitHub Actionsとは、CI/CDプラットフォームである。詳細については以下。
-CI/CDとは Continuous Integration/Continuous Delivery(or Deployment)の略である。
-つまるところ、自動でテスト・ビルド・実行まで一貫してやってくれる仕組みである。
-CIとは Continuous Integration(継続的統合)の略
-開発者がコードを頻繁に統合し、自動でビルド・テストを実施することで、バグの早期発見と品質向上を図ること。
-CDとは Continuous Delivery(継続的納品)
-または
-Continuous Deployment(継続的導入)の略
-CIでテスト済のコードを自動で本番環境にリリース可能な状態にし、必要に応じて自動でデプロイ(※)まで実施すること。
-デプロイ：ファイルを実際のWebサーバ上に配置して利用できる状態にすること
-GitHub Actionとは 名前の通り、GitHubのイチ機能である。
-CI/CDプラットフォームなんて大層な説明をしたが、つまるところ、
-GitHubのブランチへのプッシュなどの更新操作や、 ビルドからサーバーにアップロードして、動く状態にする展開操作 を自動的にやってくれるものだ。
-やり方としては、GitHubのリポジトリ内にyamlファイル(設定ファイルに用いられるデータ記述フォーマット)に条件と処理を書き込むことで機能が使えるようになる。
-実施した工程 ということで、GitHub ActionはCI/CDプラットフォーム、即ち、自動で更新操作や展開操作をやってくれるスグレモノであることを説明した。
-次は、その使用方法についてまとめる。
-といっても、このブログサービスをどのように実現しているか
-Github Actionを使用するには 1. レポジトリ内にディレクトリ作成 リポジトリのルートに.githubディレクトリを作成し、 その配下にworkflowsディレクトリを作成する。
-2. 作成したディレクトリにyamlファイル格納 次に、workflowsディレクトリ配下にyamlファイルを格納する。 ファイル名は何でもいいので、自動化したい処理名をつければOK。 ここまでの工程でやった結果以下のような構成になる。
-" />
-<meta property="og:url" content="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9Fpart2/" />
-<meta property="og:site_name" content="Hugoでブログはじめましたpart2_20251116" />
-<meta property="og:image"
-  content="https://aramakishake.github.io/tech-blog/">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-
-<meta property="article:published_time" content="2025-11-16 22:06:23 &#43;0900 &#43;0900" />
-
-
-
-
-
-
-
-
-
-
-
-</head>
 
 
 <body>
@@ -317,12 +186,12 @@ Github Actionを使用するには 1. レポジトリ内にディレクトリ作
 <p>といっても、このブログサービスをどのように実現しているか</p>
 <h2 id="github-actionを使用するには">Github Actionを使用するには</h2>
 <h3 id="1-レポジトリ内にディレクトリ作成">1. レポジトリ内にディレクトリ作成</h3>
-<p><!-- raw HTML omitted -->リポジトリのルートに.githubディレクトリを作成し、
-<!-- raw HTML omitted -->その配下にworkflowsディレクトリを作成する。</p>
+<p><br>リポジトリのルートに.githubディレクトリを作成し、
+<br>その配下にworkflowsディレクトリを作成する。</p>
 <h3 id="2-作成したディレクトリにyamlファイル格納">2. 作成したディレクトリにyamlファイル格納</h3>
-<p><!-- raw HTML omitted -->次に、workflowsディレクトリ配下にyamlファイルを格納する。
-<!-- raw HTML omitted -->ファイル名は何でもいいので、自動化したい処理名をつければOK。
-<!-- raw HTML omitted -->ここまでの工程でやった結果以下のような構成になる。</p>
+<p><br>次に、workflowsディレクトリ配下にyamlファイルを格納する。
+<br>ファイル名は何でもいいので、自動化したい処理名をつければOK。
+<br>ここまでの工程でやった結果以下のような構成になる。</p>
 <pre tabindex="0"><code>root(GitHubのリポジトリ)
 ┣━.github
 ┃ ┗━workflows
@@ -336,9 +205,9 @@ Github Actionを使用するには 1. レポジトリ内にディレクトリ作
 ┃ ┗━画像.jpeg
 ┗━(その他のディレクトリ)
 </code></pre><h3 id="3-yamlファイルの中身の作り込み">3. yamlファイルの中身の作り込み</h3>
-<p><!-- raw HTML omitted -->格納したyamlファイルの中身を作り込む。
-<!-- raw HTML omitted -->ここはやりたいことによって変わるので
-<!-- raw HTML omitted -->一例として、本サイトで使用しているyamlファイルを示す。</p>
+<p><br>格納したyamlファイルの中身を作り込む。
+<br>ここはやりたいことによって変わるので
+<br>一例として、本サイトで使用しているyamlファイルを示す。</p>
 <pre tabindex="0"><code>name: Deploy Hugo site to GitHub Pages
 
 on:

@@ -458,9 +458,23 @@ $$</p>
 <p>右辺は、AB間の抵抗\(R_{AB}\)と、Cを経由したAB間の抵抗\(R_{BC}+R_{CA}\)が並列に繋がれたときの抵抗である。</p>
 <p>また、右辺を整理すると、</p>
 <p>$$
-(右辺) = \left(\frac{R_{AB}+R_{BC}+R_{CA}}{R_{AB}(R_{BC}+R_{CA})}\right)^{-1}\
+(右辺) = \left(\frac{R_{AB}+R_{BC}+R_{CA}}{R_{AB}(R_{BC}+R_{CA})}\right)^{-1}
+$$
+$$
 = \frac{R_{AB}(R_{BC}+R_{CA})}{R_{AB}+R_{BC}+R_{CA}}
 $$</p>
+<p>BC,CA間の抵抗に関しても同様に式を立てると、</p>
+<p>$$
+R_A+R_B=\frac{R_{AB}(R_{BC}+R_{CA})}{R_{AB}+R_{BC}+R_{CA}}
+$$
+$$
+R_B+R_C=\frac{R_{BC}(R_{CA}+R_{AB})}{R_{AB}+R_{BC}+R_{CA}}
+$$
+$$
+R_C+R_A=\frac{R_{CA}(R_{AB}+R_{BC})}{R_{AB}+R_{BC}+R_{CA}}
+$$</p>
+<p>の3式が立つ。</p>
+<p>すべての式の和をとると、</p>
 <h1 id="おわりに">おわりに</h1>
 <p>今回は、TeXを使うことよりも、Δ回路とY回路の図を書くことにかなり苦心した。
 TeXで電気回路を書くこと自体は（Copilotさん頼りではあるが）比較的すんなりいった。

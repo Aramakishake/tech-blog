@@ -534,81 +534,6 @@
               </h3>
             </div>
 
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                <h1 id="はじめに">はじめに</h1>
-<p>MarkDownでは、TeXライクな数式がかけるということで、それで遊ぶことにする。
-今回はシコ勉してる電気回路からΔ-Y変換を取り上げて式変形で遊んでみる。</p>
-<h1 id="δ-y変換を導出しよう">Δ-Y変換を導出しよう！</h1>
-<h2 id="δ-y変換とは">Δ-Y変換とは？</h2>
-<p>Δ(デルタ)形にAとBとCの部分に抵抗が繋がれている回路と、
-Y(スター)形にAとBとCの部分に抵抗が繋がれている回路との変換のこと。</p>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/delta-star-circuit.png" alt="Δ回路(左)とY回路(右)" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>Δ回路(左)とY回路(右)</figcaption>
-  
-</figure>
-<h2 id="δy変換">Δ→Y変換</h2>
-<p>まず、Δ形の回路からY形の回路への変換を考える。</p>
-<p>上左図のような抵抗\(R_{AB},R_{BC},R_{CA}\)からなるΔ回路と、上右図のような抵抗\(R_A,R_B,R_C\)は、以下の条件のときに等価になる。</p>
-<p>$$R_A=\frac{R_{CA}R_{AB}}{R_{AB}+R_{BC}+R_{CA}}$$
-$$R_B=\frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}$$
-$$R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$$</p>
-<h3 id="δy変換の導出">Δ→Y変換の導出</h3>
-<p>まず、Y回路とΔ回路のAB間の抵抗が等しいので、以下の等式が成り立つ。</p>
-<p>$$
-R_A+R_B=\left(\frac{1}{R_{AB}}+\frac{1}{R_{BC}+R_{CA}}\right)^{-1}
-$$</p>
-<p>左辺は、\(R_AとR_B\)の抵抗が直列に繋がれたときの抵抗である。</p>
-<p>右辺は、経路ABの抵抗\(R_{AB}\)と、Cを経由した経路ACBの抵抗\(R_{BC}+R_{CA}\)が並列に繋がれたときの抵抗である。</p>
-<p>また、右辺を整理すると、</p>
-<p>$$
-(右辺) = \left(\frac{R_{AB}+R_{BC}+R_{CA}}{R_{AB}(R_{BC}+R_{CA})}\right)^{-1}
-$$
-$$
-= \frac{R_{AB}(R_{BC}+R_{CA})}{R_{AB}+R_{BC}+R_{CA}}
-$$</p>
-<p>BC,CA間の抵抗に関しても同様に式を立てると、</p>
-<p>$$
-R_A+R_B=\frac{R_{AB}(R_{BC}+R_{CA})}{R_{AB}+R_{BC}+R_{CA}}
-$$
-$$
-R_B+R_C=\frac{R_{BC}(R_{CA}+R_{AB})}{R_{AB}+R_{BC}+R_{CA}}
-$$
-$$
-R_C+R_A=\frac{R_{CA}(R_{AB}+R_{BC})}{R_{AB}+R_{BC}+R_{CA}}
-$$</p>
-<p>の3式が立つ。</p>
-<p>すべての式の和をとると、
-$$
-2(R_A+R_B+R_C)
-$$
-$$
-=\frac{2(R_{AB}R_{BC}+R_{BC}R_{CA}+R_{CA}R_{AB})}{R_{AB}+R_{BC}+R_{CA}}
-$$</p>
-<p>となり、両辺が2で割れて</p>
-<p>$$
-R_A+R_B+R_C
-$$
-$$
-=\frac{R_{AB}R_{BC}+R_{BC}R_{CA}+R_{CA}R_{AB}}{R_{AB}+R_{BC}+R_{CA}}
-$$</p>
-<p>となる。</p>
-<p>ここから、</p>
-<ul>
-<li>経路ABの式を引くと、\(R_C\)についての式</li>
-<li>経路BCの式を引くと、\(R_A\)についての式</li>
-<li>経路CAの式を引くと、\(R_B\)についての式
-が得られる。</li>
-</ul>
-<p>以上より、</p>
-<p>$$R_A=\frac{R_{CA}R_{AB}}{R_{AB}+R_{BC}+R_{CA}}$$
-$$R_B=\frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}$$
-$$R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$$</p>
-              </div>
-            </div>
-
             <div class="f6 text-gray mt-2">
               
               
@@ -647,51 +572,6 @@ $$R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$$</p>
               <h3 class="wb-break-all">
                 <a href="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9Fpart2/">Hugoでブログはじめましたpart2_20251116</a>
               </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                <h1 id="はじめに">はじめに</h1>
-<p>この「Hugoでブログ始めました」シリーズは、本ブログを立ち上げる際に使用した技術をまとめるべく始めたものである。</p>
-<p>前回の記事(part1)では静的サイトジェネレーターのHugoについてまとめた。</p>
-<p>本記事ではCI/CDプラットフォームのGitHub Actionをまとめる。</p>
-<p>まず、GitHub Actionsの概要を紹介しよう。</p>
-<h1 id="github-actionsについて">GitHub Actionsについて</h1>
-<p>まず、GitHub Actionsとは、CI/CDプラットフォームである。詳細については以下。</p>
-<h2 id="cicdとは">CI/CDとは</h2>
-<p>Continuous Integration/Continuous Delivery(or Deployment)の略である。</p>
-<p>つまるところ、自動でテスト・ビルド・実行まで一貫してやってくれる仕組みである。</p>
-<h3 id="ciとは">CIとは</h3>
-<p>Continuous Integration(継続的統合)の略</p>
-<p>開発者がコードを頻繁に統合し、自動でビルド・テストを実施することで、バグの早期発見と品質向上を図ること。</p>
-<h3 id="cdとは">CDとは</h3>
-<p>Continuous Delivery(継続的納品)</p>
-<p>または</p>
-<p>Continuous Deployment(継続的導入)の略</p>
-<p>CIでテスト済のコードを自動で本番環境にリリース可能な状態にし、必要に応じて自動でデプロイ(※)まで実施すること。</p>
-<p>デプロイ：ファイルを実際のWebサーバ上に配置して利用できる状態にすること</p>
-<h2 id="github-actionとは">GitHub Actionとは</h2>
-<p>名前の通り、GitHubのイチ機能である。</p>
-<p>CI/CDプラットフォームなんて大層な説明をしたが、つまるところ、</p>
-<ul>
-<li>GitHubのブランチへのプッシュなどの更新操作や、</li>
-<li>ビルドからサーバーにアップロードして、動く状態にする展開操作</li>
-</ul>
-<p>を自動的にやってくれるものだ。</p>
-<p>やり方としては、GitHubのリポジトリ内にyamlファイル(設定ファイルに用いられるデータ記述フォーマット)に条件と処理を書き込むことで機能が使えるようになる。</p>
-<h1 id="実施した工程">実施した工程</h1>
-<p>ということで、GitHub ActionはCI/CDプラットフォーム、即ち、自動で更新操作や展開操作をやってくれるスグレモノであることを説明した。</p>
-<p>次は、その使用方法についてまとめる。</p>
-<p>といっても、このブログサービスをどのように実現しているか</p>
-<h2 id="github-actionを使用するには">Github Actionを使用するには</h2>
-<h3 id="1-レポジトリ内にディレクトリ作成">1. レポジトリ内にディレクトリ作成</h3>
-<p><!-- raw HTML omitted -->リポジトリのルートに.githubディレクトリを作成し、
-<!-- raw HTML omitted -->その配下にworkflowsディレクトリを作成する。</p>
-<h3 id="2-作成したディレクトリにyamlファイル格納">2. 作成したディレクトリにyamlファイル格納</h3>
-<p><!-- raw HTML omitted -->次に、workflowsディレクトリ配下にyamlファイルを格納する。
-<!-- raw HTML omitted -->ファイル名は何でもいいので、自動化したい処理名をつければOK。
-<!-- raw HTML omitted -->ここまでの工程でやった結果以下のような構成になる。</p>
-              </div>
             </div>
 
             <div class="f6 text-gray mt-2">
@@ -734,96 +614,6 @@ $$R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$$</p>
               </h3>
             </div>
 
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                <h1 id="はじめに">はじめに</h1>
-<p>技術ブログに関して、Copilotさんに問いかけながら、勢いとノリで実装を行った。</p>
-<p>その振り返りを行うべく本記事にまとめる。</p>
-<p>使用した道具をどう使ったかについて述べたい。</p>
-<ul>
-<li>Hugo : 静的サイトジェネレーター</li>
-<li>GitHub Actions : CI/CDプラットフォーム</li>
-</ul>
-<p>本記事のpart1では、Hugoの概要と今回実施した工程を紹介する。</p>
-<h1 id="hugoについて">Hugoについて</h1>
-<p>Hugoとは静的サイトジェネレーターであると述べた。</p>
-<p>まず、それは何かを説明する。</p>
-<h2 id="静的サイトジェネレーターとは">静的サイトジェネレーターとは</h2>
-<p>この語彙を説明するために、</p>
-<ul>
-<li>静的サイト</li>
-<li>ジェネレーター</li>
-</ul>
-<p>の2つに分割しよう。</p>
-<h3 id="静的サイト">◯静的サイト</h3>
-<p>静的サイトというのは、</p>
-<p><strong>「閲覧者や条件が変わっても、内容の変わらないサイト」</strong></p>
-<p>のことである。</p>
-<p>ちなみに、対義語としては動的サイトがある。
-こちらはログインするユーザー毎に内容を変化させることができるものだ。</p>
-<p>例を挙げると、X(Twitter)は、</p>
-<ul>
-<li>ユーザーごとにタイムラインの表示が変わる</li>
-<li>見るタイミングごとにもタイムラインの表示が変わる</li>
-</ul>
-<p>そのため、条件や閲覧者ごとに内容が変わる。</p>
-<p>つまり、動的サイトにカテゴライズされる。</p>
-<p>今回実現しようとしているのは、自らの技術ブログの開設である。</p>
-<p>ブログは、ユーザー毎に表示する内容を変える（動的にする）必要はない。</p>
-<p>そこで、静的なサイトとして作成しようと相成った。</p>
-<h3 id="ジェネレーター">◯ジェネレーター</h3>
-<p>本来、ホームページをステゴロで作ろうとすると、</p>
-<ul>
-<li>HTML(HyperText Markup Language)</li>
-</ul>
-<p>ホームページに表示する中身の部分</p>
-<ul>
-<li>CSS(Cascading Style Sheets)</li>
-</ul>
-<p>ホームページの見た目を制御する部分</p>
-<ul>
-<li>JavaScript</li>
-</ul>
-<p>ホームページの一部パーツを作成するための部分。</p>
-<p>所謂ハンバーガーメニュー（「三」みたいな記号をクリックすると選択肢が出るメニュー）などを作るのに使う。</p>
-<p>以上の3つを自らの手で書く必要がある。
-（最低限はHTMLのみで済むが、それでも骨が折れる）</p>
-<p>静的サイトジェネレーターというのは、
-<strong>これらのホームページ作成に必要なソースを生成(generate)してくれるスグレモノ</strong>
-なのである。</p>
-<p>流石に、無からホームページが作れるわけではないが、必要なものは単純化される。
-大きく分けて以下の3つである。</p>
-<ul>
-<li>記事
-<ul>
-<li>Markdownテキスト</li>
-</ul>
-</li>
-<li>画像
-<ul>
-<li>コンテンツ内に載せる画像</li>
-</ul>
-</li>
-<li>テーマ(サイトの枠組み)
-<ul>
-<li>主にサイトの見た目部分</li>
-<li><a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a> から選択できる</li>
-</ul>
-</li>
-</ul>
-<p>記事、画像のコンテンツさえ揃えれば、テーマに準じてサイトが生成されるという寸法である。</p>
-<h2 id="hugo概要のまとめ">Hugo概要のまとめ</h2>
-<p>Hugoとは、静的サイトジェネレーターである。</p>
-<p>つまり、<strong>閲覧者や条件に依存しないサイトの生成をしてくれるスゴいヤツ</strong>なのである。</p>
-<h1 id="実施した工程">実施した工程</h1>
-<p>では、どうやってHugoを使って静的サイトを作成しているかについて紹介する。</p>
-<h2 id="hugoを使用するには">Hugoを使用するには</h2>
-<h3 id="1-hugoのインストール">1. Hugoのインストール</h3>
-<p>ここにインストールの仕方が載っている。
-<a href="https://gohugo.io/installation/">https://gohugo.io/installation/</a></p>
-              </div>
-            </div>
-
             <div class="f6 text-gray mt-2">
               
               
@@ -862,87 +652,6 @@ $$R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$$</p>
               <h3 class="wb-break-all">
                 <a href="https://aramakishake.github.io/tech-blog/post/%E5%8F%B3%E4%B8%8B%E3%81%AE%E6%99%82%E8%A8%88%E3%82%92%E7%A7%92%E8%A1%A8%E7%A4%BA%E3%81%AB%E3%81%97%E3%82%88%E3%81%86%E3%81%AE%E5%B7%BB/">右下の時計を秒表示にしようの巻_20251020</a>
               </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                <h1 id="はじめに">はじめに</h1>
-<p>あなたは仕事中、分単位で時間を気にするだろうか？
-私はある。
-というのも、「分刻みのスケジュールをこなす社会人だから」…
-というわけではなく、残業時間を丁度良い時間にしたいためだ。</p>
-<p>と、いうことで早速やっていこう！</p>
-<h1 id="この記事でやりたいこと">この記事でやりたいこと</h1>
-<ul>
-<li>右下の画面の表示をhh:mmからhh:mm:ssに変える</li>
-</ul>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/HHMM.png" alt="変更前の時間表示" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>変更前の時間表示</figcaption>
-  
-</figure>
-<h1 id="手順">手順</h1>
-<h2 id="1-winrでregedit-と入力しレジストリエディター起動">1. Win+Rで<code>regedit</code> と入力しレジストリエディター起動</h2>
-<ul>
-<li>一般にWinキー + Rを押させるタイプの指示は、危ういイメージがある。
-powershellでスクリプトをコピペさせてバックドアを仕込んだり、TeamViewerを入れさせられることで、詐欺師にPCの生殺与奪権を譲るなんてことがあるらしい。気をつけようね。</li>
-<li>正直、レジストリエディタは変なとこいじると起動しなくなるなんて話も聞くので、心配ならバックアップを取ると吉かも(補遺に記載)。</li>
-</ul>
-<h2 id="2-以下のキーに移動する">2. 以下のキーに移動する。</h2>
-<pre tabindex="0"><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
-</code></pre><h2 id="3-新しいdword値を作成">3. 新しいDWORD値を作成</h2>
-<ul>
-<li>右の領域で右クリック [新規] &gt; [DWORD(32ビット)値]を選択。</li>
-<li>名前を<code>ShowSecondsInSystemClock</code>に設定。</li>
-</ul>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/DWORD.png" alt="レジストリエディタ" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>レジストリエディタ</figcaption>
-  
-</figure>
-<h2 id="4-特定のdword値を変更">4. 特定のDWORD値を変更</h2>
-<p><code>ShowSecondsInSystemClock</code>のDWORD値を<code>1</code>に変更</p>
-<ul>
-<li>値の部分をダブルクリックすることで修正可能。</li>
-</ul>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/DWORD2.png" alt="ShowSecondsInSystemClockの値を変更" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>ShowSecondsInSystemClockの値を変更</figcaption>
-  
-</figure>
-<p>hh:mm:ssになった。</p>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/HHMMSS.png" alt="変更後の時間表示" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>変更後の時間表示</figcaption>
-  
-</figure>
-<p>やったぜ</p>
-<h2 id="5-変更されない場合pcを再起動する">5. (変更されない場合)PCを再起動する</h2>
-<p>なお、4.まで実施しても変更されない場合、再起動するとうまくいくとのこと。</p>
-<h1 id="おわりに">おわりに</h1>
-<p>今回はレジストリエディタを用いて、ツールバーの右側に表示している時刻の形式をhh:mmからhh:mm:ssに変えた。</p>
-<p>給与にならない勤務時間を1秒でも削りたい方は、是非とも利用されたい。</p>
-<h1 id="補遺">補遺</h1>
-<h2 id="レジストリエディタのバックアップ">レジストリエディタのバックアップ</h2>
-<p>レジストリエディタの[ファイル]タブにある[エクスポート]で.regファイルを吐き出せる。</p>
-<p>これを復元したいときは、.regファイルを[インポート]すれば良い。</p>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/RegEditor.png" alt="レジストリエディタ" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>レジストリエディタ</figcaption>
-  
-</figure>
-<figure style="text-align: center;">
-  <img src="https://aramakishake.github.io/tech-blog/images/RegEditor2.png" alt="ファイルタブを開いたとき" style="max-width: 100%; height: auto;" />
-  
-    <figcaption>ファイルタブを開いたとき</figcaption>
-  
-</figure>
-              </div>
             </div>
 
             <div class="f6 text-gray mt-2">
@@ -985,31 +694,6 @@ powershellでスクリプトをコピペさせてバックドアを仕込んだ�
               </h3>
             </div>
 
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                <h1 id="分割キーボードのすゝめ">分割キーボードのすゝめ？</h1>
-<p>「分割キーボードは良い」と方々で耳にするが、何が良いのだろうか？
-という疑問が頭をもたげた。</p>
-<p>ということで試してみようと思い至った。
-ただ、My New Gear…とやって懐を冷やしたくはない。
-そのとき、眼前には普段遣いのキーボードと余らせているキーボードの2つがあった……。</p>
-<h1 id="デュアルキーボード">デュアルキーボード</h1>
-<p>ということで、フルキーボードを横に2つ並べて使ってみた。</p>
-<p>左手は左のキーボードのホームポジション（Fキー）、
-右手は右のキーボードのホームポジション（Gキー）に配置し、
-左側のキーは左手で、右側のキーは右手で打鍵するという使い方をしていた。
-（おそらく分割キーボードとは使い方は同じかと思われる）</p>
-<p>分割キーボードではなく、フルキーボード2丁使いのデュアルキーボードと呼ぶことにしよう。二丁キーボード（にちょきー）と呼ぶのもいいかも。</p>
-<h1 id="所感">所感</h1>
-<p>ひとまず職場で1日試しにデュアルキーボードをやってみたが、快適であり、思いの外容易に文章を打てることに気づいた。</p>
-<p>姿勢がよくなるというのが嬉しさとしてありそう。
-従来のキーボードの場合、ホームポジションにきたときにGとHの2キーくらいしか隙間がないので、猫背っぽくなることが起こらないのでは？と推察している。</p>
-<p>しばらく小室哲哉が如く体を開きながら、打鍵音を奏でていこうと思う。
-ただし、ある程度の机の大きさは必要であるため、自宅ではまず机を片付ける必要があるぞ…。</p>
-<p>しばらく続いたら、デュアルキーボードをやってみた結果を顧みてみよう。</p>
-              </div>
-            </div>
-
             <div class="f6 text-gray mt-2">
               
               
@@ -1050,35 +734,6 @@ powershellでスクリプトをコピペさせてバックドアを仕込んだ�
               </h3>
             </div>
 
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                <h1 id="現状">現状</h1>
-<p>Hugoを用いてとりあえず、ブログの体裁は作った。
-なお、テーマはGitHub-Style。
-ひとまず、色々Copilot氏に導かれるままに作ったので、結構微妙なところが見え隠れしている。</p>
-<h1 id="todo">ToDo</h1>
-<h2 id="箇条書きがあまり思った位置に出てこない問題の解消">箇条書きがあまり思った位置に出てこない問題の解消</h2>
-<ul>
-<li>たとえば</li>
-<li>このような</li>
-<li>箇条書きだと</li>
-<li>左側にめり込む</li>
-</ul>
-<p>この問題解決が必要かも（と思ったけど、記事のページに入ると問題なさそう）。</p>
-<p>CSSを完全に理解する必要がある。</p>
-<p>正直Hugoさんにお願いして自動生成したページなので、Hugoの仕組みがわからんとわからん気もする。</p>
-<h2 id="このブログページをどのように実現しているか記事にする">このブログページをどのように実現しているか記事にする</h2>
-<p>現状Hugoを用いているくらいしか述べられない。</p>
-<ul>
-<li>今の環境を再現するにはどうすればいいか</li>
-<li>どういう仕組みでページが作られているか</li>
-<li>ディレクトリのどこをいじると、生成されるHTMLにどう効いてくるか</li>
-</ul>
-<h2 id="記事の種をかき集める">記事の種をかき集める</h2>
-<p>気になる内容は死ぬほどあるので、どういう切り口の記事を作るかを検討しよう。</p>
-              </div>
-            </div>
-
             <div class="f6 text-gray mt-2">
               
               
@@ -1117,28 +772,6 @@ powershellでスクリプトをコピペさせてバックドアを仕込んだ�
               <h3 class="wb-break-all">
                 <a href="https://aramakishake.github.io/tech-blog/post/%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB/">はじめに_20251014</a>
               </h3>
-            </div>
-
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                <h1 id="あいさつ">あいさつ</h1>
-<p>荒巻しゃけと申します。</p>
-<p>Twitterで技術的な気付きをちょくちょく書いたり、noteで文を書き散らかしたりしています。</p>
-<p>それぞれ便利なのですが、使ってみると、思いつきでやろうと思ったことができなかったり（例：TeXを使用した文書を書いたりなど）、醜悪なインプレッション稼ぎなどを目にします。</p>
-<p>また、自分の書いた文書がプラットフォームが死んだときに全部無くなる、なんてのもあり得る話です。</p>
-<p>上記のような不便さを取っ払って、自らの経験や思いつきを全て血肉とすべく、文章に落としこもうと思いました。</p>
-<p>そこで、技術ブログを書こうと思い至りました。</p>
-<h1 id="目的">目的</h1>
-<p>主に以下のような目的でやろうと考えています。</p>
-<ul>
-<li>技術的な知識の蓄積</li>
-<li>アウトプットによる理解の促進</li>
-<li>Markdown形式の文書に慣れる</li>
-<li>思いつきの昇華(Twitterみたいな使い方)</li>
-</ul>
-<h1 id="おわり">おわり</h1>
-<p>以上、よろしくお願いします。</p>
-              </div>
             </div>
 
             <div class="f6 text-gray mt-2">

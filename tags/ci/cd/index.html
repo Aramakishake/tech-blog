@@ -430,51 +430,6 @@
               </h3>
             </div>
 
-            <div>
-              <div class="col-12 d-inline-block text-gray mb-2 pr-4">
-                <h1 id="はじめに">はじめに</h1>
-<p>この「Hugoでブログ始めました」シリーズは、本ブログを立ち上げる際に使用した技術をまとめるべく始めたものである。</p>
-<p>前回の記事(part1)では静的サイトジェネレーターのHugoについてまとめた。</p>
-<p>本記事ではCI/CDプラットフォームのGitHub Actionをまとめる。</p>
-<p>まず、GitHub Actionsの概要を紹介しよう。</p>
-<h1 id="github-actionsについて">GitHub Actionsについて</h1>
-<p>まず、GitHub Actionsとは、CI/CDプラットフォームである。詳細については以下。</p>
-<h2 id="cicdとは">CI/CDとは</h2>
-<p>Continuous Integration/Continuous Delivery(or Deployment)の略である。</p>
-<p>つまるところ、自動でテスト・ビルド・実行まで一貫してやってくれる仕組みである。</p>
-<h3 id="ciとは">CIとは</h3>
-<p>Continuous Integration(継続的統合)の略</p>
-<p>開発者がコードを頻繁に統合し、自動でビルド・テストを実施することで、バグの早期発見と品質向上を図ること。</p>
-<h3 id="cdとは">CDとは</h3>
-<p>Continuous Delivery(継続的納品)</p>
-<p>または</p>
-<p>Continuous Deployment(継続的導入)の略</p>
-<p>CIでテスト済のコードを自動で本番環境にリリース可能な状態にし、必要に応じて自動でデプロイ(※)まで実施すること。</p>
-<p>デプロイ：ファイルを実際のWebサーバ上に配置して利用できる状態にすること</p>
-<h2 id="github-actionとは">GitHub Actionとは</h2>
-<p>名前の通り、GitHubのイチ機能である。</p>
-<p>CI/CDプラットフォームなんて大層な説明をしたが、つまるところ、</p>
-<ul>
-<li>GitHubのブランチへのプッシュなどの更新操作や、</li>
-<li>ビルドからサーバーにアップロードして、動く状態にする展開操作</li>
-</ul>
-<p>を自動的にやってくれるものだ。</p>
-<p>やり方としては、GitHubのリポジトリ内にyamlファイル(設定ファイルに用いられるデータ記述フォーマット)に条件と処理を書き込むことで機能が使えるようになる。</p>
-<h1 id="実施した工程">実施した工程</h1>
-<p>ということで、GitHub ActionはCI/CDプラットフォーム、即ち、自動で更新操作や展開操作をやってくれるスグレモノであることを説明した。</p>
-<p>次は、その使用方法についてまとめる。</p>
-<p>といっても、このブログサービスをどのように実現しているか</p>
-<h2 id="github-actionを使用するには">Github Actionを使用するには</h2>
-<h3 id="1-レポジトリ内にディレクトリ作成">1. レポジトリ内にディレクトリ作成</h3>
-<p><!-- raw HTML omitted -->リポジトリのルートに.githubディレクトリを作成し、
-<!-- raw HTML omitted -->その配下にworkflowsディレクトリを作成する。</p>
-<h3 id="2-作成したディレクトリにyamlファイル格納">2. 作成したディレクトリにyamlファイル格納</h3>
-<p><!-- raw HTML omitted -->次に、workflowsディレクトリ配下にyamlファイルを格納する。
-<!-- raw HTML omitted -->ファイル名は何でもいいので、自動化したい処理名をつければOK。
-<!-- raw HTML omitted -->ここまでの工程でやった結果以下のような構成になる。</p>
-              </div>
-            </div>
-
             <div class="f6 text-gray mt-2">
               
               

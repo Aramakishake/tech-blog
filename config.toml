@@ -1,7 +1,7 @@
 baseURL = 'https://aramakishake.github.io/tech-blog/'
 languageCode = 'ja-jp'
 title = '荒巻しゃけのHomepage'
-theme = 'github-style'
+theme = 'blowfish'
 
 [params]
 headerIcon = "images/favicon.ico"

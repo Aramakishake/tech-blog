@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github-style.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/light.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
+    <title>JSTQB_FL受験について_20260113 - 荒巻しゃけのHomepage</title>
+    
+    <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    
+
+    
+    <meta name="description"
+  content="はじめに JSTQB認定テスト技術者資格Foundation Level(以下、JSTQB FL)を受験し、合格した。 平たく言えば、テストする上での知識を確かめるテストである。
+本記事では、「テスト」の語彙が多義的になってしまうため、以下のような使い分けをする。
+テスト：ソフトウェアの品質を高めるための営み 試験：特定の事象に対して知識があるかを試す営み つまり、今回記載するJSTQB FLは「テストについての試験」である。
+その受験の際にあると嬉しい知識を記事として残しておく。 ただし、中身の知識は参考書やシラバスが詳しいため、それ以外の部分について記載する。 具体的には、周辺知識と私が試みた学習方法(というほど大層なものでもないが…)を記録する。
+本題 JSTQB認定テスト技術者資格とはなにか？ まず、JSTQBは、日本におけるソフトウェア技術者資格認定の運営組織のこと。
+なお、Japan Software Testing Qualifications Boardの略である。
+そして、このテスト技術者資格とは、テストに関する知識があることを確認する試験のこと。
+Advanced LevelとFoundation Levelがあるが、今回はFoundation Level(簡単な方)を受験した。
+どのように学習したか？ 試験日程を押さえる 会社からシラバスの受け渡しとガイダンスを受け、年末に受験すると決めた
+定期券内の試験場の予約を押さえ、そこに向けて学習開始
+シラバス(テキスト)の通読 通勤中読み込んだ
+ただし、通読は1回程度
+テス友で解いている際に疑問に思った箇所に関して参照するような使い方がメインであった
+テス友でカジュアルに語彙に触れる 10問だと大体3~6分程度でできるため、通勤時間や空き時間でテス友を使用していた
+全く何も分からない状況から問題を解いて、語彙を覚えていった
+まとまった時間が取れたら40題一気に解いてみることもしてた
+最初から、章ごとに正答率が出る
+最終的な正答率は8割程度
+試験前1週間で体験記を漁る テス友で毎度9割程度取れてきたので、多少ナメ腐っていた
+ただ、合格率を改めて調べたところ、50%程度と思いの外低かったため不安になり、体験記を漁り始めた
+体験記を漁ると、体感ギリギリで受かってる人や、ギリギリで落ちてそうな人がいた
+点数が開示されないこともここで知る
+試験日3日前に模試を解く 模試を解いて75%と一応合格ではあったが、テス友での正答率からは大幅に下がっており、危機感を抱いた
+誤答部分を改めて見直して、テス友を解いていった
+CBT前は学習できない テストセンターに到着後、テキストを開く時間は全くないので注意
+余裕を持ってテストセンター近傍のカフェなどで復習するのも手
+いくつかの誤解 本試験を受けるにあたって、いくつか誤解があったので、備忘のため記載する。
+誤解1. テスト名がJSTQBだと思っていた JSTQBは団体名(前述)
+テスト名は「(JSTQB認定)テスト技術者資格Foundation Level」
+CBTで受けるテストの確認の際に「JSTQB」の文字列が無くて焦ったため、注意されたい
+誤解2. 出題の難易度 テス友はあくまで語彙の確認程度の難易度
+本試験はシラバスに記載の要求理解度に合致した理解が必要
+シラバスに記載の要求理解度K1(記憶),K2(理解),K3(適用)の分類がある K3の例) 「同値分割のパターンとして、正しいものを選べ」 所感 全体の感想. 時間を作ることが難しい 恐らくこの資格は労働しながら取ることになる
+" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://aramakishake.github.io/tech-blog/post/jstqb_fl%E5%8F%97%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="JSTQB_FL受験について_20260113 - 荒巻しゃけのHomepage" />
+<meta name="twitter:description"
+  content="はじめに JSTQB認定テスト技術者資格Foundation Level(以下、JSTQB FL)を受験し、合格した。 平たく言えば、テストする上での知識を確かめるテストである。
+本記事では、「テスト」の語彙が多義的になってしまうため、以下のような使い分けをする。
+テスト：ソフトウェアの品質を高めるための営み 試験：特定の事象に対して知識があるかを試す営み つまり、今回記載するJSTQB FLは「テストについての試験」である。
+その受験の際にあると嬉しい知識を記事として残しておく。 ただし、中身の知識は参考書やシラバスが詳しいため、それ以外の部分について記載する。 具体的には、周辺知識と私が試みた学習方法(というほど大層なものでもないが…)を記録する。
+本題 JSTQB認定テスト技術者資格とはなにか？ まず、JSTQBは、日本におけるソフトウェア技術者資格認定の運営組織のこと。
+なお、Japan Software Testing Qualifications Boardの略である。
+そして、このテスト技術者資格とは、テストに関する知識があることを確認する試験のこと。
+Advanced LevelとFoundation Levelがあるが、今回はFoundation Level(簡単な方)を受験した。
+どのように学習したか？ 試験日程を押さえる 会社からシラバスの受け渡しとガイダンスを受け、年末に受験すると決めた
+定期券内の試験場の予約を押さえ、そこに向けて学習開始
+シラバス(テキスト)の通読 通勤中読み込んだ
+ただし、通読は1回程度
+テス友で解いている際に疑問に思った箇所に関して参照するような使い方がメインであった
+テス友でカジュアルに語彙に触れる 10問だと大体3~6分程度でできるため、通勤時間や空き時間でテス友を使用していた
+全く何も分からない状況から問題を解いて、語彙を覚えていった
+まとまった時間が取れたら40題一気に解いてみることもしてた
+最初から、章ごとに正答率が出る
+最終的な正答率は8割程度
+試験前1週間で体験記を漁る テス友で毎度9割程度取れてきたので、多少ナメ腐っていた
+ただ、合格率を改めて調べたところ、50%程度と思いの外低かったため不安になり、体験記を漁り始めた
+体験記を漁ると、体感ギリギリで受かってる人や、ギリギリで落ちてそうな人がいた
+点数が開示されないこともここで知る
+試験日3日前に模試を解く 模試を解いて75%と一応合格ではあったが、テス友での正答率からは大幅に下がっており、危機感を抱いた
+誤答部分を改めて見直して、テス友を解いていった
+CBT前は学習できない テストセンターに到着後、テキストを開く時間は全くないので注意
+余裕を持ってテストセンター近傍のカフェなどで復習するのも手
+いくつかの誤解 本試験を受けるにあたって、いくつか誤解があったので、備忘のため記載する。
+誤解1. テスト名がJSTQBだと思っていた JSTQBは団体名(前述)
+テスト名は「(JSTQB認定)テスト技術者資格Foundation Level」
+CBTで受けるテストの確認の際に「JSTQB」の文字列が無くて焦ったため、注意されたい
+誤解2. 出題の難易度 テス友はあくまで語彙の確認程度の難易度
+本試験はシラバスに記載の要求理解度に合致した理解が必要
+シラバスに記載の要求理解度K1(記憶),K2(理解),K3(適用)の分類がある K3の例) 「同値分割のパターンとして、正しいものを選べ」 所感 全体の感想. 時間を作ることが難しい 恐らくこの資格は労働しながら取ることになる
+" />
+<meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://aramakishake.github.io/tech-blog/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="JSTQB_FL受験について_20260113 - 荒巻しゃけのHomepage">
+<meta property="og:description"
+  content="はじめに JSTQB認定テスト技術者資格Foundation Level(以下、JSTQB FL)を受験し、合格した。 平たく言えば、テストする上での知識を確かめるテストである。
+本記事では、「テスト」の語彙が多義的になってしまうため、以下のような使い分けをする。
+テスト：ソフトウェアの品質を高めるための営み 試験：特定の事象に対して知識があるかを試す営み つまり、今回記載するJSTQB FLは「テストについての試験」である。
+その受験の際にあると嬉しい知識を記事として残しておく。 ただし、中身の知識は参考書やシラバスが詳しいため、それ以外の部分について記載する。 具体的には、周辺知識と私が試みた学習方法(というほど大層なものでもないが…)を記録する。
+本題 JSTQB認定テスト技術者資格とはなにか？ まず、JSTQBは、日本におけるソフトウェア技術者資格認定の運営組織のこと。
+なお、Japan Software Testing Qualifications Boardの略である。
+そして、このテスト技術者資格とは、テストに関する知識があることを確認する試験のこと。
+Advanced LevelとFoundation Levelがあるが、今回はFoundation Level(簡単な方)を受験した。
+どのように学習したか？ 試験日程を押さえる 会社からシラバスの受け渡しとガイダンスを受け、年末に受験すると決めた
+定期券内の試験場の予約を押さえ、そこに向けて学習開始
+シラバス(テキスト)の通読 通勤中読み込んだ
+ただし、通読は1回程度
+テス友で解いている際に疑問に思った箇所に関して参照するような使い方がメインであった
+テス友でカジュアルに語彙に触れる 10問だと大体3~6分程度でできるため、通勤時間や空き時間でテス友を使用していた
+全く何も分からない状況から問題を解いて、語彙を覚えていった
+まとまった時間が取れたら40題一気に解いてみることもしてた
+最初から、章ごとに正答率が出る
+最終的な正答率は8割程度
+試験前1週間で体験記を漁る テス友で毎度9割程度取れてきたので、多少ナメ腐っていた
+ただ、合格率を改めて調べたところ、50%程度と思いの外低かったため不安になり、体験記を漁り始めた
+体験記を漁ると、体感ギリギリで受かってる人や、ギリギリで落ちてそうな人がいた
+点数が開示されないこともここで知る
+試験日3日前に模試を解く 模試を解いて75%と一応合格ではあったが、テス友での正答率からは大幅に下がっており、危機感を抱いた
+誤答部分を改めて見直して、テス友を解いていった
+CBT前は学習できない テストセンターに到着後、テキストを開く時間は全くないので注意
+余裕を持ってテストセンター近傍のカフェなどで復習するのも手
+いくつかの誤解 本試験を受けるにあたって、いくつか誤解があったので、備忘のため記載する。
+誤解1. テスト名がJSTQBだと思っていた JSTQBは団体名(前述)
+テスト名は「(JSTQB認定)テスト技術者資格Foundation Level」
+CBTで受けるテストの確認の際に「JSTQB」の文字列が無くて焦ったため、注意されたい
+誤解2. 出題の難易度 テス友はあくまで語彙の確認程度の難易度
+本試験はシラバスに記載の要求理解度に合致した理解が必要
+シラバスに記載の要求理解度K1(記憶),K2(理解),K3(適用)の分類がある K3の例) 「同値分割のパターンとして、正しいものを選べ」 所感 全体の感想. 時間を作ることが難しい 恐らくこの資格は労働しながら取ることになる
+" />
+<meta property="og:url" content="https://aramakishake.github.io/tech-blog/post/jstqb_fl%E5%8F%97%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" />
+<meta property="og:site_name" content="JSTQB_FL受験について_20260113" />
+<meta property="og:image"
+  content="https://aramakishake.github.io/tech-blog/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2026-01-13 18:00:00 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://aramakishake.github.io/tech-blog/">
+        <img class="octicon" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://aramakishake.github.io/tech-blog/">
+            </label>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://aramakishake.github.io/tech-blog/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://aramakishake.github.io/tech-blog/">
+                  <img class=" avatar-user"
+                    src="https://aramakishake.github.io/tech-blog/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://aramakishake.github.io/tech-blog/"></a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://aramakishake.github.io/tech-blog/post/jstqb_fl%E5%8F%97%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">JSTQB_FL受験について_20260113</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Tue, 13 Jan 2026 18:00:00 &#43;0900"
+                    class="no-wrap">
+                    Tue, 13 Jan 2026 18:00:00 &#43;0900</relative-time>
+
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      2028 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/%E9%9B%91%E8%AB%87">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      雑談
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      資格試験
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><h1 id="はじめに">はじめに</h1>
+<p>JSTQB認定テスト技術者資格Foundation Level(以下、JSTQB FL)を受験し、合格した。
+平たく言えば、テストする上での知識を確かめるテストである。</p>
+<p>本記事では、「テスト」の語彙が多義的になってしまうため、以下のような使い分けをする。</p>
+<ul>
+<li>テスト：ソフトウェアの品質を高めるための営み</li>
+<li>試験：特定の事象に対して知識があるかを試す営み</li>
+</ul>
+<p>つまり、今回記載するJSTQB FLは「テストについての試験」である。</p>
+<p>その受験の際にあると嬉しい知識を記事として残しておく。
+ただし、中身の知識は参考書やシラバスが詳しいため、それ以外の部分について記載する。
+具体的には、周辺知識と私が試みた学習方法(というほど大層なものでもないが…)を記録する。</p>
+<h1 id="本題">本題</h1>
+<h2 id="jstqb認定テスト技術者資格とはなにか">JSTQB認定テスト技術者資格とはなにか？</h2>
+<p>まず、JSTQBは、日本におけるソフトウェア技術者資格認定の運営組織のこと。</p>
+<p>なお、Japan Software Testing Qualifications Boardの略である。</p>
+<p>そして、このテスト技術者資格とは、テストに関する知識があることを確認する試験のこと。</p>
+<p>Advanced LevelとFoundation Levelがあるが、今回はFoundation Level(簡単な方)を受験した。</p>
+<h2 id="どのように学習したか">どのように学習したか？</h2>
+<h3 id="試験日程を押さえる">試験日程を押さえる</h3>
+<ul>
+<li>
+<p>会社からシラバスの受け渡しとガイダンスを受け、年末に受験すると決めた</p>
+</li>
+<li>
+<p>定期券内の試験場の予約を押さえ、そこに向けて学習開始</p>
+</li>
+</ul>
+<h3 id="シラバステキストの通読">シラバス(テキスト)の通読</h3>
+<ul>
+<li>
+<p>通勤中読み込んだ</p>
+</li>
+<li>
+<p>ただし、通読は1回程度</p>
+</li>
+<li>
+<p>テス友で解いている際に疑問に思った箇所に関して参照するような使い方がメインであった</p>
+</li>
+</ul>
+<h3 id="テス友でカジュアルに語彙に触れる">テス友でカジュアルに語彙に触れる</h3>
+<ul>
+<li>
+<p>10問だと大体3~6分程度でできるため、通勤時間や空き時間でテス友を使用していた</p>
+</li>
+<li>
+<p>全く何も分からない状況から問題を解いて、語彙を覚えていった</p>
+</li>
+<li>
+<p>まとまった時間が取れたら40題一気に解いてみることもしてた</p>
+</li>
+<li>
+<p>最初から、章ごとに正答率が出る</p>
+</li>
+<li>
+<p>最終的な正答率は8割程度</p>
+</li>
+</ul>
+<h3 id="試験前1週間で体験記を漁る">試験前1週間で体験記を漁る</h3>
+<ul>
+<li>
+<p>テス友で毎度9割程度取れてきたので、多少ナメ腐っていた</p>
+</li>
+<li>
+<p>ただ、合格率を改めて調べたところ、50%程度と思いの外低かったため不安になり、体験記を漁り始めた</p>
+</li>
+<li>
+<p>体験記を漁ると、体感ギリギリで受かってる人や、ギリギリで落ちてそうな人がいた</p>
+</li>
+<li>
+<p>点数が開示されないこともここで知る</p>
+</li>
+</ul>
+<h3 id="試験日3日前に模試を解く">試験日3日前に模試を解く</h3>
+<ul>
+<li>
+<p>模試を解いて75%と一応合格ではあったが、テス友での正答率からは大幅に下がっており、危機感を抱いた</p>
+</li>
+<li>
+<p>誤答部分を改めて見直して、テス友を解いていった</p>
+</li>
+</ul>
+<h3 id="cbt前は学習できない">CBT前は学習できない</h3>
+<ul>
+<li>
+<p>テストセンターに到着後、テキストを開く時間は全くないので注意</p>
+</li>
+<li>
+<p>余裕を持ってテストセンター近傍のカフェなどで復習するのも手</p>
+</li>
+</ul>
+<h2 id="いくつかの誤解">いくつかの誤解</h2>
+<p>本試験を受けるにあたって、いくつか誤解があったので、備忘のため記載する。</p>
+<h3 id="誤解1-テスト名がjstqbだと思っていた">誤解1. テスト名がJSTQBだと思っていた</h3>
+<ul>
+<li>
+<p>JSTQBは団体名(前述)</p>
+</li>
+<li>
+<p>テスト名は「(JSTQB認定)テスト技術者資格Foundation Level」</p>
+</li>
+<li>
+<p>CBTで受けるテストの確認の際に「JSTQB」の文字列が無くて焦ったため、注意されたい</p>
+</li>
+</ul>
+<h3 id="誤解2-出題の難易度">誤解2. 出題の難易度</h3>
+<ul>
+<li>
+<p>テス友はあくまで語彙の確認程度の難易度</p>
+</li>
+<li>
+<p>本試験はシラバスに記載の要求理解度に合致した理解が必要</p>
+<ul>
+<li>シラバスに記載の要求理解度K1(記憶),K2(理解),K3(適用)の分類がある</li>
+<li>K3の例) 「同値分割のパターンとして、正しいものを選べ」</li>
+</ul>
+</li>
+</ul>
+<h2 id="所感">所感</h2>
+<h3 id="全体の感想-時間を作ることが難しい">全体の感想. 時間を作ることが難しい</h3>
+<ul>
+<li>
+<p>恐らくこの資格は労働しながら取ることになる</p>
+<ul>
+<li>受験料が高い(2万円+税)</li>
+</ul>
+</li>
+<li>
+<p>如何に時間を作るか、とっつきやすい口を作るかが重要</p>
+<ul>
+<li>空いた時間にSNSの代わりにテス友に手を付ける</li>
+<li>疑問点が出たときにすぐシラバスの該当箇所を読む</li>
+</ul>
+</li>
+</ul>
+<h3 id="試験時の不満-cbtだがすぐ合否判定が出ない">試験時の不満. CBTだがすぐ合否判定が出ない</h3>
+<ul>
+<li>
+<p>CBTであれば、すぐさま得点が出て良いはず</p>
+</li>
+<li>
+<p>合否判定まで2週間程度かかった</p>
+</li>
+</ul>
+<h3 id="試験時の印象-2択までは余裕それから地獄">試験時の印象. 2択までは余裕、それから地獄</h3>
+<ul>
+<li>
+<p>テス友が大体90%くらい取れている理解度だと、2択までは明らかにおかしいものがあり、弾ける</p>
+</li>
+<li>
+<p>ただ、2択まで来ると「どちらも正しいことを言ってそうだが、より合ってそうなのはこっちかな」と判断する必要が出てくる</p>
+<ul>
+<li>
+<p>場合によるが、40問中10~15問程度はある印象</p>
+</li>
+<li>
+<p>この2択をミスり続けると、落ちる可能性がある(合格は28/40なため)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>このチューニングは模試を受けた後、シラバスを見返すという学習法で良さそう</p>
+<ul>
+<li>
+<p>万全を期すならば、模試をもっと解くと良い</p>
+</li>
+<li>
+<p>JSTQBシラバス(テキスト)の末尾の模試</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="試験時の印象2-計算問題や遷移図を書いて判断する問題アリ">試験時の印象2. 計算問題や遷移図を書いて判断する問題アリ</h3>
+<ul>
+<li>
+<p>基礎知識を求める試験と思いきや、以外と実際中身の計算や遷移図を書くと解ける問題がしばしばある</p>
+</li>
+<li>
+<p>シラバステキスト末尾の模試を用いることで、本番っぽい問題で実力を試せる</p>
+<ul>
+<li>別の参考書を用意できなかった場合、模試は温存して数日前に解くと良いかも</li>
+</ul>
+</li>
+</ul>
+<h1 id="まとめ">まとめ</h1>
+<ul>
+<li>
+<p>労働しながら取るには、時間の捻出がカギ</p>
+</li>
+<li>
+<p>テス友で基礎知識は蓄え、シラバスで理解を補強していく勉強法</p>
+</li>
+<li>
+<p>試験の難易度はテス友よりも高いので注意</p>
+</li>
+</ul>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/toc.js'></script>
+<link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/toc.css' />
+
+  
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://aramakishake.github.io/tech-blog/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+      <li class="mr-3 mr-lg-0">GitHub and the Invertocat logo are trademarks of <a href="https://github.com/">GitHub, Inc.</a></li>
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+
+</body>
+
+<script type="application/javascript" src="https://aramakishake.github.io/tech-blog/js/github-style.js"></script>
+
+
+
+
+
+
+
+</html>

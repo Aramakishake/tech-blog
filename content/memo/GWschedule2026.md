@@ -1,3 +1,8 @@
++++
+draft = true
+title = 'GWschedule2026'
+tags = ["日記", "雑談"]
++++
 # 2026GW何するか
 ## 積んでいるもの
 * ゲーム製作

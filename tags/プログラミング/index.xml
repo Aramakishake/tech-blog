@@ -6,8 +6,15 @@
     <description>Recent content in プログラミング on 荒巻しゃけのHomepage</description>
     <generator>Hugo</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 07 Dec 2025 00:31:05 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 29 Apr 2026 15:55:56 +0900</lastBuildDate>
     <atom:link href="https://aramakishake.github.io/tech-blog/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>インクリメント_20260429</title>
+      <link>https://aramakishake.github.io/tech-blog/post/%E3%82%A4%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%A1%E3%83%B3%E3%83%88/</link>
+      <pubDate>Wed, 29 Apr 2026 15:55:56 +0900</pubDate>
+      <guid>https://aramakishake.github.io/tech-blog/post/%E3%82%A4%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%A1%E3%83%B3%E3%83%88/</guid>
+      <description>&lt;h1 id=&#34;インクリメントは前置後置&#34;&gt;インクリメントは前置？後置？&lt;/h1&gt;&#xA;&lt;h2 id=&#34;導入c参考書にて&#34;&gt;導入：C++参考書にて&lt;/h2&gt;&#xA;&lt;p&gt;C++の参考書を繙いていたところ、インクリメントが前置されていた(++i)。&lt;/p&gt;&#xA;&lt;p&gt;個人的には漠然と後置派で、あまり意識せず使用していた。&lt;/p&gt;&#xA;&lt;p&gt;改めて違いについて調べた結果、以下の通り。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;前置と後置の違い&#xA;&lt;ul&gt;&#xA;&lt;li&gt;例(int i = 3と仮定)&lt;/li&gt;&#xA;&lt;li&gt;int x = i++&#xA;&lt;ul&gt;&#xA;&lt;li&gt;処理順序：代入→インクリメント&#xA;&lt;ul&gt;&#xA;&lt;li&gt;x = 3&lt;/li&gt;&#xA;&lt;li&gt;i = 4&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;int x = ++i&#xA;&lt;ul&gt;&#xA;&lt;li&gt;処理順序：インクリメント→代入&#xA;&lt;ul&gt;&#xA;&lt;li&gt;x = 4&lt;/li&gt;&#xA;&lt;li&gt;i = 4&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;この違いにより何が変わるか&#xA;&lt;ul&gt;&#xA;&lt;li&gt;前置の場合、インクリメント前の値のコピーが行われうる&lt;/li&gt;&#xA;&lt;li&gt;後置の場合、インクリメント前の値はコピーされない&lt;/li&gt;&#xA;&lt;li&gt;つまり、インクリメント前の値を使用しない限り冗長処理（インクリメント前の値のコピー）が走る&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;本題1整数やポインタのインクリメント&#34;&gt;本題1：整数やポインタのインクリメント&lt;/h2&gt;&#xA;&lt;p&gt;調べた結果から、&#xA;&lt;!-- raw HTML omitted --&gt;&lt;strong&gt;この冗長処理の影響が大きくなるのは、インクリメント対象の変数コピー処理が重い場合&lt;/strong&gt;&lt;!-- raw HTML omitted --&gt;&#xA;であることが分かった。&lt;/p&gt;&#xA;&lt;p&gt;このインクリメント対象、for文でよく用いる。&#xA;ソースは手癖で書いてるので後置で記述。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int number = 10;&#xA;int sum    = 0;&#xA;for(int i=0; i &amp;lt; NUMBER; i++)&#xA;{&#xA;    sum += i;&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;このケースにおいては、正直前置/後置は気にしなくて良いと考えている。&lt;/p&gt;&#xA;&lt;p&gt;というのも、&lt;code&gt;i&lt;/code&gt;は整数型(intの4Byte)であるため、コピー処理は重くないため。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>条件分岐、if文書くか？3項書くか？_20251207</title>
       <link>https://aramakishake.github.io/tech-blog/post/%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B2%90if%E6%96%87%E6%9B%B8%E3%81%8F%E3%81%8B3%E9%A0%85%E6%9B%B8%E3%81%8F%E3%81%8B/</link>

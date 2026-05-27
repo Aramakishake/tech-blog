@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>CI/CD on 荒巻しゃけのHomepage</title>
-    <link>https://aramakishake.github.io/tech-blog/tags/ci/cd/</link>
-    <description>Recent content in CI/CD on 荒巻しゃけのHomepage</description>
-    <generator>Hugo</generator>
-    <language>ja-jp</language>
-    <lastBuildDate>Sun, 16 Nov 2025 22:06:23 +0900</lastBuildDate>
-    <atom:link href="https://aramakishake.github.io/tech-blog/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Hugoでブログはじめましたpart2_20251116</title>
-      <link>https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9Fpart2/</link>
-      <pubDate>Sun, 16 Nov 2025 22:06:23 +0900</pubDate>
-      <guid>https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9Fpart2/</guid>
-      <description>&lt;h1 id=&#34;はじめに&#34;&gt;はじめに&lt;/h1&gt;&#xA;&lt;p&gt;この「Hugoでブログ始めました」シリーズは、本ブログを立ち上げる際に使用した技術をまとめるべく始めたものである。&lt;/p&gt;&#xA;&lt;p&gt;前回の記事(part1)では静的サイトジェネレーターのHugoについてまとめた。&lt;/p&gt;&#xA;&lt;p&gt;本記事ではCI/CDプラットフォームのGitHub Actionをまとめる。&lt;/p&gt;&#xA;&lt;p&gt;まず、GitHub Actionsの概要を紹介しよう。&lt;/p&gt;&#xA;&lt;h1 id=&#34;github-actionsについて&#34;&gt;GitHub Actionsについて&lt;/h1&gt;&#xA;&lt;p&gt;まず、GitHub Actionsとは、CI/CDプラットフォームである。詳細については以下。&lt;/p&gt;&#xA;&lt;h2 id=&#34;cicdとは&#34;&gt;CI/CDとは&lt;/h2&gt;&#xA;&lt;p&gt;Continuous Integration/Continuous Delivery(or Deployment)の略である。&lt;/p&gt;&#xA;&lt;p&gt;つまるところ、自動でテスト・ビルド・実行まで一貫してやってくれる仕組みである。&lt;/p&gt;&#xA;&lt;h3 id=&#34;ciとは&#34;&gt;CIとは&lt;/h3&gt;&#xA;&lt;p&gt;Continuous Integration(継続的統合)の略&lt;/p&gt;&#xA;&lt;p&gt;開発者がコードを頻繁に統合し、自動でビルド・テストを実施することで、バグの早期発見と品質向上を図ること。&lt;/p&gt;&#xA;&lt;h3 id=&#34;cdとは&#34;&gt;CDとは&lt;/h3&gt;&#xA;&lt;p&gt;Continuous Delivery(継続的納品)&lt;/p&gt;&#xA;&lt;p&gt;または&lt;/p&gt;&#xA;&lt;p&gt;Continuous Deployment(継続的導入)の略&lt;/p&gt;&#xA;&lt;p&gt;CIでテスト済のコードを自動で本番環境にリリース可能な状態にし、必要に応じて自動でデプロイ(※)まで実施すること。&lt;/p&gt;&#xA;&lt;p&gt;デプロイ：ファイルを実際のWebサーバ上に配置して利用できる状態にすること&lt;/p&gt;&#xA;&lt;h2 id=&#34;github-actionとは&#34;&gt;GitHub Actionとは&lt;/h2&gt;&#xA;&lt;p&gt;名前の通り、GitHubのイチ機能である。&lt;/p&gt;&#xA;&lt;p&gt;CI/CDプラットフォームなんて大層な説明をしたが、つまるところ、&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;GitHubのブランチへのプッシュなどの更新操作や、&lt;/li&gt;&#xA;&lt;li&gt;ビルドからサーバーにアップロードして、動く状態にする展開操作&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;を自動的にやってくれるものだ。&lt;/p&gt;&#xA;&lt;p&gt;やり方としては、GitHubのリポジトリ内にyamlファイル(設定ファイルに用いられるデータ記述フォーマット)に条件と処理を書き込むことで機能が使えるようになる。&lt;/p&gt;&#xA;&lt;h1 id=&#34;実施した工程&#34;&gt;実施した工程&lt;/h1&gt;&#xA;&lt;p&gt;ということで、GitHub ActionはCI/CDプラットフォーム、即ち、自動で更新操作や展開操作をやってくれるスグレモノであることを説明した。&lt;/p&gt;&#xA;&lt;p&gt;次は、その使用方法についてまとめる。&lt;/p&gt;&#xA;&lt;p&gt;といっても、このブログサービスをどのように実現しているか&lt;/p&gt;&#xA;&lt;h2 id=&#34;github-actionを使用するには&#34;&gt;Github Actionを使用するには&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-レポジトリ内にディレクトリ作成&#34;&gt;1. レポジトリ内にディレクトリ作成&lt;/h3&gt;&#xA;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;リポジトリのルートに.githubディレクトリを作成し、&#xA;&lt;!-- raw HTML omitted --&gt;その配下にworkflowsディレクトリを作成する。&lt;/p&gt;&#xA;&lt;h3 id=&#34;2-作成したディレクトリにyamlファイル格納&#34;&gt;2. 作成したディレクトリにyamlファイル格納&lt;/h3&gt;&#xA;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;次に、workflowsディレクトリ配下にyamlファイルを格納する。&#xA;&lt;!-- raw HTML omitted --&gt;ファイル名は何でもいいので、自動化したい処理名をつければOK。&#xA;&lt;!-- raw HTML omitted --&gt;ここまでの工程でやった結果以下のような構成になる。&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>CI/CD on 荒巻しゃけのHomepage</title>
+		<link>https://aramakishake.github.io/tech-blog/tags/ci/cd/</link>
+		<description>Recent content in CI/CD on 荒巻しゃけのHomepage</description>
+		<generator>Hugo</generator>
+		<language>ja-jp</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 16 Nov 2025 22:06:23 +0900</lastBuildDate>
+		
+			<atom:link href="https://aramakishake.github.io/tech-blog/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Hugoでブログはじめましたpart2_20251116</title>
+				<link>https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9Fpart2/</link>
+				<pubDate>Sun, 16 Nov 2025 22:06:23 +0900</pubDate>
+				<guid>https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9Fpart2/</guid>
+				<description>&lt;h1 id=&#34;はじめに&#34;&gt;はじめに&lt;/h1&gt;&#xA;&lt;p&gt;この「Hugoでブログ始めました」シリーズは、本ブログを立ち上げる際に使用した技術をまとめるべく始めたものである。&lt;/p&gt;&#xA;&lt;p&gt;前回の記事(part1)では静的サイトジェネレーターのHugoについてまとめた。&lt;/p&gt;&#xA;&lt;p&gt;本記事ではCI/CDプラットフォームのGitHub Actionをまとめる。&lt;/p&gt;&#xA;&lt;p&gt;まず、GitHub Actionsの概要を紹介しよう。&lt;/p&gt;&#xA;&lt;h1 id=&#34;github-actionsについて&#34;&gt;GitHub Actionsについて&lt;/h1&gt;&#xA;&lt;p&gt;まず、GitHub Actionsとは、CI/CDプラットフォームである。詳細については以下。&lt;/p&gt;&#xA;&lt;h2 id=&#34;cicdとは&#34;&gt;CI/CDとは&lt;/h2&gt;&#xA;&lt;p&gt;Continuous Integration/Continuous Delivery(or Deployment)の略である。&lt;/p&gt;&#xA;&lt;p&gt;つまるところ、自動でテスト・ビルド・実行まで一貫してやってくれる仕組みである。&lt;/p&gt;&#xA;&lt;h3 id=&#34;ciとは&#34;&gt;CIとは&lt;/h3&gt;&#xA;&lt;p&gt;Continuous Integration(継続的統合)の略&lt;/p&gt;&#xA;&lt;p&gt;開発者がコードを頻繁に統合し、自動でビルド・テストを実施することで、バグの早期発見と品質向上を図ること。&lt;/p&gt;&#xA;&lt;h3 id=&#34;cdとは&#34;&gt;CDとは&lt;/h3&gt;&#xA;&lt;p&gt;Continuous Delivery(継続的納品)&lt;/p&gt;&#xA;&lt;p&gt;または&lt;/p&gt;&#xA;&lt;p&gt;Continuous Deployment(継続的導入)の略&lt;/p&gt;&#xA;&lt;p&gt;CIでテスト済のコードを自動で本番環境にリリース可能な状態にし、必要に応じて自動でデプロイ(※)まで実施すること。&lt;/p&gt;&#xA;&lt;p&gt;デプロイ：ファイルを実際のWebサーバ上に配置して利用できる状態にすること&lt;/p&gt;&#xA;&lt;h2 id=&#34;github-actionとは&#34;&gt;GitHub Actionとは&lt;/h2&gt;&#xA;&lt;p&gt;名前の通り、GitHubのイチ機能である。&lt;/p&gt;&#xA;&lt;p&gt;CI/CDプラットフォームなんて大層な説明をしたが、つまるところ、&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;GitHubのブランチへのプッシュなどの更新操作や、&lt;/li&gt;&#xA;&lt;li&gt;ビルドからサーバーにアップロードして、動く状態にする展開操作&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;を自動的にやってくれるものだ。&lt;/p&gt;&#xA;&lt;p&gt;やり方としては、GitHubのリポジトリ内にyamlファイル(設定ファイルに用いられるデータ記述フォーマット)に条件と処理を書き込むことで機能が使えるようになる。&lt;/p&gt;&#xA;&lt;h1 id=&#34;実施した工程&#34;&gt;実施した工程&lt;/h1&gt;&#xA;&lt;p&gt;ということで、GitHub ActionはCI/CDプラットフォーム、即ち、自動で更新操作や展開操作をやってくれるスグレモノであることを説明した。&lt;/p&gt;&#xA;&lt;p&gt;次は、その使用方法についてまとめる。&lt;/p&gt;&#xA;&lt;p&gt;といっても、このブログサービスをどのように実現しているか&lt;/p&gt;&#xA;&lt;h2 id=&#34;github-actionを使用するには&#34;&gt;Github Actionを使用するには&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-レポジトリ内にディレクトリ作成&#34;&gt;1. レポジトリ内にディレクトリ作成&lt;/h3&gt;&#xA;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;リポジトリのルートに.githubディレクトリを作成し、&#xA;&lt;!-- raw HTML omitted --&gt;その配下にworkflowsディレクトリを作成する。&lt;/p&gt;&#xA;&lt;h3 id=&#34;2-作成したディレクトリにyamlファイル格納&#34;&gt;2. 作成したディレクトリにyamlファイル格納&lt;/h3&gt;&#xA;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;次に、workflowsディレクトリ配下にyamlファイルを格納する。&#xA;&lt;!-- raw HTML omitted --&gt;ファイル名は何でもいいので、自動化したい処理名をつければOK。&#xA;&lt;!-- raw HTML omitted --&gt;ここまでの工程でやった結果以下のような構成になる。&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

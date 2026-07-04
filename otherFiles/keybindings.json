@@ -4,7 +4,7 @@
   "key": "ctrl+f1",
   "command": "editor.action.insertSnippet",
   "args": {
-    "snippet": "# ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}(${1|日,月,火,水,木,金,土|}) \n## ${2:やること}\n- [ ] \n- [ ] \n## ${3:やったこと}\n- \n- \n## ${4:わかったこと}\n- \n- \n## ${5:明日やること}\n- [ ] \n- [ ] \n## ${6:所感}\n- \n- \n"
+    "snippet": "# ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}($CURRENT_DAY_NAME_SHORT) \n## ${1:やること}\n- [ ] \n- [ ] \n## ${2:やったこと}\n- \n- \n## ${3:わかったこと}\n- \n- \n## ${4:明日やること}\n- [ ] \n- [ ] \n## ${5:所感}\n- \n- \n"
   },
   "when": "editorTextFocus"
 }

@@ -1,0 +1,17 @@
+# PCセットアップでやること
+- [ ] Google Chromeをインストール
+  - https://www.google.com/intl/ja_jp/chrome/
+- [ ] Google 日本語入力をインストール
+  - https://www.google.co.jp/ime/
+- [ ] Udev Gothic(フォント)をインストール
+  - https://github.com/yuru7/udev-gothic
+- [ ] VSCodeをインストール
+  - https://code.visualstudio.com/
+- [ ] Gitをインストール
+  - https://gitforwindows.org/
+  - 参考：https://qiita.com/takeru-hirai/items/4fbe6593d42f9a844b1c
+- [ ] TortoiseGitをインストール
+  - https://tortoisegit.org/
+- [ ] 秀丸をインストール
+  - https://hide.maruo.co.jp/software/hidemaru.html
+- [ ] 

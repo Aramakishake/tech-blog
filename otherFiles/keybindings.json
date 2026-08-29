@@ -1,12 +1,62 @@
 // 既定値を上書きするには、このファイル内にキー バインドを挿入します
 [
-{
-  // 日報テンプレートの挿入
-  "key": "ctrl+f1",
-  "command": "editor.action.insertSnippet",
-  "args": { 
-    "snippet": "# ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}($CURRENT_DAY_NAME_SHORT) \n## ${1:やること}\n- [ ] \n- [ ] \n## ${2:やったこと}\n- \n- \n## ${3:考えてること}\n- \n- \n## ${4:明日やること}\n- [ ] \n- [ ] \n## ${5:分かったこと}\n- \n- \n## ${6:所感}\n- \n- \n"
+  {
+    // 日報テンプレートの挿入
+    "key": "ctrl+f1",
+    "command": "editor.action.insertSnippet",
+    "args": { 
+      "snippet": "# ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}($CURRENT_DAY_NAME_SHORT) \n## ${1:やること}\n- [ ] \n- [ ] \n## ${2:やったこと}\n- \n- \n## ${3:考えてること}\n- \n- \n## ${4:明日やること}\n- [ ] \n- [ ] \n## ${5:分かったこと}\n- \n- \n## ${6:所感}\n- \n- \n"
+    },
+    "when": "editorTextFocus"
   },
-  "when": "editorTextFocus"
-}
+  {
+    // Hugoヘッダの更新
+    "key": "ctrl+f12",
+    "command": "runCommands",
+    "when": "editorTextFocus && !editorReadonly",
+     "args": {
+      "commands": [
+        // 3-5行目をコピー
+        "cursorTop",
+        "cursorDown",
+        "cursorDown",
+        "expandLineSelection",
+        "cursorDownSelect",
+        "cursorDownSelect",
+        "editor.action.clipboardCopyAction",
+        // ヘッダを削除
+        "cursorTop",
+        "editor.action.deleteLines",
+        "editor.action.deleteLines",
+        "editor.action.deleteLines",
+        "editor.action.deleteLines",
+        "editor.action.deleteLines",
+        "editor.action.deleteLines",
+        // 新しいヘッダを挿入
+        {
+          "command": "editor.action.insertSnippet",
+          "args": { 
+            "snippet": "+++\ndate = '$CURRENT_YEAR-$CURRENT_MONTH-${CURRENT_DATE}T$CURRENT_HOUR:$CURRENT_MINUTE:${CURRENT_SECOND}+09:00'\n${CLIPBOARD}+++\n" 
+          }
+        }
+      ]
+    }
+  },
+  {
+    // Hugoヘッダの追加
+    "key": "ctrl+f11",
+    "command": "runCommands",
+    "when": "editorTextFocus && !editorReadonly",
+     "args": {
+      "commands": [
+        // 新しいヘッダを挿入
+        {
+          "command": "editor.action.insertSnippet",
+          "args": { 
+            "snippet": "+++\ndate = '$CURRENT_YEAR-$CURRENT_MONTH-${CURRENT_DATE}T$CURRENT_HOUR:$CURRENT_MINUTE:${CURRENT_SECOND}+09:00'\ndraft = true\ntitle = ''\ntags = [\"\", \"\"]\n+++\n" 
+          }
+        }
+      ]
+    }
+  }
 ]

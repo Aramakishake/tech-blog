@@ -10,37 +10,9 @@
     "when": "editorTextFocus"
   },
   {
-    // Hugoヘッダの更新
     "key": "ctrl+f12",
-    "command": "runCommands",
-    "when": "editorTextFocus && !editorReadonly",
-     "args": {
-      "commands": [
-        // 3-5行目をコピー
-        "cursorTop",
-        "cursorDown",
-        "cursorDown",
-        "expandLineSelection",
-        "cursorDownSelect",
-        "cursorDownSelect",
-        "editor.action.clipboardCopyAction",
-        // ヘッダを削除
-        "cursorTop",
-        "editor.action.deleteLines",
-        "editor.action.deleteLines",
-        "editor.action.deleteLines",
-        "editor.action.deleteLines",
-        "editor.action.deleteLines",
-        "editor.action.deleteLines",
-        // 新しいヘッダを挿入
-        {
-          "command": "editor.action.insertSnippet",
-          "args": { 
-            "snippet": "+++\ndate = '$CURRENT_YEAR-$CURRENT_MONTH-${CURRENT_DATE}T$CURRENT_HOUR:$CURRENT_MINUTE:${CURRENT_SECOND}+09:00'\n${CLIPBOARD}+++\n" 
-          }
-        }
-      ]
-    }
+    "command": "workbench.action.tasks.runTask",
+    "args": "Update Hugo Date"
   },
   {
     // Hugoヘッダの追加

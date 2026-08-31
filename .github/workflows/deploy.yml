@@ -18,6 +18,15 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Debug Diff
+        run: |
+          echo "=== Changed Files ==="
+          git diff --name-only HEAD^ HEAD
+
+          echo ""
+          echo "=== Full Diff ==="
+          git diff HEAD^ HEAD
+
       - name: Detect Published Post
         id: detect_post
         shell: bash

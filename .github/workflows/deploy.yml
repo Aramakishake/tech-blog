@@ -88,6 +88,27 @@ jobs:
           echo "New Article Published!"
           echo "Title: $POST_TITLE"
 
+      - name: Get URL From RSS
+        if: env.NEW_POST == 'true'
+        shell: bash
+        run: |
+          LINK=$(grep -A 2 "$POST_TITLE" public/index.xml \
+            | grep "<link>" \
+            | head -n1 \
+            | sed 's#.*<link>##' \
+            | sed 's#</link>.*##')
+
+          echo "POST_URL=$LINK" >> $GITHUB_ENV
+
+          echo "URL=$LINK"
+
+      - name: Show Published Article
+        if: env.NEW_POST == 'true'
+        run: |
+          echo "New Article Published!"
+          echo "Title: $POST_TITLE"
+          echo "URL: $POST_URL"
+
       # 将来ここにX投稿を追加
       #
       # - name: Post to X

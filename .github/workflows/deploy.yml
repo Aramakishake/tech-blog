@@ -47,11 +47,18 @@ jobs:
             if echo "$DIFF" | grep -q -- "-draft = true" &&
                echo "$DIFF" | grep -q -- "+draft = false"; then
 
-              TITLE=$(grep '^title:' "$file" \
-                | head -n 1 \
-                | cut -d':' -f2- \
-                | sed 's/^ *//' \
-                | sed 's/"//g')
+              echo "TARGET FILE=$file"
+
+              grep "^title" "$file"
+
+              TITLE=$(grep "^title =" "$file" \
+                | head -n1 \
+                | cut -d'=' -f2 \
+                | tr -d '"' \
+                | tr -d "'" \
+                | xargs)
+
+              echo "TITLE=$TITLE"
 
               echo "NEW_POST=true" >> $GITHUB_ENV
               echo "POST_TITLE=$TITLE" >> $GITHUB_ENV

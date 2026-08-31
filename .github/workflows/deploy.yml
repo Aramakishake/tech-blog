@@ -15,6 +15,48 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Detect Published Post
+        id: detect_post
+        shell: bash
+        run: |
+          NEW_POST=false
+
+          FILES=$(git diff --name-only HEAD^ HEAD)
+
+          for file in $FILES
+          do
+            # post配下のmarkdownだけ見る
+            if [[ "$file" != content/post/*.md ]]; then
+              continue
+            fi
+
+            DIFF=$(git diff HEAD^ HEAD -- "$file")
+
+            if echo "$DIFF" | grep -q -- "-draft: true" &&
+               echo "$DIFF" | grep -q -- "+draft: false"; then
+
+              TITLE=$(grep '^title:' "$file" \
+                | head -n 1 \
+                | cut -d':' -f2- \
+                | sed 's/^ *//' \
+                | sed 's/"//g')
+
+              echo "NEW_POST=true" >> $GITHUB_ENV
+              echo "POST_TITLE=$TITLE" >> $GITHUB_ENV
+
+              NEW_POST=true
+
+              echo "Published Article: $TITLE"
+              break
+            fi
+          done
+
+          if [ "$NEW_POST" = false ]; then
+            echo "NEW_POST=false" >> $GITHUB_ENV
+          fi
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -23,6 +65,19 @@ jobs:
 
       - name: Build site
         run: hugo
+
+      - name: Show Published Article
+        if: env.NEW_POST == 'true'
+        run: |
+          echo "New Article Published!"
+          echo "Title: $POST_TITLE"
+
+      # 将来ここにX投稿を追加
+      #
+      # - name: Post to X
+      #   if: env.NEW_POST == 'true'
+      #   run: |
+      #     python post_to_x.py
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

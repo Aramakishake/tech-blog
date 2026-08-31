@@ -44,8 +44,8 @@ jobs:
 
             DIFF=$(git diff HEAD^ HEAD -- "$file")
 
-            if echo "$DIFF" | grep -q -- "-draft: true" &&
-               echo "$DIFF" | grep -q -- "+draft: false"; then
+            if echo "$DIFF" | grep -q -- "-draft = true" &&
+               echo "$DIFF" | grep -q -- "+draft = false"; then
 
               TITLE=$(grep '^title:' "$file" \
                 | head -n 1 \

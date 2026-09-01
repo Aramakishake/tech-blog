@@ -108,13 +108,6 @@ jobs:
           echo "New Article Published!"
           echo "Title: $POST_TITLE"
           echo "URL: $POST_URL"
-
-      # 将来ここにX投稿を追加
-      #
-      # - name: Post to X
-      #   if: env.NEW_POST == 'true'
-      #   run: |
-      #     python post_to_x.py
       
       # 認証テスト1
       - name: Install Python package
@@ -123,6 +116,18 @@ jobs:
 
       # 認証テスト2
       - name: Test X Authentication
+        env:
+          X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+          X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: |
+          python scripts/test_x_auth.py
+
+      # 将来ここにX投稿を追加
+      
+      - name: Post to X
+        # if: env.NEW_POST == 'true'
         env:
           X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
           X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}

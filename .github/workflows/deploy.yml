@@ -26,7 +26,13 @@ jobs:
           echo ""
           echo "=== Full Diff ==="
           git diff HEAD^ HEAD
+          echo "====test grep===="
+          echo "$DIFF" | grep -- "-draft = true"
+          echo "grep1=$?"
 
+          echo "$DIFF" | grep -- "+draft = false"
+          echo "grep2=$?"
+          
       - name: Detect Published Post
         id: detect_post
         shell: bash

@@ -27,13 +27,22 @@ jobs:
           echo "=== Full Diff ==="
           git diff HEAD^ HEAD
           echo "====test grep===="
-          echo "FILES=[$FILES]"
+          echo "FILE=[$file]"
 
           OLD_DRAFT=$(git show HEAD^:"$file" 2>/dev/null | grep "^draft =" || true)
           NEW_DRAFT=$(grep "^draft =" "$file" || true)
 
           echo "OLD=[$OLD_DRAFT]"
           echo "NEW=[$NEW_DRAFT]"
+          echo "====test files===="
+          FILES=$(git diff --name-only HEAD^ HEAD)
+
+          echo "FILES=[$FILES]"
+
+          for file in $FILES
+          do
+            echo "FILE=[$file]"
+          done
           
       - name: Detect Published Post
         id: detect_post

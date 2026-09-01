@@ -102,28 +102,21 @@ jobs:
 
           echo "URL=$LINK"
 
-      - name: Save Post Message
+      - name: Generate Tweet Message
         if: env.NEW_POST == 'true'
         run: |
-          echo "📝 新しい記事を公開しました！" > tweet.txt
-          echo "" >> tweet.txt
-          echo "$POST_TITLE" >> tweet.txt
-          echo "" >> tweet.txt
-          echo "$POST_URL" >> tweet.txt
-          echo "" >> tweet.txt
-          echo "#技術ブログ #Hugo" >> tweet.txt
-
-          cat tweet.txt
-
-
-      - name: Upload Post Message
-        if: env.NEW_POST == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: tweet-message
-          path: tweet.txt
-
-
+          echo ""
+          echo "================================"
+          echo "TWEET MESSAGE"
+          echo "================================"
+          echo "📝 新しい記事を公開しました！"
+          echo ""
+          echo "$POST_TITLE"
+          echo ""
+          echo "$POST_URL"
+          echo ""
+          echo "#技術ブログ #Hugo"
+          echo "================================"
 
       # 記事情報を取得できているか確認
       # - name: Show Published Article

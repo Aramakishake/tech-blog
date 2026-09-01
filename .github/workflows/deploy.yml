@@ -43,6 +43,16 @@ jobs:
           do
             echo "FILE=[$file]"
           done
+
+          echo "====test files2===="
+          echo "FILE=[$file]"
+
+          if [[ "$file" != content/post/*.md ]]; then
+              echo "SKIP"
+              continue
+          fi
+
+          echo "MATCH"
           
       - name: Detect Published Post
         id: detect_post

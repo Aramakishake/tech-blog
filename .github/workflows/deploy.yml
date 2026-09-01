@@ -27,7 +27,7 @@ jobs:
           echo "=== Full Diff ==="
           git diff HEAD^ HEAD
           echo "====test grep===="
-          echo "FILE=[$file]"
+          echo "FILES=[$FILES]"
 
           OLD_DRAFT=$(git show HEAD^:"$file" 2>/dev/null | grep "^draft =" || true)
           NEW_DRAFT=$(grep "^draft =" "$file" || true)

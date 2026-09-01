@@ -102,39 +102,62 @@ jobs:
 
           echo "URL=$LINK"
 
-      - name: Show Published Article
+      - name: Save Post Message
         if: env.NEW_POST == 'true'
         run: |
-          echo "New Article Published!"
-          echo "Title: $POST_TITLE"
-          echo "URL: $POST_URL"
-      
-      # 認証テスト1
-      - name: Install Python package
-        run: |
-          pip install tweepy
+          cat > tweet.txt << EOF
+📝 新しい記事を公開しました！
 
-      # 認証テスト2
-      - name: Test X Authentication
-        env:
-          X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
-          X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-        run: |
-          python scripts/test_x_auth.py
+$POST_TITLE
+
+$POST_URL
+
+#技術ブログ #Hugo
+EOF
+
+      - name: Upload Post Message
+        if: env.NEW_POST == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: tweet-message
+          path: tweet.txt
+
+
+
+      # 記事情報を取得できているか確認
+      # - name: Show Published Article
+      #   if: env.NEW_POST == 'true'
+      #   run: |
+      #     echo "New Article Published!"
+      #     echo "Title: $POST_TITLE"
+      #     echo "URL: $POST_URL"
+      
+      # X認証テスト1
+      # - name: Install Python package
+      #   run: |
+      #     pip install tweepy
+
+      # X認証テスト2
+      # - name: Test X Authentication
+      #   env:
+      #     X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+      #     X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
+      #     X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+      #     X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+      #   run: |
+      #     python scripts/test_x_auth.py
 
       # 将来ここにX投稿を追加
-      
-      - name: Post to X
-        # if: env.NEW_POST == 'true'
-        env:
-          X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
-          X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-        run: |
-          python scripts/post_to_X.py
+      # X投稿を追加して動かしたが、クレジット要求が出たため断念
+      # - name: Post to X
+      #   # if: env.NEW_POST == 'true'
+      #   env:
+      #     X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+      #     X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
+      #     X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+      #     X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+      #   run: |
+      #     python scripts/post_to_X.py
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

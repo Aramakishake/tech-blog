@@ -52,8 +52,14 @@ jobs:
 
             DIFF=$(git diff HEAD^ HEAD -- "$file")
 
-            if echo "$DIFF" | grep -q -- "-draft = true" &&
-               echo "$DIFF" | grep -q -- "+draft = false"; then
+            OLD_DRAFT=$(git show HEAD^:"$file" 2>/dev/null | grep "^draft =" || true)
+            NEW_DRAFT=$(grep "^draft =" "$file" || true)
+
+            echo "OLD=$OLD_DRAFT"
+            echo "NEW=$NEW_DRAFT"
+
+            if [[ "$OLD_DRAFT" == *"true"* ]] &&
+              [[ "$NEW_DRAFT" == *"false"* ]]; then
 
               echo "TARGET FILE=$file"
 

@@ -18,27 +18,30 @@ jobs:
         with:
           fetch-depth: 2
 
+      # Gitの差分において、日本語名ファイルだとdouble quoteで囲まれてしまう
+      # そのとき、grepでの判定がうまくいかないため、Gitの設定を変更する
       - name: Configure Git
         run: |
           git config --global core.quotepath false
 
-      - name: Debug Diff
-        run: |
-          echo "=== Changed Files ==="
-          git diff --name-only HEAD^ HEAD
+      # Debug用に差分を表示するステップを追加
+      # - name: Debug Diff
+      #   run: |
+      #     echo "=== Changed Files ==="
+      #     git diff --name-only HEAD^ HEAD
 
-          echo ""
-          echo "=== Full Diff ==="
-          git diff HEAD^ HEAD
-          echo "====test grep===="
-          DIFF=$(git diff HEAD^ HEAD)
-          if echo "$DIFF" | grep -q -- "-draft = true"; then
-            echo "FOUND OLD"
-          fi
+      #     echo ""
+      #     echo "=== Full Diff ==="
+      #     git diff HEAD^ HEAD
+      #     echo "====test grep===="
+      #     DIFF=$(git diff HEAD^ HEAD)
+      #     if echo "$DIFF" | grep -q -- "-draft = true"; then
+      #       echo "FOUND OLD"
+      #     fi
 
-          if echo "$DIFF" | grep -q -- "+draft = false"; then
-            echo "FOUND NEW"
-          fi
+      #     if echo "$DIFF" | grep -q -- "+draft = false"; then
+      #       echo "FOUND NEW"
+      #     fi
           
       - name: Detect Published Post
         id: detect_post

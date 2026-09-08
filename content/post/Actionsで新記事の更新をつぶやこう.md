@@ -70,6 +70,64 @@ tags = ["CI/CD", "GitHub Actions"]
 
 ### 前回の記事との差分を取る
 
+Actionsのスクリプトでやってるのはこの辺(以下コードブロック)。
+
+コメントでやってることを記載した。
+```
+# 現在のコミットと1つ前のコミットでの差分(ファイル名)を取得
+FILES=$(git diff --name-only HEAD^ HEAD)
+
+# 取得したファイル名を1つずつ見る
+for file in $FILES
+do
+    # post配下のmarkdownだけ見る
+    if [[ "$file" != content/post/*.md ]]; then
+        continue
+    fi
+
+    # コミット前後のdraft状態を取得
+    OLD_DRAFT=$(git show HEAD^:"$file" 2>/dev/null | grep "^draft =" || true)
+    NEW_DRAFT=$(grep "^draft =" "$file" || true)
+
+```
+
+なお、それぞれの要素を説明すると、
+
+```
+FILES=$(git diff --name-only HEAD^ HEAD)
+```
+- FILES=$(...)：(...)内コマンドの実行結果をFILESという変数で受け取る
+- git diff A B：AとBの差分を取る
+- --name-only ：ファイル名のみ抽出
+- HEAD        ：A = 現在のコミット
+- HEAD^       ：B = 1つ前のコミット
+
+```
+for file in $FILES
+do
+    if [[ "$file" != content/post/*.md ]]; then
+        continue
+    fi
+```
+- for file in \$FILES do：変更のあるファイル群(\$FILES)から1つずつ\$fileという変数に取り出してdo配下を実行
+- if ... fiで囲まれた部分が条件分岐
+- "$file" != content/post/*.md：変更のあるファイルが"content/post/"配下のMarkdownファイルでない場合trueでcontinue(そのファイルを飛ばす)
+
+```
+# コミット前後のdraft状態を取得
+OLD_DRAFT=$(git show HEAD^:"$file" 2>/dev/null | grep "^draft =" || true)
+NEW_DRAFT=$(grep "^draft =" "$file" || true)
+```
+- XXX=$(...)：...内の出力をXXXという変数に代入
+- git show HEAD^:"\$file"：1つ前のコミット(HEAD^)にある、\$fileの内容を出力する
+- 2>/dev/null：エラーメッセージを捨てる(非表示とする)
+- | grep "^draft ="：出力された内容から、"draft ="で始まる
+  - grep(Global Regular Expression Print)なので正規表現
+  - 正規表現において、キャレット(^)は行頭を表す
+- || true：grepが見つからずとも、コマンド全体を成功扱いにする(スクリプトを終了させないため)
+- grep "^draft =" "\$file" || true：現在の\$fileにおける"draft ="
+
+
 ### 記事が非公開から公開になったタイミングを検知
 
 ### 記事タイトルを取得

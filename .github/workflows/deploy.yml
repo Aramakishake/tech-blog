@@ -68,9 +68,11 @@ jobs:
             if [[ "$OLD_DRAFT" == *"true"* ]] &&
               [[ "$NEW_DRAFT" == *"false"* ]]; then
 
-              echo "TARGET FILE=$file"
+              # Debug
+              # echo "TARGET FILE=$file"
 
-              grep "^title" "$file"
+              # Debug
+              # grep "^title" "$file"
 
               TITLE=$(grep "^title =" "$file" \
                 | head -n1 \
@@ -79,7 +81,8 @@ jobs:
                 | tr -d "'" \
                 | xargs)
 
-              echo "TITLE=$TITLE"
+              # Debug
+              # echo "TITLE=$TITLE"
 
               echo "NEW_POST=true" >> $GITHUB_ENV
               echo "POST_TITLE=$TITLE" >> $GITHUB_ENV

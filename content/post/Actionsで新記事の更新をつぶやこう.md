@@ -118,20 +118,60 @@ do
 OLD_DRAFT=$(git show HEAD^:"$file" 2>/dev/null | grep "^draft =" || true)
 NEW_DRAFT=$(grep "^draft =" "$file" || true)
 ```
-- XXX=$(...)：...内の出力をXXXという変数に代入
-- git show HEAD^:"\$file"：1つ前のコミット(HEAD^)にある、\$fileの内容を出力する
-- 2>/dev/null：エラーメッセージを捨てる(非表示とする)
-- | grep "^draft ="：出力された内容から、"draft ="で始まる
+- `XXX=$(...)`：...内の出力をXXXという変数に代入
+- `git show HEAD^:"\$file"`：1つ前のコミット(HEAD^)にある、\$fileの内容を出力する
+- `2>/dev/null`：エラーメッセージを捨てる(非表示とする)
+- `| grep "^draft ="`：出力された内容から、"draft ="で始まる行を取得
   - grep(Global Regular Expression Print)なので正規表現
   - 正規表現において、キャレット(^)は行頭を表す
-- || true：grepが見つからずとも、コマンド全体を成功扱いにする(スクリプトを終了させないため)
-- grep "^draft =" "\$file" || true：現在の\$fileにおける"draft ="
-
+- `|| true`：grepが見つからずとも、コマンド全体を成功扱いにする(スクリプトを終了させないため)
+- `grep "^draft =" "\$file"`：現在の\$fileにおける"draft ="で始まる行を取得
 
 ### 記事が非公開から公開になったタイミングを検知
+```
+do(差分のあるFILEごとのループ)
+     if [[ "$OLD_DRAFT" == *"true"* ]] &&
+        [[ "$NEW_DRAFT" == *"false"* ]]; then
+        (中略)
+        echo "NEW_POST=true" >> $GITHUB_ENV
+        (中略)
+        NEW_POST=true
+        (中略)
+        break
+    fi
+done
+
+if [ "$NEW_POST" = false ]; then
+    echo "NEW_POST=false" >> $GITHUB_ENV
+fi
+```
+- if文
+  - OLD_DRAFT(コミット前のdraftが記載されている行)にtrueという文字列が含まれる。
+  - NEW_DRAFT(コミット後のdraftが記載されている行)にfalseという文字列が含まれる。
+  - この双方を満たす場合、if文処理が行われる。
+    - つまり、非公開→公開に変更した場合のみこの条件を満たす。
+- 条件を満たすときの処理
+  - `echo "NEW_POST=true" >> $GITHUB_ENV`：後続ステップでもNEW_POSTという変数(グローバル変数)がtrueになる。
+  - `NEW_POST=true`：このステップではNEW_POSTという変数(ローカル変数)がtrueになる。
+  - `break`：doループから抜ける
+- ループ終了時
+  - `if [ "$NEW_POST" = false ]; then echo "NEW_POST=false" >> $GITHUB_ENV fi`：ループを経てもNEW_POSTのローカル変数がfalseである場合、グローバル変数のNEW_POSTがtrueになる。
 
 ### 記事タイトルを取得
+```
+TITLE=$(grep "^title =" "$file" \
+    | head -n1 \
+    | cut -d'=' -f2 \
+    | tr -d '"' \
+    | tr -d "'" \
+    | xargs)
 
+echo "POST_TITLE=$TITLE" >> $GITHUB_ENV
+```
+- `grep "^title =" "$file" \`：現在の$fileにおける"title ="で始まる行を取得
+- `head -n1\`：("title ="で始まる)先頭1行を取得
+- `-cut -d'=' -f2`：区切り文字(-d)を"="に設定し、区切ったうちの2番目のフィールド(-f2)を取得
+- 
 ### 記事URLを取得
 
 ### Xに投稿

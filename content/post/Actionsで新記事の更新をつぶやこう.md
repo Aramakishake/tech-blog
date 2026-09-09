@@ -155,7 +155,7 @@ fi
   - `NEW_POST=true`：このステップではNEW_POSTという変数(ローカル変数)がtrueになる。
   - `break`：doループから抜ける
 - ループ終了時
-  - `if [ "$NEW_POST" = false ]; then echo "NEW_POST=false" >> $GITHUB_ENV fi`：ループを経てもNEW_POSTのローカル変数がfalseである場合、グローバル変数のNEW_POSTがtrueになる。
+  - `if [ "$NEW_POST" = false ]; then echo "NEW_POST=false" >> $GITHUB_ENV fi`：ループを経てもNEW_POSTのローカル変数がfalseである場合、グローバル変数のNEW_POSTをtrueにする。
 
 ### 記事タイトルを取得
 ```
@@ -168,6 +168,7 @@ TITLE=$(grep "^title =" "$file" \
 (中略)
 echo "POST_TITLE=$TITLE" >> $GITHUB_ENV
 ```
+- `TITLE=$(...)`：...の実行結果をTITLEに格納
 - `grep "^title =" "$file" `：現在の$fileにおける"title ="で始まる行を取得
 - `head -n1`：("title ="で始まる)先頭1行を取得
 - `-cut -d'=' -f2`：区切り文字(-d)を=に設定し、区切ったうちの2番目のフィールド(-f2)を取得
@@ -188,10 +189,26 @@ echo "POST_TITLE=$TITLE" >> $GITHUB_ENV
             | sed 's#</link>.*##')
 
           echo "POST_URL=$LINK" >> $GITHUB_ENV
-
-          echo "URL=$LINK"
 ```
-- 
+- `- name: Get URL From RSS`：処理ユニットの名前、今回はRSSからURLを取得するので、その旨を記載
+- `if: env.NEW_POST == 'true'`：グローバル変数のNEW_POSTがtrueの時(記事公開時)、以下を実行
+- `shell: bash`：実行するシェルをbashに設定
+  - この行は書かなくても動く
+    - Runner、つまりActionsで動かしている仮想PCはUbuntu-latestを使用しており、デフォルトではBash系であるため
+    - 「Bash前提である」と明示するために記載している
+- `run: |`：以下のスクリプトを実行
+  - `LINK=$(...)`：...の出力結果をLINKに代入
+  - `grep -A 2 "$POST_TITLE" public/index.xml`
+    - `grep -A 2　(指定正規表現) (対象)`：マッチした行の後ろ2行も表示する
+    - `"$POST_TITLE"`：公開した記事タイトル
+    - `public/index.xml`：Hugoにおいて生成されるRSSフィードのpath
+    - 全体でこの行は…「RSSフィードの中から、公開した記事タイトルに合致する行とその後ろ2行を取得する」というもの
+  - `| grep "<link>"`：linkタグを含む行を取得する
+  - `| head -n1 `：先頭1行だけ取得
+  - `| sed 's#.*<link>##' `：linkタグの前を削除
+  - `| sed 's#</link>.*##')`：linkの閉じタグ以降を削除
+  - 上記をすべて実施すると、LINKにRSSに記載されているURLが代入される
+- `echo "POST_URL=$LINK" >> $GITHUB_ENV`：GITHUB_ENV(グローバル変数)のPOST_URLに得た保存
 ### Xに投稿
 
 ### 細かい部分の調整

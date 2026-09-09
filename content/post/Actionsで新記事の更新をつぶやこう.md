@@ -165,7 +165,7 @@ TITLE=$(grep "^title =" "$file" \
     | tr -d '"' \
     | tr -d "'" \
     | xargs)
-
+(中略)
 echo "POST_TITLE=$TITLE" >> $GITHUB_ENV
 ```
 - `grep "^title =" "$file" `：現在の$fileにおける"title ="で始まる行を取得
@@ -174,8 +174,24 @@ echo "POST_TITLE=$TITLE" >> $GITHUB_ENV
 - `tr -d '"'`：ダブルクオート(")を削除
 - `tr -d "'"`：シングルクオート(')を削除
 - `xargs`：前後の余分な空白やタブを削除し、連続する空白も整理
+- `echo "POST_TITLE=$TITLE" >> $GITHUB_ENV`：グローバル変数POST_TITLEにタイトルを代入
 ### 記事URLを取得
+```
+- name: Get URL From RSS
+        if: env.NEW_POST == 'true'
+        shell: bash
+        run: |
+          LINK=$(grep -A 2 "$POST_TITLE" public/index.xml \
+            | grep "<link>" \
+            | head -n1 \
+            | sed 's#.*<link>##' \
+            | sed 's#</link>.*##')
 
+          echo "POST_URL=$LINK" >> $GITHUB_ENV
+
+          echo "URL=$LINK"
+```
+- 
 ### Xに投稿
 
 ### 細かい部分の調整

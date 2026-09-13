@@ -11,7 +11,7 @@
     <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
     <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
     <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/custom.css' />
-    <title>Actionsで新記事の更新をつぶやこう_20260913 - 荒巻しゃけのHomepage</title>
+    <title>Actionsで新記事の更新をつぶやこう - 荒巻しゃけのHomepage</title>
     
     <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
     
@@ -53,7 +53,7 @@ GitHub Actionsとは？ 端的に言えば、GitHubのCI/CDツール。
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Actionsで新記事の更新をつぶやこう_20260913 - 荒巻しゃけのHomepage" />
+<meta name="twitter:title" content="Actionsで新記事の更新をつぶやこう - 荒巻しゃけのHomepage" />
 <meta name="twitter:description"
   content="はじめに 最近、通勤の合間を縫って、技術ブログを綴っている。 「技術」といっても、高尚な内容ではなく、ひねった文章を書くために、技術的な部分の考察を行うという営みだ。
 その際に、「新記事投稿時にXで自動投稿してくれたら便利やろ」と思い設定しようと試みた。
@@ -86,7 +86,7 @@ GitHub Actionsとは？ 端的に言えば、GitHubのCI/CDツール。
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Actionsで新記事の更新をつぶやこう_20260913 - 荒巻しゃけのHomepage">
+<meta property="og:title" content="Actionsで新記事の更新をつぶやこう - 荒巻しゃけのHomepage">
 <meta property="og:description"
   content="はじめに 最近、通勤の合間を縫って、技術ブログを綴っている。 「技術」といっても、高尚な内容ではなく、ひねった文章を書くために、技術的な部分の考察を行うという営みだ。
 その際に、「新記事投稿時にXで自動投稿してくれたら便利やろ」と思い設定しようと試みた。
@@ -113,7 +113,7 @@ GitHub Actionsとは？ 端的に言えば、GitHubのCI/CDツール。
 # 現在のコミットと1つ前のコミットでの差分(ファイル名)を取得 FILES=$(git diff --name-only HEAD^ HEAD) # 取得したファイル名を1つずつ見る for file in $FILES do # post配下のmarkdownだけ見る if [[ &#34;$file&#34; != content/post/*.md ]]; then continue fi # コミット前後のdraft状態を取得 OLD_DRAFT=$(git show HEAD^:&#34;$file&#34; 2&gt;/dev/null | grep &#34;^draft =&#34; || true) NEW_DRAFT=$(grep &#34;^draft =&#34; &#34;$file&#34; || true) なお、それぞれの要素を説明すると、
 " />
 <meta property="og:url" content="https://aramakishake.github.io/tech-blog/post/actions%E3%81%A7%E6%96%B0%E8%A8%98%E4%BA%8B%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%93%E3%81%86/" />
-<meta property="og:site_name" content="Actionsで新記事の更新をつぶやこう_20260913" />
+<meta property="og:site_name" content="Actionsで新記事の更新をつぶやこう" />
 <meta property="og:image"
   content="https://aramakishake.github.io/tech-blog/">
 <meta property="og:image:width" content="2048">
@@ -215,7 +215,7 @@ GitHub Actionsとは？ 端的に言えば、GitHubのCI/CDツール。
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://aramakishake.github.io/tech-blog/post/actions%E3%81%A7%E6%96%B0%E8%A8%98%E4%BA%8B%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%93%E3%81%86/">Actionsで新記事の更新をつぶやこう_20260913</a>
+                    <a href="https://aramakishake.github.io/tech-blog/post/actions%E3%81%A7%E6%96%B0%E8%A8%98%E4%BA%8B%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%93%E3%81%86/">Actionsで新記事の更新をつぶやこう</a>
                   </strong>
                 </h1>
                 <div class="note m-0">

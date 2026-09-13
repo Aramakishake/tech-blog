@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github.min.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/github-style.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/light.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/dark.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/syntax.css' />
+    <link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/custom.css' />
+    <title>Actionsで新記事の更新をつぶやこう_20260913 - 荒巻しゃけのHomepage</title>
+    
+    <link rel="icon" type="image/x-icon" href='https://aramakishake.github.io/tech-blog/images/favicon.ico'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    
+
+    
+    <meta name="description"
+  content="はじめに 最近、通勤の合間を縫って、技術ブログを綴っている。 「技術」といっても、高尚な内容ではなく、ひねった文章を書くために、技術的な部分の考察を行うという営みだ。
+その際に、「新記事投稿時にXで自動投稿してくれたら便利やろ」と思い設定しようと試みた。
+結論から言うと、準備はできたものの、自動投稿の仕組みを使わないと判断した。
+その判断も含め、備忘のために記事として残しておく。
+本題 前提（GitHub Pages） まず、当ブログはGitHub Pagesという、GitHubでホームページを管理し、公開できる仕組みを用いている。
+これは、
+リポジトリにホームページのhtmlやCSS, javascriptを配置する 公開元として指定したブランチ(gh-pagesなど)にpushする GitHub側がそのファイル群を検知して、配信開始 https://ユーザー名.github.io/リポジトリ名/ でアクセス可能になる という流れでホームページが公開される。
+かつて利用していた
+FFFTP（FTPで送信するツール） お名前ドットコム（ドメインとレンタルサーバーの会社、なんか評判悪いらしいっすね） を利用しなくてもホームページが用意できるのである！！！しかも無料！！！
+GitHub Actionsとは？ 端的に言えば、GitHubのCI/CDツール。
+また、CI/CDは何かを超ざっくりというと、 「自動でテストしたり、自動ですぐ使えるファイル（.exeとか.htmlとか）にしてくれたら、手間が省けるね」というもの。
+プログラマーの美徳の1つとして怠惰（手間を省くために手間をかける）を体現したツールである。
+今回話したいこと ここで本題、GitHub Actionsを用いて、新たに記事を作成・公開した旨を皆に知らせるポストを自動投稿したい！ と考え、仕組みを作成しようと試み、(Xに金を払いたくなくて)断念した。
+その際に分かったことについて記載する。
+カスだけどやめられないSNSことXに放流して、誰が見るかと思うかもしれないが(実際誰も見てないと思っている)、 どちらかというと他者というより未来の自分宛てが目的である。
+未来の自分が過去ポストを掘り出しているときに「書いたな、こんな記事」と復習することを狙いとしている。
+自動投稿までの流れ GitHubページにあるdeploy.ymlが本体。 大まかな流れとしては、
+前回との差分を取る 記事が非公開から公開になったタイミングを検知 記事タイトルを取得 記事URLを取得 Xに投稿 という流れである。
+このymlファイルでは記事の反映も行っているが、 この辺については、かつて書いたHugoに関する記事 が詳しいため、気になった方はそちらを参照されたい。
+それでは大まかな流れのそれぞれについてどのような処理をしているか触れていこう
+前回の記事との差分を取る Actionsのスクリプトでやってるのはこの辺(以下コードブロック)。
+コメントでやってることを記載した。
+# 現在のコミットと1つ前のコミットでの差分(ファイル名)を取得 FILES=$(git diff --name-only HEAD^ HEAD) # 取得したファイル名を1つずつ見る for file in $FILES do # post配下のmarkdownだけ見る if [[ &#34;$file&#34; != content/post/*.md ]]; then continue fi # コミット前後のdraft状態を取得 OLD_DRAFT=$(git show HEAD^:&#34;$file&#34; 2&gt;/dev/null | grep &#34;^draft =&#34; || true) NEW_DRAFT=$(grep &#34;^draft =&#34; &#34;$file&#34; || true) なお、それぞれの要素を説明すると、
+" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://aramakishake.github.io/tech-blog/post/actions%E3%81%A7%E6%96%B0%E8%A8%98%E4%BA%8B%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%93%E3%81%86/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Actionsで新記事の更新をつぶやこう_20260913 - 荒巻しゃけのHomepage" />
+<meta name="twitter:description"
+  content="はじめに 最近、通勤の合間を縫って、技術ブログを綴っている。 「技術」といっても、高尚な内容ではなく、ひねった文章を書くために、技術的な部分の考察を行うという営みだ。
+その際に、「新記事投稿時にXで自動投稿してくれたら便利やろ」と思い設定しようと試みた。
+結論から言うと、準備はできたものの、自動投稿の仕組みを使わないと判断した。
+その判断も含め、備忘のために記事として残しておく。
+本題 前提（GitHub Pages） まず、当ブログはGitHub Pagesという、GitHubでホームページを管理し、公開できる仕組みを用いている。
+これは、
+リポジトリにホームページのhtmlやCSS, javascriptを配置する 公開元として指定したブランチ(gh-pagesなど)にpushする GitHub側がそのファイル群を検知して、配信開始 https://ユーザー名.github.io/リポジトリ名/ でアクセス可能になる という流れでホームページが公開される。
+かつて利用していた
+FFFTP（FTPで送信するツール） お名前ドットコム（ドメインとレンタルサーバーの会社、なんか評判悪いらしいっすね） を利用しなくてもホームページが用意できるのである！！！しかも無料！！！
+GitHub Actionsとは？ 端的に言えば、GitHubのCI/CDツール。
+また、CI/CDは何かを超ざっくりというと、 「自動でテストしたり、自動ですぐ使えるファイル（.exeとか.htmlとか）にしてくれたら、手間が省けるね」というもの。
+プログラマーの美徳の1つとして怠惰（手間を省くために手間をかける）を体現したツールである。
+今回話したいこと ここで本題、GitHub Actionsを用いて、新たに記事を作成・公開した旨を皆に知らせるポストを自動投稿したい！ と考え、仕組みを作成しようと試み、(Xに金を払いたくなくて)断念した。
+その際に分かったことについて記載する。
+カスだけどやめられないSNSことXに放流して、誰が見るかと思うかもしれないが(実際誰も見てないと思っている)、 どちらかというと他者というより未来の自分宛てが目的である。
+未来の自分が過去ポストを掘り出しているときに「書いたな、こんな記事」と復習することを狙いとしている。
+自動投稿までの流れ GitHubページにあるdeploy.ymlが本体。 大まかな流れとしては、
+前回との差分を取る 記事が非公開から公開になったタイミングを検知 記事タイトルを取得 記事URLを取得 Xに投稿 という流れである。
+このymlファイルでは記事の反映も行っているが、 この辺については、かつて書いたHugoに関する記事 が詳しいため、気になった方はそちらを参照されたい。
+それでは大まかな流れのそれぞれについてどのような処理をしているか触れていこう
+前回の記事との差分を取る Actionsのスクリプトでやってるのはこの辺(以下コードブロック)。
+コメントでやってることを記載した。
+# 現在のコミットと1つ前のコミットでの差分(ファイル名)を取得 FILES=$(git diff --name-only HEAD^ HEAD) # 取得したファイル名を1つずつ見る for file in $FILES do # post配下のmarkdownだけ見る if [[ &#34;$file&#34; != content/post/*.md ]]; then continue fi # コミット前後のdraft状態を取得 OLD_DRAFT=$(git show HEAD^:&#34;$file&#34; 2&gt;/dev/null | grep &#34;^draft =&#34; || true) NEW_DRAFT=$(grep &#34;^draft =&#34; &#34;$file&#34; || true) なお、それぞれの要素を説明すると、
+" />
+<meta name="twitter:site" content="https://aramakishake.github.io/tech-blog/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://aramakishake.github.io/tech-blog/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Actionsで新記事の更新をつぶやこう_20260913 - 荒巻しゃけのHomepage">
+<meta property="og:description"
+  content="はじめに 最近、通勤の合間を縫って、技術ブログを綴っている。 「技術」といっても、高尚な内容ではなく、ひねった文章を書くために、技術的な部分の考察を行うという営みだ。
+その際に、「新記事投稿時にXで自動投稿してくれたら便利やろ」と思い設定しようと試みた。
+結論から言うと、準備はできたものの、自動投稿の仕組みを使わないと判断した。
+その判断も含め、備忘のために記事として残しておく。
+本題 前提（GitHub Pages） まず、当ブログはGitHub Pagesという、GitHubでホームページを管理し、公開できる仕組みを用いている。
+これは、
+リポジトリにホームページのhtmlやCSS, javascriptを配置する 公開元として指定したブランチ(gh-pagesなど)にpushする GitHub側がそのファイル群を検知して、配信開始 https://ユーザー名.github.io/リポジトリ名/ でアクセス可能になる という流れでホームページが公開される。
+かつて利用していた
+FFFTP（FTPで送信するツール） お名前ドットコム（ドメインとレンタルサーバーの会社、なんか評判悪いらしいっすね） を利用しなくてもホームページが用意できるのである！！！しかも無料！！！
+GitHub Actionsとは？ 端的に言えば、GitHubのCI/CDツール。
+また、CI/CDは何かを超ざっくりというと、 「自動でテストしたり、自動ですぐ使えるファイル（.exeとか.htmlとか）にしてくれたら、手間が省けるね」というもの。
+プログラマーの美徳の1つとして怠惰（手間を省くために手間をかける）を体現したツールである。
+今回話したいこと ここで本題、GitHub Actionsを用いて、新たに記事を作成・公開した旨を皆に知らせるポストを自動投稿したい！ と考え、仕組みを作成しようと試み、(Xに金を払いたくなくて)断念した。
+その際に分かったことについて記載する。
+カスだけどやめられないSNSことXに放流して、誰が見るかと思うかもしれないが(実際誰も見てないと思っている)、 どちらかというと他者というより未来の自分宛てが目的である。
+未来の自分が過去ポストを掘り出しているときに「書いたな、こんな記事」と復習することを狙いとしている。
+自動投稿までの流れ GitHubページにあるdeploy.ymlが本体。 大まかな流れとしては、
+前回との差分を取る 記事が非公開から公開になったタイミングを検知 記事タイトルを取得 記事URLを取得 Xに投稿 という流れである。
+このymlファイルでは記事の反映も行っているが、 この辺については、かつて書いたHugoに関する記事 が詳しいため、気になった方はそちらを参照されたい。
+それでは大まかな流れのそれぞれについてどのような処理をしているか触れていこう
+前回の記事との差分を取る Actionsのスクリプトでやってるのはこの辺(以下コードブロック)。
+コメントでやってることを記載した。
+# 現在のコミットと1つ前のコミットでの差分(ファイル名)を取得 FILES=$(git diff --name-only HEAD^ HEAD) # 取得したファイル名を1つずつ見る for file in $FILES do # post配下のmarkdownだけ見る if [[ &#34;$file&#34; != content/post/*.md ]]; then continue fi # コミット前後のdraft状態を取得 OLD_DRAFT=$(git show HEAD^:&#34;$file&#34; 2&gt;/dev/null | grep &#34;^draft =&#34; || true) NEW_DRAFT=$(grep &#34;^draft =&#34; &#34;$file&#34; || true) なお、それぞれの要素を説明すると、
+" />
+<meta property="og:url" content="https://aramakishake.github.io/tech-blog/post/actions%E3%81%A7%E6%96%B0%E8%A8%98%E4%BA%8B%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%93%E3%81%86/" />
+<meta property="og:site_name" content="Actionsで新記事の更新をつぶやこう_20260913" />
+<meta property="og:image"
+  content="https://aramakishake.github.io/tech-blog/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2026-09-13 22:31:41 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://aramakishake.github.io/tech-blog/">
+        <img class="octicon" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://aramakishake.github.io/tech-blog/">
+            </label>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://aramakishake.github.io/tech-blog/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="https://aramakishake.github.io/tech-blog/images/favicon.ico">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://aramakishake.github.io/tech-blog/">
+                  <img class=" avatar-user"
+                    src="https://aramakishake.github.io/tech-blog/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://aramakishake.github.io/tech-blog/"></a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://aramakishake.github.io/tech-blog/post/actions%E3%81%A7%E6%96%B0%E8%A8%98%E4%BA%8B%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%93%E3%81%86/">Actionsで新記事の更新をつぶやこう_20260913</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Sun, 13 Sep 2026 22:31:41 &#43;0900"
+                    class="no-wrap">
+                    Sun, 13 Sep 2026 22:31:41 &#43;0900</relative-time>
+
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      5225 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/ci/cd">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      CI/CD
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/github-actions">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      GitHub Actions
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/%E6%97%A5%E8%A8%98">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      日記
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><h1 id="はじめに">はじめに</h1>
+<p>最近、通勤の合間を縫って、技術ブログを綴っている。
+「技術」といっても、高尚な内容ではなく、ひねった文章を書くために、技術的な部分の考察を行うという営みだ。</p>
+<p>その際に、「新記事投稿時にXで自動投稿してくれたら便利やろ」と思い設定しようと試みた。</p>
+<p>結論から言うと、準備はできたものの、自動投稿の仕組みを使わないと判断した。</p>
+<p>その判断も含め、備忘のために記事として残しておく。</p>
+<h1 id="本題">本題</h1>
+<h2 id="前提github-pages">前提（GitHub Pages）</h2>
+<p>まず、当ブログはGitHub Pagesという、GitHubでホームページを管理し、公開できる仕組みを用いている。</p>
+<p>これは、</p>
+<ul>
+<li>リポジトリにホームページのhtmlやCSS, javascriptを配置する</li>
+<li>公開元として指定したブランチ(gh-pagesなど)にpushする</li>
+<li>GitHub側がそのファイル群を検知して、配信開始</li>
+<li>https://ユーザー名.github.io/リポジトリ名/ でアクセス可能になる</li>
+</ul>
+<p>という流れでホームページが公開される。</p>
+<p>かつて利用していた</p>
+<ul>
+<li>FFFTP（FTPで送信するツール）</li>
+<li>お名前ドットコム（ドメインとレンタルサーバーの会社、なんか評判悪いらしいっすね）</li>
+</ul>
+<p>を利用しなくてもホームページが用意できるのである！！！しかも無料！！！</p>
+<h2 id="github-actionsとは">GitHub Actionsとは？</h2>
+<p>端的に言えば、GitHubのCI/CDツール。</p>
+<p>また、CI/CDは何かを超ざっくりというと、
+「自動でテストしたり、自動ですぐ使えるファイル（.exeとか.htmlとか）にしてくれたら、手間が省けるね」というもの。</p>
+<p>プログラマーの美徳の1つとして怠惰（手間を省くために手間をかける）を体現したツールである。</p>
+<h2 id="今回話したいこと">今回話したいこと</h2>
+<p>ここで本題、GitHub Actionsを用いて、新たに記事を作成・公開した旨を皆に知らせるポストを自動投稿したい！
+と考え、仕組みを作成しようと試み、(Xに金を払いたくなくて)断念した。</p>
+<p>その際に分かったことについて記載する。</p>
+<p>カスだけどやめられないSNSことXに放流して、誰が見るかと思うかもしれないが(実際誰も見てないと思っている)、
+どちらかというと他者というより未来の自分宛てが目的である。</p>
+<p>未来の自分が過去ポストを掘り出しているときに「書いたな、こんな記事」と復習することを狙いとしている。</p>
+<h2 id="自動投稿までの流れ">自動投稿までの流れ</h2>
+<p><a href="https://github.com/Aramakishake/tech-blog/tree/develop/.github/workflows">GitHubページ</a>にあるdeploy.ymlが本体。
+大まかな流れとしては、</p>
+<ul>
+<li>前回との差分を取る</li>
+<li>記事が非公開から公開になったタイミングを検知</li>
+<li>記事タイトルを取得</li>
+<li>記事URLを取得</li>
+<li>Xに投稿</li>
+</ul>
+<p>という流れである。</p>
+<p>このymlファイルでは記事の反映も行っているが、
+この辺については、かつて書いた<a href="https://aramakishake.github.io/tech-blog/post/hugo%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9Fpart2/">Hugoに関する記事</a>
+が詳しいため、気になった方はそちらを参照されたい。</p>
+<p>それでは大まかな流れのそれぞれについてどのような処理をしているか触れていこう</p>
+<h3 id="前回の記事との差分を取る">前回の記事との差分を取る</h3>
+<p>Actionsのスクリプトでやってるのはこの辺(以下コードブロック)。</p>
+<p>コメントでやってることを記載した。</p>
+<pre tabindex="0"><code># 現在のコミットと1つ前のコミットでの差分(ファイル名)を取得
+FILES=$(git diff --name-only HEAD^ HEAD)
+
+# 取得したファイル名を1つずつ見る
+for file in $FILES
+do
+    # post配下のmarkdownだけ見る
+    if [[ &#34;$file&#34; != content/post/*.md ]]; then
+        continue
+    fi
+
+    # コミット前後のdraft状態を取得
+    OLD_DRAFT=$(git show HEAD^:&#34;$file&#34; 2&gt;/dev/null | grep &#34;^draft =&#34; || true)
+    NEW_DRAFT=$(grep &#34;^draft =&#34; &#34;$file&#34; || true)
+</code></pre><p>なお、それぞれの要素を説明すると、</p>
+<pre tabindex="0"><code>FILES=$(git diff --name-only HEAD^ HEAD)
+</code></pre><ul>
+<li>FILES=$(&hellip;)：(&hellip;)内コマンドの実行結果をFILESという変数で受け取る</li>
+<li>git diff A B：AとBの差分を取る</li>
+<li>&ndash;name-only ：ファイル名のみ抽出</li>
+<li>HEAD        ：A = 現在のコミット</li>
+<li>HEAD^       ：B = 1つ前のコミット</li>
+</ul>
+<pre tabindex="0"><code>for file in $FILES
+do
+    if [[ &#34;$file&#34; != content/post/*.md ]]; then
+        continue
+    fi
+</code></pre><ul>
+<li>for file in $FILES do：変更のあるファイル群($FILES)から1つずつ$fileという変数に取り出してdo配下を実行</li>
+<li>if &hellip; fiで囲まれた部分が条件分岐</li>
+<li>&ldquo;$file&rdquo; != content/post/*.md：変更のあるファイルが&quot;content/post/&ldquo;配下のMarkdownファイルでない場合trueでcontinue(そのファイルを飛ばす)</li>
+</ul>
+<pre tabindex="0"><code># コミット前後のdraft状態を取得
+OLD_DRAFT=$(git show HEAD^:&#34;$file&#34; 2&gt;/dev/null | grep &#34;^draft =&#34; || true)
+NEW_DRAFT=$(grep &#34;^draft =&#34; &#34;$file&#34; || true)
+</code></pre><ul>
+<li><code>XXX=$(...)</code>：&hellip;内の出力をXXXという変数に代入</li>
+<li><code>git show HEAD^:&quot;\$file&quot;</code>：1つ前のコミット(HEAD^)にある、$fileの内容を出力する</li>
+<li><code>2&gt;/dev/null</code>：エラーメッセージを捨てる(非表示とする)</li>
+<li><code>| grep &quot;^draft =&quot;</code>：出力された内容から、&ldquo;draft =&ldquo;で始まる行を取得
+<ul>
+<li>grep(Global Regular Expression Print)なので正規表現</li>
+<li>正規表現において、キャレット(^)は行頭を表す</li>
+</ul>
+</li>
+<li><code>|| true</code>：grepが見つからずとも、コマンド全体を成功扱いにする(スクリプトを終了させないため)</li>
+<li><code>grep &quot;^draft =&quot; &quot;\$file&quot;</code>：現在の$fileにおける&quot;draft =&ldquo;で始まる行を取得</li>
+</ul>
+<h3 id="記事が非公開から公開になったタイミングを検知">記事が非公開から公開になったタイミングを検知</h3>
+<pre tabindex="0"><code>do(差分のあるFILEごとのループ)
+     if [[ &#34;$OLD_DRAFT&#34; == *&#34;true&#34;* ]] &amp;&amp;
+        [[ &#34;$NEW_DRAFT&#34; == *&#34;false&#34;* ]]; then
+        (中略)
+        echo &#34;NEW_POST=true&#34; &gt;&gt; $GITHUB_ENV
+        (中略)
+        NEW_POST=true
+        (中略)
+        break
+    fi
+done
+
+if [ &#34;$NEW_POST&#34; = false ]; then
+    echo &#34;NEW_POST=false&#34; &gt;&gt; $GITHUB_ENV
+fi
+</code></pre><ul>
+<li>if文
+<ul>
+<li>OLD_DRAFT(コミット前のdraftが記載されている行)にtrueという文字列が含まれる。</li>
+<li>NEW_DRAFT(コミット後のdraftが記載されている行)にfalseという文字列が含まれる。</li>
+<li>この双方を満たす場合、if文処理が行われる。
+<ul>
+<li>つまり、非公開→公開に変更した場合のみこの条件を満たす。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>条件を満たすときの処理
+<ul>
+<li><code>echo &quot;NEW_POST=true&quot; &gt;&gt; $GITHUB_ENV</code>：後続ステップでもNEW_POSTという変数(グローバル変数)がtrueになる。</li>
+<li><code>NEW_POST=true</code>：このステップではNEW_POSTという変数(ローカル変数)がtrueになる。</li>
+<li><code>break</code>：doループから抜ける</li>
+</ul>
+</li>
+<li>ループ終了時
+<ul>
+<li><code>if [ &quot;$NEW_POST&quot; = false ]; then echo &quot;NEW_POST=false&quot; &gt;&gt; $GITHUB_ENV fi</code>：ループを経てもNEW_POSTのローカル変数がfalseである場合、グローバル変数のNEW_POSTをtrueにする。</li>
+</ul>
+</li>
+</ul>
+<h3 id="記事タイトルを取得">記事タイトルを取得</h3>
+<pre tabindex="0"><code>TITLE=$(grep &#34;^title =&#34; &#34;$file&#34; \
+    | head -n1 \
+    | cut -d&#39;=&#39; -f2 \
+    | tr -d &#39;&#34;&#39; \
+    | tr -d &#34;&#39;&#34; \
+    | xargs)
+(中略)
+echo &#34;POST_TITLE=$TITLE&#34; &gt;&gt; $GITHUB_ENV
+</code></pre><ul>
+<li><code>TITLE=$(...)</code>：&hellip;の実行結果をTITLEに格納</li>
+<li><code>grep &quot;^title =&quot; &quot;$file&quot; </code>：現在の$fileにおける&quot;title =&ldquo;で始まる行を取得</li>
+<li><code>head -n1</code>：(&ldquo;title =&ldquo;で始まる)先頭1行を取得</li>
+<li><code>-cut -d'=' -f2</code>：区切り文字(-d)を=に設定し、区切ったうちの2番目のフィールド(-f2)を取得</li>
+<li><code>tr -d '&quot;'</code>：ダブルクオート(&quot;)を削除</li>
+<li><code>tr -d &quot;'&quot;</code>：シングルクオート(&rsquo;)を削除</li>
+<li><code>xargs</code>：前後の余分な空白やタブを削除し、連続する空白も整理</li>
+<li><code>echo &quot;POST_TITLE=$TITLE&quot; &gt;&gt; $GITHUB_ENV</code>：グローバル変数POST_TITLEにタイトルを代入</li>
+</ul>
+<h3 id="記事urlを取得">記事URLを取得</h3>
+<pre tabindex="0"><code>- name: Get URL From RSS
+        if: env.NEW_POST == &#39;true&#39;
+        shell: bash
+        run: |
+          LINK=$(grep -A 2 &#34;$POST_TITLE&#34; public/index.xml \
+            | grep &#34;&lt;link&gt;&#34; \
+            | head -n1 \
+            | sed &#39;s#.*&lt;link&gt;##&#39; \
+            | sed &#39;s#&lt;/link&gt;.*##&#39;)
+
+          echo &#34;POST_URL=$LINK&#34; &gt;&gt; $GITHUB_ENV
+</code></pre><ul>
+<li><code>- name: Get URL From RSS</code>：処理ユニットの名前、今回はRSSからURLを取得するので、その旨を記載</li>
+<li><code>if: env.NEW_POST == 'true'</code>：グローバル変数のNEW_POSTがtrueの時(記事公開時)、以下を実行</li>
+<li><code>shell: bash</code>：実行するシェルをbashに設定
+<ul>
+<li>この行は書かなくても動く
+<ul>
+<li>Runner、つまりActionsで動かしている仮想PCはUbuntu-latestを使用しており、デフォルトではBash系であるため</li>
+<li>「Bash前提である」と明示するために記載している</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>run: |</code>：以下のスクリプトを実行
+<ul>
+<li><code>LINK=$(...)</code>：&hellip;の出力結果をLINKに代入</li>
+<li><code>grep -A 2 &quot;$POST_TITLE&quot; public/index.xml</code>
+<ul>
+<li><code>grep -A 2　(指定正規表現) (対象)</code>：マッチした行の後ろ2行も表示する</li>
+<li><code>&quot;$POST_TITLE&quot;</code>：公開した記事タイトル</li>
+<li><code>public/index.xml</code>：Hugoにおいて生成されるRSSフィードのpath</li>
+<li>全体でこの行は…「RSSフィードの中から、公開した記事タイトルに合致する行とその後ろ2行を取得する」というもの</li>
+</ul>
+</li>
+<li><code>| grep &quot;&lt;link&gt;&quot;</code>：linkタグを含む行を取得する</li>
+<li><code>| head -n1 </code>：先頭1行だけ取得</li>
+<li><code>| sed 's#.*&lt;link&gt;##' </code>：linkタグの前を削除</li>
+<li><code>| sed 's#&lt;/link&gt;.*##')</code>：linkの閉じタグ以降を削除</li>
+<li>上記をすべて実施すると、LINKにRSSに記載されているURLが代入される</li>
+</ul>
+</li>
+<li><code>echo &quot;POST_URL=$LINK&quot; &gt;&gt; $GITHUB_ENV</code>：GITHUB_ENV(グローバル変数)のPOST_URLに取得したURLを保存</li>
+</ul>
+<h3 id="xに投稿">Xに投稿</h3>
+<pre tabindex="0"><code>- name: Post to X
+  # if: env.NEW_POST == &#39;true&#39;
+  env:
+    X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+    X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
+    X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+    X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+  run: |
+    python scripts/post_to_X.py
+</code></pre><ul>
+<li><code>env:</code>：環境変数設定</li>
+<li><code>X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}</code>：アプリの公開ID(API Key)</li>
+<li><code>X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}</code>：アプリの秘密鍵(API Key Secret)</li>
+<li><code>X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}</code>：ユーザ認証後に発行されたトークン</li>
+<li><code>X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}</code>：アクセストークン用の秘密鍵</li>
+<li><code>run: | python scripts/post_to_X.py</code>：scripts/にあるpost_to_X.pyをPythonで実行</li>
+</ul>
+<h4 id="post_to_xpyの中身">post_to_X.pyの中身</h4>
+<pre tabindex="0"><code>import os
+import tweepy
+
+client = tweepy.Client(
+    consumer_key=os.environ[&#34;X_CONSUMER_KEY&#34;],
+    consumer_secret=os.environ[&#34;X_CONSUMER_SECRET&#34;],
+    access_token=os.environ[&#34;X_ACCESS_TOKEN&#34;],
+    access_token_secret=os.environ[&#34;X_ACCESS_TOKEN_SECRET&#34;],
+)
+
+response = client.create_tweet(
+    text=&#34;GitHub Actionsから投稿テスト&#34;
+)
+
+print(response)
+</code></pre><p>ざっくり記載するが、以下の流れで処理している</p>
+<ul>
+<li>PythonでXのAPIを使って投稿する
+<ul>
+<li>XのAPIを使えるように先ほど設定した環境変数を登録</li>
+<li>投稿テストのtextをツイートする</li>
+<li>ツイートの実行結果を受け取って出力</li>
+</ul>
+</li>
+</ul>
+<h3 id="細かい部分の調整">細かい部分の調整</h3>
+<p>上記を実施する中で、うまくいかない部分があった。
+具体的にはすべてASCIIのファイル名の場合は、差分のあるファイルの取得できるが、日本語名ファイルだと差分のあるファイル取得ができず、記事の公開をしても公開と判定されないというもの。</p>
+<p>Copilotさんに泣きついた結果、以下のスクリプトを最初に挿入することで解決した。</p>
+<pre tabindex="0"><code>- name: Configure Git
+  run: |
+    git config --global core.quotepath false
+</code></pre><ul>
+<li><code>git config --global core.quotepath false</code>
+<ul>
+<li><code>--global core.quotepath false</code>：Pathを非ASCII文字として表示する</li>
+<li><code>--global core.quotepath true</code>：Pathを引用符付きのエスケープ形式で表示する</li>
+</ul>
+</li>
+</ul>
+<p>このスクリプトを最初に挿入することで、日本語のファイル名をそのまま取得できるようになり、差分ファイルの取得ができるようになった。</p>
+<h4 id="エスケープ形式と日本語の対応">エスケープ形式と日本語の対応</h4>
+<ul>
+<li>
+<p>例：&quot;\346\227\245\346\234\254\350\252\236&rdquo;(エスケープ)⇄日本語(Unicode文字)</p>
+<ul>
+<li>\346とかは1Byteの8進表現
+<ul>
+<li>なぜ8進なのか気になるため後述(※1)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>8進表現を数値に変換した結果を、UTF-8でデコード(※2)するとUnicode文字が得られる</p>
+<ul>
+<li>(OCT→HEX)\346 \227 \245 → 0xE6 0x97 0xA5</li>
+<li>(UTF-8として読む)0xE6 0x97 0xA5 → 日</li>
+</ul>
+</li>
+<li>
+<p>(※1)なんで3x3の9bitなのか…？1Byteから1bit余るだろ…と思って調べた</p>
+<ul>
+<li>どうやらC言語のエスケープとかの形式らしい</li>
+<li>当時は16進より8進表現の方が一般的だった</li>
+<li>というのも、3n bit(18bitとか)のワード長をもつコンピュータが存在したため</li>
+</ul>
+</li>
+<li>
+<p>(※2)より厳密に表現すると、</p>
+<ul>
+<li>(OCT→HEX)\346 \227 \245 → 0xE6 0x97 0xA5</li>
+<li>(UTF-8デコード)0xE6 0x97 0xA5 → U+65E5(Unicodeコードポイント)</li>
+<li>(Unicode規格)U+65E5 = 日</li>
+</ul>
+</li>
+</ul>
+<h2 id="スクリプトを書いたが断念">スクリプトを書いたが、断念……。</h2>
+<p>上記のようにスクリプトを書いて動かしてみよう…！としたところ、Xのクレジットがないヨ～(HTTP 402エラー)と出てきた。</p>
+<p>楽しみのために自動投稿のシステムを作成したが、カスのSNSことXごときにお金を落とす気は更々ない故に断念した。</p>
+<figure style="text-align: center;">
+  <img src="https://aramakishake.github.io/tech-blog/images/%E3%83%90%E3%82%AB%E6%83%85%E3%81%91%E3%81%AA%E3%81%84%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88.png" alt="情けないコメント" style="max-width: 100%; height: auto;" />
+  
+    <figcaption>情けないコメントとコメントアウト</figcaption>
+  
+</figure>
+<p>最終的には以下のような定型文をActionsで表示するようにした。</p>
+<pre tabindex="0"><code>      - name: Generate Tweet Message
+        if: env.NEW_POST == &#39;true&#39;
+        run: |
+          echo &#34;&#34;
+          echo &#34;================================&#34;
+          echo &#34;TWEET MESSAGE&#34;
+          echo &#34;================================&#34;
+          echo &#34;📝 新しい記事を公開しました！&#34;
+          echo &#34;&#34;
+          echo &#34;$POST_TITLE&#34;
+          echo &#34;&#34;
+          echo &#34;$POST_URL&#34;
+          echo &#34;&#34;
+          echo &#34;#技術ブログ #Hugo&#34;
+          echo &#34;================================&#34;
+</code></pre><ul>
+<li><code>$POST_TITLE</code>に記事タイトル</li>
+<li><code>$POST_URL</code>に記事URL
+が代入されて、コピペするだけで投稿可能っちゅー寸法だ。</li>
+</ul>
+<h1 id="おわりに">おわりに</h1>
+<h2 id="まとめ">まとめ</h2>
+<p>今回は、Actionsを用いて記事の更新に際してXで自動投稿を行うようなスクリプトの書き方を紹介した。</p>
+<p>しかし、出費をケチり、Post用メッセージを作成することに甘んじていることも紹介した。</p>
+<h2 id="所感">所感</h2>
+<p>カスのSNSをつけあがらせないために、プログラマーの美徳の1つである怠惰を黙らせた。</p>
+<p>この振る舞いに関して弁明をしておく。</p>
+<p>というのも、昨今のX、かなり醜悪だと感じいるためだ。特におすすめ欄がひどい。見ててイライラするポストが濁流のように流れてくる。</p>
+<p>おそらく、ポストの閲覧を最大化していった結果、人を怒らすことが最もコスパの良い手法だと見つかったためだろうと思われる。</p>
+<p>人間の感情をハックして金を稼いでやろうという者共の懐に金を入れたくないという思想から上記の振る舞いをするに至った。</p>
+<p>SNSはほどほどで人生をやろうと思う(できるとは言ってない)。</p>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://aramakishake.github.io/tech-blog/js/toc.js'></script>
+<link rel="stylesheet" href='https://aramakishake.github.io/tech-blog/css/toc.css' />
+
+  
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://aramakishake.github.io/tech-blog/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+      <li class="mr-3 mr-lg-0">GitHub and the Invertocat logo are trademarks of <a href="https://github.com/">GitHub, Inc.</a></li>
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+
+</body>
+
+<script type="application/javascript" src="https://aramakishake.github.io/tech-blog/js/github-style.js"></script>
+
+
+
+
+
+
+
+</html>

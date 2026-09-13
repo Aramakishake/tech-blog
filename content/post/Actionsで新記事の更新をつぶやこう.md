@@ -1,6 +1,6 @@
 ﻿+++
-date = '2026-09-13T22:28:45+09:00'
-draft = true
+date = '2026-09-13T22:31:41+09:00'
+draft = false
 title = 'Actionsで新記事の更新をつぶやこう_20260913'
 tags = ["CI/CD", "GitHub Actions","日記"]
 +++

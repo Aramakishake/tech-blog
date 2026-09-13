@@ -1,8 +1,8 @@
-+++
-date = '2026-09-02T20:50:33+09:00'
+﻿+++
+date = '2026-09-13T22:28:45+09:00'
 draft = true
-title = 'Actionsで新記事の更新をつぶやこう_20260902'
-tags = ["CI/CD", "GitHub Actions"]
+title = 'Actionsで新記事の更新をつぶやこう_20260913'
+tags = ["CI/CD", "GitHub Actions","日記"]
 +++
 
 # はじめに
@@ -212,6 +212,48 @@ echo "POST_TITLE=$TITLE" >> $GITHUB_ENV
 - `echo "POST_URL=$LINK" >> $GITHUB_ENV`：GITHUB_ENV(グローバル変数)のPOST_URLに取得したURLを保存
 ### Xに投稿
 
+```
+- name: Post to X
+  # if: env.NEW_POST == 'true'
+  env:
+    X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+    X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
+    X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+    X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+  run: |
+    python scripts/post_to_X.py
+```
+- `env:`：環境変数設定
+- `X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}`：アプリの公開ID(API Key)
+- `X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}`：アプリの秘密鍵(API Key Secret)
+- `X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}`：ユーザ認証後に発行されたトークン
+- `X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}`：アクセストークン用の秘密鍵
+- `run: | python scripts/post_to_X.py`：scripts/にあるpost_to_X.pyをPythonで実行
+
+#### post_to_X.pyの中身
+```
+import os
+import tweepy
+
+client = tweepy.Client(
+    consumer_key=os.environ["X_CONSUMER_KEY"],
+    consumer_secret=os.environ["X_CONSUMER_SECRET"],
+    access_token=os.environ["X_ACCESS_TOKEN"],
+    access_token_secret=os.environ["X_ACCESS_TOKEN_SECRET"],
+)
+
+response = client.create_tweet(
+    text="GitHub Actionsから投稿テスト"
+)
+
+print(response)
+```
+
+ざっくり記載するが、以下の流れで処理している
+- PythonでXのAPIを使って投稿する
+  - XのAPIを使えるように先ほど設定した環境変数を登録
+  - 投稿テストのtextをツイートする
+  - ツイートの実行結果を受け取って出力
 ### 細かい部分の調整
 
 上記を実施する中で、うまくいかない部分があった。
@@ -226,19 +268,34 @@ Copilotさんに泣きついた結果、以下のスクリプトを最初に挿�
 - `git config --global core.quotepath false`
   - `--global core.quotepath false`：Pathを非ASCII文字として表示する
   - `--global core.quotepath true`：Pathを引用符付きのエスケープ形式で表示する
-    - エスケープ形式と日本語の対応としては以下の通り。
-      - 例："\346\227\245\346\234\254\350\252\236"(エスケープ)⇄日本語(非ASCII文字)
-      - \346とかは1Byte
-        - なぜ8進なのか気になるが一旦おいとく
-          - なんで1bit余るんだ…とか思っている
-      - (OCT→HEX)\346 \227 \245 → 0xE6 0x97 0xA5
-      - (UTF-8として読む)0xE6 0x97 0xA5 → 日
+  
+このスクリプトを最初に挿入することで、日本語のファイル名をそのまま取得できるようになり、差分ファイルの取得ができるようになった。
+
+#### エスケープ形式と日本語の対応
+- 例："\346\227\245\346\234\254\350\252\236"(エスケープ)⇄日本語(Unicode文字)
+  - \346とかは1Byteの8進表現
+    - なぜ8進なのか気になるため後述(※1)
+- 8進表現を数値に変換した結果を、UTF-8でデコード(※2)するとUnicode文字が得られる
+  - (OCT→HEX)\346 \227 \245 → 0xE6 0x97 0xA5
+  - (UTF-8として読む)0xE6 0x97 0xA5 → 日
+
+- (※1)なんで3x3の9bitなのか…？1Byteから1bit余るだろ…と思って調べた
+  - どうやらC言語のエスケープとかの形式らしい
+  - 当時は16進より8進表現の方が一般的だった
+  - というのも、3n bit(18bitとか)のワード長をもつコンピュータが存在したため
+
+- (※2)より厳密に表現すると、
+  - (OCT→HEX)\346 \227 \245 → 0xE6 0x97 0xA5
+  - (UTF-8デコード)0xE6 0x97 0xA5 → U+65E5(Unicodeコードポイント)
+  - (Unicode規格)U+65E5 = 日
 
 ## スクリプトを書いたが、断念……。
 
 上記のようにスクリプトを書いて動かしてみよう…！としたところ、Xのクレジットがないヨ～(HTTP 402エラー)と出てきた。
 
 楽しみのために自動投稿のシステムを作成したが、カスのSNSことXごときにお金を落とす気は更々ない故に断念した。
+
+{{< img src="images/バカ情けないコメント.png" alt="情けないコメント" caption="情けないコメントとコメントアウト" >}}
 
 最終的には以下のような定型文をActionsで表示するようにした。
 

@@ -6,3 +6,6 @@ theme = 'github-style'
 [params]
 headerIcon = "images/favicon.ico"
 
+[taxonomies]
+tag = "tags"
+category = "categories"

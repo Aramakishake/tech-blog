@@ -1,4 +1,5 @@
 baseURL = 'https://aramakishake.github.io/tech-blog/'
+canonifyURLs = true
 languageCode = 'ja-jp'
 title = '荒巻しゃけのHomepage'
 theme = 'github-style'

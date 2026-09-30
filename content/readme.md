@@ -8,6 +8,9 @@ title = 'Readme'
 技術的知見を蓄積させる技術ブログ。
 何が技術かわからないのでロクでもない所感も記載予定。
 
+リンクは
+https://aramakishake.github.io/tech-blog/
+
 今のところ興味があるのは
 - 電子工作
 - 科学

@@ -131,7 +131,119 @@ tone関数はArduino IDEにあり、これも同様に音が奏でられるも�
 
 今回、複数のブザーをハモらせたい(メロディとベース)という欲求から、このtone関数を大人しく使うことを拒んだ。
 ということで、PWM関数を駆使して、ブザーを奏でる関数を作成した。
+実際のソースとしてはこの部分。
 
+いくつか階層になっているので、分けて解説する。
+まず楽譜データに関して。
+```
+// 【データ部】
+// Note構造体
+struct Note {
+  uint melodyFreq;  // メロディの音程[Hz]
+  uint bassFreq;    // ベースの音程[Hz]
+  uint duration;    // 鳴らす時間[ms]
+};
+
+// score配列(楽譜)
+Note score[] = {
+  // ララーシラファ#ラ (D)
+  {NOTE_A4  , NOTE_D3  , OEIGHTH },
+  {NOTE_A4  , NOTE_A3  , OEIGHTH },
+  {NOTE_A4  , NOTE_FS3 , OEIGHTH },
+  {NOTE_B4  , NOTE_A3  , OEIGHTH },
+  {NOTE_A4  , NOTE_D3  , OEIGHTH },
+  {NOTE_FS4 , NOTE_A3  , OEIGHTH },
+  {NOTE_A4  , NOTE_FS3 , OEIGHTH },
+  {NOTE_A4  , NOTE_A3  , OEIGHTH },
+}
+```
+Note構造体は楽譜における一部を表現している。
+「どの音(メロディ・ベース)をどの時間鳴らすか」というのがNoteである。
+また、その配列(複数の集まり)がscore(楽譜)である。
+
+関数部が作れていれば、scoreを書いて使い回すことができる。
+
+次に、関数部について説明する。こちらも仕事が大きい順に関数を書いている。
+上にある関数が下にある関数を読んでいる。
+関数の構造としてはこう。
+```
+playMrYobikomiPWM()
+┗playNote()
+ ┗setPWMTone()
+```
+ソースの中身をコメント付きで書くとこんな感じ。
+```
+// 【関数部】
+
+// score配列の長さを取得
+const int scoreLength = sizeof(score) / sizeof(score[0]);
+
+// scoreを演奏する関数
+void playMrYobikomiPWM() {
+  for (int i = 0; i < scoreLength; i++) {
+    playNote(score[i]);
+  }
+}
+
+// Noteを演奏する関数
+void playNote(const Note& note)
+{
+    setPWMTone(PIEZO,  note.melodyFreq);
+    setPWMTone(PIEZO2, note.bassFreq);
+    delay(note.duration);
+}
+
+// Noteを演奏停止する関数
+void stopPWMTone(uint pin)
+{
+    uint slice = pwm_gpio_to_slice_num(pin);
+    pwm_set_enabled(slice, false);
+    // 念のためLOWに戻す
+    digitalWrite(pin, LOW);
+}
+
+// 圧電ブザーをPWMで鳴らす関数
+void setPWMTone(uint pin, uint freq)
+{
+  // 指定したGPIOピンが属するPWMスライス番号を取得
+  uint slice = pwm_gpio_to_slice_num(pin);
+
+  // スライス内のA/Bどちらのチャネルかを取得
+  uint channel = pwm_gpio_to_channel(pin);
+
+  // GPIOを通常の入出力ではなくPWM機能に切り替える
+  gpio_set_function(pin, GPIO_FUNC_PWM);
+
+  // 周波数0HzならPWM停止
+  if (freq == 0) {
+      pwm_set_enabled(slice, false);
+      return;
+  }
+
+  // PicoのPWM元クロック(125MHz)
+  uint32_t clock = 125000000;
+
+  // PWMクロックを16分周する
+  uint32_t divider = 16;
+
+  // PWM周期を決定するカウンタ上限値(wrap)
+  // wrapまで数えたら0に戻る
+  uint32_t wrap = clock / divider / freq;
+
+  // PWMクロック分周比を設定
+  pwm_set_clkdiv(slice, divider);
+
+  // PWM周期(カウンタ上限値)を設定
+  pwm_set_wrap(slice, wrap);
+
+  // デバッグ表示
+  Serial.print("slice=");
+  Serial.println(slice);
+
+  // Duty比50%に設定
+  // wrap/2 でON時間
+}
+```
 ## メロディデータを用意する
 
 ## Q.車輪の再発明だったのか

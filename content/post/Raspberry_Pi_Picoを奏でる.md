@@ -129,7 +129,7 @@ tone関数はブザーを鳴らす関数である。
 tone関数はArduino IDEにあり、これも同様に音が奏でられるものの、複数のブザーを鳴らすことができない。
 参考：https://nobita-rx7.hatenablog.com/entry/28248243
 
-今回、複数のブザーをハモらせたい(メロディとベース)という欲求から、このtone関数を大人しく使うことを拒んだ。
+今回、複数のブザーをハモらせたい(メロディとベース)という欲求から、このtone関数を使うことを拒み、作成した。
 ということで、PWM関数を駆使して、ブザーを奏でる関数を作成した。
 実際のソースとしてはこの部分。
 
@@ -165,7 +165,7 @@ Note構造体は楽譜における一部を表現している。
 
 次に、関数部について説明する。こちらも仕事が大きい順に関数を書いている。
 上にある関数が下にある関数を読んでいる。
-関数の構造としてはこう。
+関数の構造としては以下の通り。
 ```
 playMrYobikomiPWM()
 ┗playNote()
@@ -206,6 +206,7 @@ void stopPWMTone(uint pin)
 void setPWMTone(uint pin, uint freq)
 {
   // 指定したGPIOピンが属するPWMスライス番号を取得
+  // どうやら、ピン番号≠PWMスライス番号らしい
   uint slice = pwm_gpio_to_slice_num(pin);
 
   // スライス内のA/Bどちらのチャネルかを取得
@@ -236,16 +237,40 @@ void setPWMTone(uint pin, uint freq)
   // PWM周期(カウンタ上限値)を設定
   pwm_set_wrap(slice, wrap);
 
-  // デバッグ表示
-  Serial.print("slice=");
-  Serial.println(slice);
+  // wrap/2 でON時間(Duty比50%)に設定
+  pwm_set_chan_level(
+    slice,
+    channel,
+    wrap / 2);
 
-  // Duty比50%に設定
-  // wrap/2 でON時間
+  // ブザーを鳴らす
+  pwm_set_enabled(slice, true);
 }
 ```
-## メロディデータを用意する
 
+このようにして、演奏を行う関数を作成した。
+## メロディデータを用意する
+メロディデータはメロディの耳コピを行いながら作成した。
+メロディが奏でられたらそれに合うハモリのコードを見つけて、鳴らすようにした。
+
+例えば呼び込みくんの楽譜の1小節に関して述べると、
+メロディのララーシラファ#ラを耳コピしたあと、それに合うコードを色々試して、D（レ-ファ#-ラ）を鳴らすようにしているだけである。
+```
+// score配列(楽譜)
+Note score[] = {
+  // ララーシラファ#ラ (D)
+  {NOTE_A4  , NOTE_D3  , OEIGHTH },
+  {NOTE_A4  , NOTE_A3  , OEIGHTH },
+  {NOTE_A4  , NOTE_FS3 , OEIGHTH },
+  {NOTE_B4  , NOTE_A3  , OEIGHTH },
+  {NOTE_A4  , NOTE_D3  , OEIGHTH },
+  {NOTE_FS4 , NOTE_A3  , OEIGHTH },
+  {NOTE_A4  , NOTE_FS3 , OEIGHTH },
+  {NOTE_A4  , NOTE_A3  , OEIGHTH },
+}
+```
+
+以前興味本位で身につけた耳コピの技術がここに活きてくるとは思わなんだ。
 ## Q.車輪の再発明だったのか
 
 A.はい

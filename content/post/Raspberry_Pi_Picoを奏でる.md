@@ -1,6 +1,6 @@
 ﻿+++
-date = '2026-10-04T10:22:21+09:00'
-draft = true
+date = '2026-10-08T20:13:08+09:00'
+draft = false
 title = 'Raspberry Pi Picoで奏でる'
 tags = ["電子工作", "雑談"]
 +++
